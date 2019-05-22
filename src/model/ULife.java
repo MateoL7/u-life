@@ -56,25 +56,25 @@ public class ULife {
 	 * @param nickName nickname of the user
 	 * @return a message indicating wether or not the user could be added
 	 */
-	public String CreateNewUser(String username, String password, int age, double weight, double height, String gender, String nickName) {
+	public String CreateNewUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
 		String message;
-		if(username == null || password == null || weight == 0 || height == 0 || gender == null || nickName == null || age == 0) {
-			message = "No se pude crear la cuenta debido a que uno o mas campos requeridos estan vacios";
+		if(username == null || password == null || weight == 0 || height == 0 || gender == null || nickName == null || age == 0 || name == null) {
+			message = "Please fill all of the fields";
 		}else {
-		Account a = new Account(username,password,age,weight,height,gender,nickName);
+		Account a = new Account(username,password,age,weight,height,gender,nickName, name);
 		if(firstUser != null) {
 			Account temp = firstUser.getPrev();
 			temp.setNext(a);
 			firstUser.setPrev(a);
 			a.setNext(firstUser);
 			a.setPrev(temp);
-			message = "Se creo exitosamente su cuenta : " + "\n" + "Usuario : " + username + "\n" + "Contraseña : " +password;
+			message = "You account has been created " + "\n" + "Welcome " + name;
 		}
 		else {
 			firstUser = a;
 			firstUser.setNext(a);
 			firstUser.setPrev(a);
-			message = "Se creo exitosamente su cuenta : " + "\n" + "Usuario : " + username + "\n" + "Contraseña : " +password;
+			message = "You account has been created " + "\n" + "Welcome " + name;
 		}
 		
 		}
@@ -99,7 +99,7 @@ public class ULife {
 	 */
 	public void LoadData() throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/SavedAccounts.mateo"));
-		firstUser = (Account)ois.readObject();
+		firstUser = (Account) ois.readObject();
 		ois.close();
 	}
 	

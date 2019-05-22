@@ -1,8 +1,6 @@
 package model;
 
 public abstract class Activity {
-	
-	//Linked list
 
 	private String name;
 	private int minutes;

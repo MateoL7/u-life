@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Account implements Serializable{
+public class Account implements Serializable {
 
 	private String username;
 	private String password;
@@ -12,6 +12,7 @@ public class Account implements Serializable{
 	private double height;
 	private String gender;
 	private String nickName;
+	private String name;
 	
 	private Alarm rootAlarm;
 	private Activity firstActivity;
@@ -19,7 +20,7 @@ public class Account implements Serializable{
 	private Account next;
 	private Account prev;
 
-	public Account(String username, String password, int age, double weight, double height, String gender, String nickName) {
+	public Account(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
 		this.username = username;
 		this.password = password;
 		this.age = age;
@@ -27,6 +28,7 @@ public class Account implements Serializable{
 		this.height = height;
 		this.gender = gender;
 		this.nickName = nickName;
+		this.name = name;
 		this.setNext(this);
 		this.setPrev(this);
 	}
@@ -183,5 +185,19 @@ public class Account implements Serializable{
 	 */
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 }

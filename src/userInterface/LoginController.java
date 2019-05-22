@@ -76,6 +76,7 @@ public class LoginController {
     	try {
     		String usern = username.getText();
         	String pass = password.getText();
+        	ul.LoadData();
         	Account a = ul.searchAccount(usern, pass);
         	if(a != null) {
 			((Stage) scene.getWindow()).close();
@@ -99,6 +100,8 @@ public class LoginController {
     		e.printStackTrace();
     	}catch (IOException e) {
 			e.printStackTrace();
+		}catch(ClassNotFoundException c) {
+			c.printStackTrace();;
 		}
     }
 

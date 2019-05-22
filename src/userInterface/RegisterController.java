@@ -54,14 +54,15 @@ public class RegisterController {
     	double height =  Double.parseDouble(heightT.getText());
     	String gender = genderT.getText();
     	String nickName = nicknameT.getText();
-    	JOptionPane.showMessageDialog(null,ulife.CreateNewUser(username, password, age, weight, height, gender, nickName));
+    	String name = nameT.getText();
+    	JOptionPane.showMessageDialog(null,	ulife.CreateNewUser(username, password, age, weight, height, gender, nickName, name));
     	try {
 			ulife.SaveData();
 		} catch (FileNotFoundException e1) {
-		    JOptionPane.showMessageDialog(null, "no se pudo encontar el archivo");
+		    JOptionPane.showMessageDialog(null, "No file found");
 		
 		} catch (IOException e1) {
-		JOptionPane.showMessageDialog(null, " hubo un error");
+		JOptionPane.showMessageDialog(null, "IOException");
 			
 		}
     }

@@ -1,19 +1,62 @@
 package model;
 
-public class Account {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Account implements Serializable{
 
 	private String username;
 	private String password;
 	private int age;
 	private double weight;
 	private double height;
+	private String gender;
+	private String nickName;
+	
+	private Alarm rootAlarm;
+	private Activity firstActivity;
+	
+	private Account next;
+	private Account prev;
 
-	public Account(String username, String password, int age, double weight, double height) {
+	public Account(String username, String password, int age, double weight, double height, String gender, String nickName) {
 		this.username = username;
 		this.password = password;
 		this.age = age;
 		this.weight = weight;
 		this.height = height;
+		this.gender = gender;
+		this.nickName = nickName;
+		this.setNext(this);
+		this.setPrev(this);
+	}
+
+	/**
+	 * @return the rootAlarm
+	 */
+	public Alarm getRootAlarm() {
+		return rootAlarm;
+	}
+
+	/**
+	 * @return the firstActivity
+	 */
+	public Activity getFirstActivity() {
+		return firstActivity;
+	}
+
+	/**
+	 * @param firstActivity the firstActivity to set
+	 */
+	public void setFirstActivity(Activity firstActivity) {
+		this.firstActivity = firstActivity;
+	}
+
+	/**
+	 * @param rootAlarm the rootAlarm to set
+	 */
+	public void setRootAlarm(Alarm rootAlarm) {
+		this.rootAlarm = rootAlarm;
 	}
 
 	/**
@@ -84,5 +127,61 @@ public class Account {
 	 */
 	public void setHeight(double height) {
 		this.height = height;
+	}
+
+	/**
+	 * @return the next
+	 */
+	public Account getNext() {
+		return next;
+	}
+
+	/**
+	 * @param next the next to set
+	 */
+	public void setNext(Account next) {
+		this.next = next;
+	}
+
+	/**
+	 * @return the prev
+	 */
+	public Account getPrev() {
+		return prev;
+	}
+
+	/**
+	 * @param prev the prev to set
+	 */
+	public void setPrev(Account prev) {
+		this.prev = prev;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the nickName
+	 */
+	public String getNickName() {
+		return nickName;
+	}
+
+	/**
+	 * @param nickName the nickName to set
+	 */
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 }

@@ -21,26 +21,17 @@
             </Label>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Alarmas">
+                <Menu mnemonicParsing="false" text="Alarms">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#showAlarms" text="Actuales" />
+                    <MenuItem mnemonicParsing="false" onAction="#showAlarms" text="My alarms" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="Descansos">
+                  <Menu mnemonicParsing="false" text="Activities">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showBreaks" text="Actuales" />
-                        <MenuItem mnemonicParsing="false" onAction="#addActivity" text="Crear nueva actividad" />
+                        <MenuItem mnemonicParsing="false" onAction="#showBreaks" text="My activities" />
+                        <MenuItem mnemonicParsing="false" onAction="#addActivity" text="New activity" />
                      </items>
                   </Menu>
-                <Menu mnemonicParsing="false" text="Juegos">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#showGames" text="PacMan" />
-                        <MenuItem mnemonicParsing="false" onAction="#showGames" text="Mario Bros" />
-                        <MenuItem mnemonicParsing="false" onAction="#showGames" text="Snake" />
-                        <MenuItem mnemonicParsing="false" onAction="#showGames" text="Donkey Kong" />
-                        <MenuItem mnemonicParsing="false" onAction="#showGames" text="Sonic" />
-                  </items>
-                </Menu>
                 <Menu mnemonicParsing="false" text="Reporte semanal">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#showReport" text="Hidratación" />
@@ -51,7 +42,7 @@
                   <Menu mnemonicParsing="false" text="Notificaciones">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#showTips" text="Tips" />
-                        <MenuItem mnemonicParsing="false" onAction="#show" text="Datos curiosos" />
+                        <MenuItem mnemonicParsing="false" onAction="#show" text="Fun facts" />
                      </items>
                   </Menu>
               </menus>

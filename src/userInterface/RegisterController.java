@@ -85,6 +85,8 @@ public class RegisterController {
 				Stage stage = new Stage();
 				Scene scene = new Scene(root);
 				stage.setTitle("Login");
+				LoginController lc = fxmlLoader.getController();
+				lc.setScene(scene);
 				stage.setScene(scene);
 				stage.show();
 

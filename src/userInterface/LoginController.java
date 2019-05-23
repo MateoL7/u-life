@@ -76,7 +76,7 @@ public class LoginController {
     	try {
     		String usern = username.getText();
         	String pass = password.getText();
-        	ul.LoadData();
+        	ul.loadData();
         	Account a = ul.searchAccount(usern, pass);
         	if(a != null) {
 			((Stage) scene.getWindow()).close();
@@ -88,20 +88,22 @@ public class LoginController {
     		Scene scene = new Scene(root);
     		stage.setTitle("ULife");
     		stage.setScene(scene);
+    		stage.setMaximized(true);
     		stage.show();
         	}
         	else {
         		JOptionPane.showMessageDialog(null, "No account found with that information");
         		JOptionPane.showMessageDialog(null, "Register if you do not have an account");
         	}
-    	} catch(NumberFormatException n) {
-    		System.out.println("Number format, esto lo cambio");
-    	}catch(NullPointerException e) {
+  	}
+    	catch(ClassNotFoundException c) {
+			c.printStackTrace();
+		}
+    	catch(NullPointerException e) {
     		e.printStackTrace();
-    	}catch (IOException e) {
-			e.printStackTrace();
-		}catch(ClassNotFoundException c) {
-			c.printStackTrace();;
+    	}
+    	catch (IOException e1) {
+			e1.printStackTrace();
 		}
     }
 

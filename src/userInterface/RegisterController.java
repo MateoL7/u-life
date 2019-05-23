@@ -5,9 +5,13 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.ULife;
 
 public class RegisterController {
@@ -44,8 +48,14 @@ public class RegisterController {
 
 	private ULife ulife;
 
+	private Scene scene;
+
 	public void initialize() {
 		ulife = new ULife();
+	}
+
+	public void setScene(Scene s) {
+		scene = s;
 	}
 
 	public void doneRegistration(ActionEvent e) {
@@ -63,6 +73,24 @@ public class RegisterController {
 			try {
 				ulife.saveData();
 				messageDialog.setText(msg);
+
+				//Closing the register window
+				if(scene != null) {
+					((Stage) scene.getWindow()).close();
+				}
+
+				//Loading the Login window again
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+				Parent root = fxmlLoader.load();
+				Stage stage = new Stage();
+				Scene scene = new Scene(root);
+				stage.setTitle("Login");
+				stage.setScene(scene);
+				stage.show();
+
+
+
+
 			} catch (FileNotFoundException e1) {
 				msg = ("No file found");
 				messageDialog.setText(msg);

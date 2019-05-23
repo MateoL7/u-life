@@ -36,6 +36,8 @@ public class LoginController {
     
     private Scene scene;
     
+    private RegisterController rc;
+    
     public void setScene(Scene scene) {
     	this.scene = scene;
     }
@@ -56,16 +58,20 @@ public class LoginController {
     @FXML
     public void createAccount(ActionEvent event) {
     	try {
+    		//Close the Login window
     		((Stage) scene.getWindow()).close();
+    		
+    		//Open the register window
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
     		Parent root = fxmlLoader.load();
-    		
     		Stage stage = new Stage();
-
     		Scene scene = new Scene(root);
+    		rc = fxmlLoader.getController();
+    		rc.setScene(scene);
     		stage.setTitle("Register");
     		stage.setScene(scene);
     		stage.show();
+    		
     	}catch(IOException i) {
     		
     	}

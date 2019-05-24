@@ -2,10 +2,13 @@ package model;
 
 public class FunFact {
 
-	private int number;
+	private String number;
 	private String fact;
 	
-	public FunFact(int num, String f) {
+	private FunFact right;
+	private FunFact left;
+	
+	public FunFact(String num, String f) {
 		number = num;
 		fact = f;
 	}
@@ -13,14 +16,14 @@ public class FunFact {
 	/**
 	 * @return the number
 	 */
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
 	/**
 	 * @param number the number to set
 	 */
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
@@ -36,5 +39,33 @@ public class FunFact {
 	 */
 	public void setFact(String fact) {
 		this.fact = fact;
+	}
+
+	/**
+	 * @return the right
+	 */
+	public FunFact getRight() {
+		return right;
+	}
+
+	/**
+	 * @param right the right to set
+	 */
+	public void setRight(FunFact right) {
+		this.right = right;
+	}
+
+	/**
+	 * @return the left
+	 */
+	public FunFact getLeft() {
+		return left;
+	}
+
+	/**
+	 * @param left the left to set
+	 */
+	public void setLeft(FunFact left) {
+		this.left = left;
 	}
 }

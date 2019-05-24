@@ -38,6 +38,10 @@ public class LoginGUI {
 	private Scene scene;
 
 	private RegisterGUI rc;
+	
+	private Account ac;
+	
+	private static LoginGUI lg;
 
 	public void setScene(Scene scene) {
 		this.scene = scene;
@@ -46,6 +50,21 @@ public class LoginGUI {
 	@FXML
 	public void initialize(){
 		ul = new ULife();
+	}
+	
+	public void setLg(LoginGUI l){
+		lg = l;
+	}
+	
+	public static LoginGUI getLg() {
+		return lg;
+	}
+	
+	public void setAccount(Account a) {
+		ac = a;
+	}
+	public Account getAccount() {
+		return ac;
 	}
 
 	@FXML
@@ -80,12 +99,14 @@ public class LoginGUI {
 
 	@FXML
 	public void login(ActionEvent event) {
+		setLg(this);
 		try {
 			String usern = username.getText();
 			String pass = password.getText();
 			ul.loadData();
 			Account a = ul.searchAccount(usern, pass);
 			if(a != null) {
+				setAccount(a);
 				boolean keep = true;
 				((Stage) scene.getWindow()).close();
 				if(a instanceof PremiumAccount) {

@@ -5,6 +5,9 @@ public class Tip {
 	private int number;
 	private String tip;
 	
+	private Tip right;
+	private Tip left;
+	
 	public Tip(int num, String t) {
 		number = num;
 		tip = t;
@@ -36,5 +39,33 @@ public class Tip {
 	 */
 	public void setTip(String tip) {
 		this.tip = tip;
+	}
+
+	/**
+	 * @return the right
+	 */
+	public Tip getRight() {
+		return right;
+	}
+
+	/**
+	 * @param right the right to set
+	 */
+	public void setRight(Tip right) {
+		this.right = right;
+	}
+
+	/**
+	 * @return the left
+	 */
+	public Tip getLeft() {
+		return left;
+	}
+
+	/**
+	 * @param left the left to set
+	 */
+	public void setLeft(Tip left) {
+		this.left = left;
 	}
 }

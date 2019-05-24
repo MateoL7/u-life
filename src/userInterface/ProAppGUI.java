@@ -1,7 +1,11 @@
 package userInterface;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,6 +54,9 @@ public class ProAppGUI {
 	private PremiumAccount pa;
 
 	private LoginGUI lg;
+	
+	@FXML
+    private Label LbClock;
 
 	@FXML
 	public void initialize(){
@@ -59,7 +66,37 @@ public class ProAppGUI {
 		addNoteBt.setVisible(false);
 		addActBt.setVisible(false);
 		addAlarmBt.setVisible(false);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(true) {
+					// se crea un hilo de javafx para cambiar el reloj
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+						
+							Calendar cal = Calendar.getInstance();
 
+			                 int second = cal.get(Calendar.SECOND);
+			                int minute = cal.get(Calendar.MINUTE);
+			                int hour = cal.get(Calendar.HOUR);
+			                LbClock.setText(hour + ":" + (minute) + ":" + second);
+			                System.out.println(hour + ":" + (minute) + ":" + second);
+			                System.out.println(LbClock.getText());
+						}	
+					});
+					//Sleep adentro del while
+				 try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				 
+				}
+			}
+			
+		}).start();
+		
 	}
 
 	@FXML
@@ -209,4 +246,6 @@ public class ProAppGUI {
 		addAlarmBt.setVisible(true);
 		labelMessage.setText(pa.showAlarms());
 	}
+	
+	
 }

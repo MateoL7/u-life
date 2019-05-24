@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -76,13 +76,13 @@
             <Button layoutX="366.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadFacts" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: gold;" text="FunFacts" />
             <Button layoutX="216.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadTips" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Tips" />
             <Button layoutX="66.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadAlarms" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="My alarms" />
-            <Label prefHeight="133.0" prefWidth="904.0" text="                  Pick one " textFill="WHITE">
+            <Label alignment="BOTTOM_LEFT" layoutX="14.0" prefHeight="133.0" prefWidth="288.0" text="Pick one :" textFill="WHITE">
                <font>
                   <Font name="Edwardian Script ITC" size="96.0" />
                </font>
             </Label>
             <Button layoutX="516.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadNotes" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Notes to self" />
-            <Label fx:id="labelMessage" layoutX="2.0" layoutY="262.0" prefHeight="637.0" prefWidth="896.0" textFill="WHITE">
+            <Label fx:id="labelMessage" layoutX="102.0" layoutY="235.0" prefHeight="637.0" prefWidth="896.0" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="25.0" />
                </font>
@@ -95,6 +95,11 @@
             <Button fx:id="bt" layoutX="400.0" layoutY="600.0" mnemonicParsing="false" onAction="#doneAdding" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: white;" text="Done" />
             <Button fx:id="addAlarmBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addAlarm" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add alarm" />
             <Button fx:id="addActBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add activity" />
+            <Label fx:id="LbClock" alignment="CENTER" layoutX="425.0" layoutY="14.0" prefHeight="133.0" prefWidth="320.0" text="hola" textFill="WHITE">
+               <font>
+                  <Font name="Edwardian Script ITC" size="96.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>

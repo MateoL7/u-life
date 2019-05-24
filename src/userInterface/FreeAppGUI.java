@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 
-public class AppGUI {
+public class FreeAppGUI {
 
 	@FXML
 	private Label TituloAlarmas;

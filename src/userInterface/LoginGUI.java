@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Account;
 import model.PremiumAccount;
@@ -73,7 +74,7 @@ public class LoginGUI {
 	}
 
 	@FXML
-	public void createAccount(ActionEvent event) {
+	public void createAccount(MouseEvent event) {
 		try {
 			//Close the Login window
 			((Stage) scene.getWindow()).close();
@@ -95,7 +96,7 @@ public class LoginGUI {
 	}
 
 	@FXML
-	public void login(ActionEvent event) {
+	public void login(ActionEvent ev) {
 		setLg(this);
 		try {
 			String usern = username.getText();

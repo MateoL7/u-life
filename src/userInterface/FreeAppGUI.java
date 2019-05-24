@@ -29,6 +29,10 @@ public class FreeAppGUI {
 		TituloAlarmas.setVisible(false);
 		TituloActividades.setVisible(false);
 	}
+	
+	public void showAlarms(ActionEvent e) {
+		
+	}
 
 
 }

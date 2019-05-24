@@ -82,4 +82,9 @@ public class Activity {
 	public void setPrev(Activity prev) {
 		this.prev = prev;
 	}
+	
+	@Override
+	public String toString() {
+		return "Name: " + name + "\nHours: " + hours + "\nMinutes: " + minutes;
+	}
 }

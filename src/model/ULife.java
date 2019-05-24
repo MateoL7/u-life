@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import personalExceptions.MissingInfoException;
+
 public class ULife {
 
 	private Account firstUser;
@@ -61,9 +63,9 @@ public class ULife {
 	 * @param nickName nickname of the user
 	 * @param name name of the user
 	 */
-	public void createNewUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
-		if(username == null || password == null || weight == 0 || height == 0 || gender == null || nickName == null || age == 0 || name == null) {
-			
+	public void createNewUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) throws MissingInfoException {
+		if((username == "" || username == null) || (password == "" || password == null) || weight <= 20 || height <= 100 || (gender == "" || gender == null) || (nickName == "" || nickName == null) || age <= 5 || (name == "" || name == null)) {
+			throw new MissingInfoException(username, password, age, weight, height, gender, nickName, name);
 		}else {
 			Account a = new Account(username,password,age,weight,height,gender,nickName, name);
 			if(firstUser != null) {
@@ -82,9 +84,9 @@ public class ULife {
 		}
 	}
 	
-	public void createNewPremiumUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
-		if(username == null || password == null || weight == 0 || height == 0 || gender == null || nickName == null || age == 0 || name == null) {
-			
+	public void createNewPremiumUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) throws MissingInfoException {
+		if((username == "" || username == null) || (password == "" || password == null) || weight <= 20 || height <= 100 || (gender == "" || gender == null) || (nickName == "" || nickName == null) || age <= 5 || (name == "" || name == null)) {
+			throw new MissingInfoException(username,password,age,weight,height,gender,nickName, name);
 		}else {
 			PremiumAccount a = new PremiumAccount(username,password,age,weight,height,gender,nickName, name);
 			if(firstUser != null) {

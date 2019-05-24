@@ -13,10 +13,10 @@ public class Account implements Serializable {
 	private String gender;
 	private String nickName;
 	private String name;
-	
+
 	private Alarm rootAlarm;
 	private Activity firstActivity;
-	
+
 	private Account next;
 	private Account prev;
 
@@ -200,8 +200,8 @@ public class Account implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void addActivity(String name, int minutes, int hours, double cal, SportType st) {
+
+	public void addActivity(String name, int minutes, int hours) {
 		Activity rest = new Activity(name, minutes, hours);
 		if(firstActivity == null) {
 			firstActivity = rest;
@@ -209,7 +209,7 @@ public class Account implements Serializable {
 			rest.setPrev(rest);
 		}
 		else {
-			Sport last = (Sport) firstActivity.getPrev();
+			Activity last = firstActivity.getPrev();
 			rest.setPrev(last);
 			last.setNext(rest);
 			firstActivity.setPrev(rest);
@@ -231,4 +231,69 @@ public class Account implements Serializable {
 			sp.setNext(firstActivity);
 		}
 	}
+	public void addAlarm(int hour, int min, String time, boolean vibrate, boolean[] days) {
+		Alarm a = new Alarm(hour, min,time , vibrate, days);
+
+		if(rootAlarm == null) {
+			rootAlarm = a;
+		}
+		else {
+			addAlarm(a, rootAlarm);
+		}
+	}
+	private void addAlarm(Alarm a, Alarm current) {
+		if(a.compareTo(current) > 0) {
+			if(current.getRight() == null) {
+				current.setRight(a);
+			}
+			else {
+				addAlarm(a, current.getRight());
+			}
+		}
+		if(a.compareTo(current) < 0) {
+			if(current.getLeft() == null) {
+				current.setLeft(a);
+			}
+			else {
+				addAlarm(a, current.getLeft());
+			}
+		}
+	}
+
+	public String showActivities() {
+		String msg = "";
+		if(firstActivity != null) {
+			Activity current = firstActivity;
+			Activity last = firstActivity.getPrev(); 
+			while(current != last){
+				msg += current;
+			}
+		}
+		else {
+			msg = "There are no activities planned yet";
+		}
+		return msg;
+	}
+
+	public String showAlarms() {
+		if(rootAlarm == null) {
+			return "There are no alarms set yet";
+		}
+		return showAlarms(rootAlarm);
+	}
+	private String showAlarms(Alarm current) {
+		String msg = "";
+		if(current != null) {
+			msg += current;
+		}
+		if(current.getLeft() != null) {
+			showAlarms(current.getLeft());
+		}
+		if(current.getRight() != null) {
+			showAlarms(current.getRight());
+		}
+		return msg;
+	}
+
+
 }

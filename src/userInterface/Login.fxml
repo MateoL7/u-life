@@ -8,17 +8,15 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.LoginGUI">
    <children>
-      <Label layoutX="210.0" layoutY="45.0" prefHeight="101.0" prefWidth="188.0" text="ULife" textFill="#f8f8f8">
+      <Label layoutX="210.0" layoutY="59.0" prefHeight="101.0" prefWidth="188.0" text="ULife" textFill="#f8f8f8">
          <font>
             <Font name="Berlin Sans FB" size="66.0" />
          </font>
       </Label>
-      <Label layoutX="158.0" layoutY="183.0" text="Username: " textFill="#f80d0d" />
-      <Label layoutX="161.0" layoutY="223.0" text="Password:" textFill="#f80d0d" />
-      <TextField fx:id="username" layoutX="230.0" layoutY="179.0" />
-      <TextField fx:id="password" layoutX="230.0" layoutY="219.0" />
-      <Button fx:id="loginBt" layoutX="333.0" layoutY="255.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <Button fx:id="cancelBt" layoutX="230.0" layoutY="255.0" mnemonicParsing="false" onAction="#cancelLogin" text="Cancel" />
-      <Button fx:id="registerBt" layoutX="248.0" layoutY="306.0" mnemonicParsing="false" onAction="#createAccount" style="-fx-background-color: gray;" text="Create an account" textFill="#fafafa" />
+      <TextField fx:id="username" layoutX="190.0" layoutY="180.0" prefHeight="25.0" prefWidth="188.0" promptText="Username" />
+      <TextField fx:id="password" layoutX="190.0" layoutY="220.0" prefHeight="25.0" prefWidth="188.0" promptText="Password" />
+      <Button fx:id="loginBt" layoutX="333.0" layoutY="260.0" mnemonicParsing="false" onAction="#login" text="Login" />
+      <Button fx:id="cancelBt" layoutX="191.0" layoutY="260.0" mnemonicParsing="false" onAction="#cancelLogin" text="Cancel" />
+      <Label layoutX="240.0" layoutY="299.0" onMouseClicked="#createAccount" text="Create an account" textFill="#f80d0d" />
    </children>
 </Pane>

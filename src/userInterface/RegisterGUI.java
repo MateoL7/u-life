@@ -14,6 +14,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.ULife;
+import personalExceptions.MissingInfoException;
 
 public class RegisterGUI {
 
@@ -109,8 +110,13 @@ public class RegisterGUI {
 				msg = ("IOException");
 				messageDialog.setText(msg);	
 			} 
-		} catch(NumberFormatException nf) {
-			msg = "WARNING!\nPlease provide all \nof the information.";
+		}
+		catch(MissingInfoException m) {
+			msg = m.getMessage();
+			messageDialog.setText(msg);
+		}
+		catch(NumberFormatException nf) {
+			msg = "WARNING!\nPlease provide\nthe information correclty.";
 			messageDialog.setText(msg);
 		}
 	}

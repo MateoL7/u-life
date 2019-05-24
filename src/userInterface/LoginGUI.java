@@ -30,9 +30,6 @@ public class LoginGUI {
 	@FXML
 	private Button cancelBt;
 
-	@FXML
-	private Button registerBt;
-
 	private ULife ul;
 
 	private Scene scene;

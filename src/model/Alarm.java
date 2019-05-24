@@ -1,16 +1,21 @@
 package model;
 
-public class Alarm {
+public class Alarm implements Comparable<Alarm>{
 
 	private int hour;
 	private int min;
+	private String time;
 	private boolean vibrate;
 	private boolean[] days;
 	
-	public Alarm(int hour, int min, boolean vibrate, boolean[] days) {
+	private Alarm right;
+	private Alarm left;
+	
+	public Alarm(int hour, int min, String t, boolean vibrate, boolean[] days) {
 		this.hour = hour;
 		this.min = min;
 		this.vibrate = vibrate;
+		time = t;
 	}
 
 	/**
@@ -67,5 +72,59 @@ public class Alarm {
 	 */
 	public void setDays(boolean[] days) {
 		this.days = days;
+	}
+
+	/**
+	 * @return the time
+	 */
+	public String getTime() {
+		return time;
+	}
+
+	/**
+	 * @param time the time to set
+	 */
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	@Override
+	public int compareTo(Alarm al) {
+		int comparation = 0;
+		if(time.compareTo(al.getTime()) > 0) {
+			comparation = 1;
+		}
+		if(time.compareTo(al.getTime()) < 0) {
+			comparation = -1;
+		}
+		return comparation;
+	}
+
+	/**
+	 * @return the right
+	 */
+	public Alarm getRight() {
+		return right;
+	}
+
+	/**
+	 * @param right the right to set
+	 */
+	public void setRight(Alarm right) {
+		this.right = right;
+	}
+
+	/**
+	 * @return the left
+	 */
+	public Alarm getLeft() {
+		return left;
+	}
+
+	/**
+	 * @param left the left to set
+	 */
+	public void setLeft(Alarm left) {
+		this.left = left;
 	}
 }

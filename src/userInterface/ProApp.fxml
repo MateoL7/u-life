@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1059.0" prefWidth="1551.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -59,7 +59,7 @@
                   <Font name="Century Gothic" size="25.0" />
                </font>
                <padding>
-                  <Insets left="80.0" />
+                  <Insets left="40.0" />
                </padding>
             </Label>
             <Label fx:id="activitiesLb" prefHeight="878.0" prefWidth="326.0">
@@ -71,11 +71,11 @@
       </VBox>
    </right>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="pickPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="366.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadFacts" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: gold;" text="FunFacts" />
             <Button layoutX="216.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadTips" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Tips" />
-            <Button layoutX="66.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadNotes" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="My alarms" />
+            <Button layoutX="66.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadAlarms" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="My alarms" />
             <Label prefHeight="133.0" prefWidth="904.0" text="                  Pick one " textFill="WHITE">
                <font>
                   <Font name="Edwardian Script ITC" size="96.0" />
@@ -90,7 +90,11 @@
                   <Insets left="50.0" top="-300.0" />
                </padding>
             </Label>
-            <Button layoutX="666.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadNotes" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="My activities" />
+            <Button layoutX="666.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadActivities" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="My activities" />
+            <Button fx:id="addNoteBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addNote" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add note" />
+            <Button fx:id="bt" layoutX="400.0" layoutY="600.0" mnemonicParsing="false" onAction="#doneAdding" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: white;" text="Done" />
+            <Button fx:id="addAlarmBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addAlarm" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add alarm" />
+            <Button fx:id="addActBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add activity" />
          </children>
       </Pane>
    </center>

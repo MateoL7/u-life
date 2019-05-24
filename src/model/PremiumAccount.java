@@ -2,14 +2,16 @@ package model;
 import java.io.*;
 
 public class PremiumAccount extends Account implements LoadInfo {
-	
+
 	private static final long serialVersionUID = 1L;
 	private FunFact rootF;
 	private Tip rootT;
 
-	public PremiumAccount(String username, String password, int age, double weight, double height, String gender,
-			String nickName, String name) {
+	private Note[] notes;
+
+	public PremiumAccount(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
 		super(username, password, age, weight, height, gender, nickName, name);
+		
 	}
 
 	/**
@@ -54,40 +56,47 @@ public class PremiumAccount extends Account implements LoadInfo {
 			String num = parts[0];
 			String info = parts[1];
 			separate += num + ";" + info + ",";
-			
+
 			line = br.readLine();
 		}
 		br.close();
 		return separate;
 	}
-	
+	/**
+	 * This method is in charge of adding a new FunFact to the tree
+	 * @param num the number of the fun fact
+	 * @param info the fun fact itself
+	 */
 	public void addFunFact(String num, String info) {
 		FunFact ff = new FunFact(num, info);
 		if(rootF == null) {
 			rootF = ff;
 		}
 		else {
-			FunFact current = rootF;
-			boolean added = false;
-			while(!added) {
-				if(ff.getNumber().compareTo(current.getNumber()) > 0) {
-					if(current.getRight() == null) {
-						current.setRight(ff);
-						added = true;
-					}
-					else {
-						current = current.getRight();
-					}
-				}
-				else if(ff.getNumber().compareTo(current.getNumber())< 0) {
-					if(current.getLeft() == null) {
-						current.setLeft(ff);
-						added = true;
-					}
-					else {
-						current = current.getLeft();
-					}
-				}
+			addFunFact(ff, rootF);
+		}
+	}
+	/**
+	 * This method is in charge of adding the new FunFact to the tree in a recursive way,
+	 * it compares the new FunFact with the one in the parameter
+	 * @param ff the FunFact to add
+	 * @param current the FunFact to compare to
+	 */
+	private void addFunFact(FunFact ff, FunFact current) {
+		if(ff.getNumber().compareTo(current.getNumber()) > 0) {
+			if(current.getRight() == null) {
+				current.setRight(ff);
+			}
+			else {
+				addFunFact(ff, current.getRight());
+			}
+		}
+		if(ff.getNumber().compareTo(current.getNumber()) < 0) {
+			if(current.getLeft() == null) {
+				current.setLeft(ff);
+			}
+			else {
+				addFunFact(ff, current.getLeft());
 			}
 		}
 	}
@@ -97,31 +106,59 @@ public class PremiumAccount extends Account implements LoadInfo {
 			rootT = tp;
 		}
 		else {
-			Tip current = rootT;
-			boolean added = false;
-			while(!added) {
-				if(tp.getNumber()>current.getNumber()) {
-					if(current.getRight() == null) {
-						current.setRight(tp);
-						added = true;
-					}
-					else {
-						current = current.getRight();
-					}
-				}
-				else if(tp.getNumber()<current.getNumber()) {
-					if(current.getLeft() == null) {
-						current.setLeft(tp);
-						added = true;
-					}
-					else {
-						current = current.getLeft();
-					}
-				}
+			addTip(tp, rootT);
+		}
+	}
+	private void addTip(Tip tp, Tip current) {
+		if(tp.getNumber() > current.getNumber()) {
+			if(current.getRight() == null) {
+				current.setRight(tp);
+			}
+			else {
+				addTip(tp, current.getRight());
+			}
+		}
+		if(tp.getNumber() < current.getNumber()) {
+			if(current.getLeft() == null) {
+				current.setLeft(tp);
+			}
+			else {
+				addTip(tp, current.getLeft());
 			}
 		}
 	}
-	
 
+	public boolean addNote(int num, String note) {
+		Note n = new Note(num, note);
+		notes = new Note[20];
+		boolean added = false;
+		for(int i = 0; i < notes.length-1 && !added; i++) {
+			if(notes[i] == null) {
+				notes[i] = n;
+				added = true;
+			}
+		}
+		return added;
+	}
+
+	public Note[] getNotes() {		
+		return notes;
+	}
 	
+//	public void sortNotes() {
+//		for(int I = 0; I < notes.length-1; I++) {
+//			int minPos = I;
+//			int num = notes[I].getNum();
+//			for(int J = I+1; J < notes.length; J++) {
+//				int compareNum = notes[J].getNum();
+//				if(compareNum < num ) {
+//					minPos = J;
+//					num = compareNum;
+//				}
+//			}
+//			Note temp = notes[minPos];
+//			notes[minPos] = notes[I];
+//			notes[I] = temp;
+//		}
+//	}
 }

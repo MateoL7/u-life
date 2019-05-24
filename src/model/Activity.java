@@ -1,10 +1,13 @@
 package model;
 
-public abstract class Activity {
+public class Activity {
 
 	private String name;
 	private int minutes;
 	private int hours;
+	
+	private Activity next;
+	private Activity prev;
 	
 	public Activity(String name, int minutes, int hours) {
 		
@@ -50,5 +53,33 @@ public abstract class Activity {
 	 */
 	public void setHours(int hours) {
 		this.hours = hours;
+	}
+
+	/**
+	 * @return the next
+	 */
+	public Activity getNext() {
+		return next;
+	}
+
+	/**
+	 * @param next the next to set
+	 */
+	public void setNext(Activity next) {
+		this.next = next;
+	}
+
+	/**
+	 * @return the prev
+	 */
+	public Activity getPrev() {
+		return prev;
+	}
+
+	/**
+	 * @param prev the prev to set
+	 */
+	public void setPrev(Activity prev) {
+		this.prev = prev;
 	}
 }

@@ -10,11 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.ULife;
 
-public class RegisterController {
+public class RegisterGUI {
 
 	@FXML
 	private Label messageDialog;
@@ -42,6 +43,9 @@ public class RegisterController {
 
 	@FXML
 	private TextField nicknameT;
+	
+	@FXML
+    private RadioButton premiumR;
 
 	@FXML
 	private Button registration;
@@ -69,10 +73,15 @@ public class RegisterController {
 			String gender = genderT.getText();
 			String nickName = nicknameT.getText();
 			String name = nameT.getText();
-			msg = ulife.createNewUser(username, password, age, weight, height, gender, nickName, name);	
+			if(premiumR.isSelected()){
+				ulife.createNewPremiumUser(username, password, age, weight, height, gender, nickName, name);
+			}
+			else{
+				ulife.createNewUser(username, password, age, weight, height, gender, nickName, name);	
+			}
+	
 			try {
 				ulife.saveData();
-				messageDialog.setText(msg);
 
 				//Closing the register window
 				if(scene != null) {
@@ -85,7 +94,7 @@ public class RegisterController {
 				Stage stage = new Stage();
 				Scene scene = new Scene(root);
 				stage.setTitle("Login");
-				LoginController lc = fxmlLoader.getController();
+				LoginGUI lc = fxmlLoader.getController();
 				lc.setScene(scene);
 				stage.setScene(scene);
 				stage.show();

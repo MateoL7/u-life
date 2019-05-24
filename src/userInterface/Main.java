@@ -23,7 +23,7 @@ public class Main extends Application{
 		stage.setTitle("Login");
 		stage.setScene(scene);
 		stage.show();
-		LoginController lc = fxmlLoader.getController();
+		LoginGUI lc = fxmlLoader.getController();
 		lc.setScene(scene);
 	
 		

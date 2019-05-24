@@ -200,4 +200,35 @@ public class Account implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void addActivity(String name, int minutes, int hours, double cal, SportType st) {
+		Activity rest = new Activity(name, minutes, hours);
+		if(firstActivity == null) {
+			firstActivity = rest;
+			rest.setNext(rest);
+			rest.setPrev(rest);
+		}
+		else {
+			Sport last = (Sport) firstActivity.getPrev();
+			rest.setPrev(last);
+			last.setNext(rest);
+			firstActivity.setPrev(rest);
+			rest.setNext(firstActivity);
+		}
+	}
+	public void addSport(String name, int minutes, int hours, double cal, SportType st) {
+		Sport sp = new Sport(name, minutes, hours, cal, st);
+		if(firstActivity == null) {
+			firstActivity = sp;
+			sp.setNext(sp);
+			sp.setPrev(sp);
+		}
+		else {
+			Sport last = (Sport) firstActivity.getPrev();
+			sp.setPrev(last);
+			last.setNext(sp);
+			firstActivity.setPrev(sp);
+			sp.setNext(firstActivity);
+		}
+	}
 }

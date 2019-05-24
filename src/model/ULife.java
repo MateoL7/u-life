@@ -59,12 +59,11 @@ public class ULife {
 	 * @param height height of the user
 	 * @param gender gender of the user
 	 * @param nickName nickname of the user
-	 * @return a message indicating wether or not the user could be added
+	 * @param name name of the user
 	 */
-	public String createNewUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
-		String message;
+	public void createNewUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
 		if(username == null || password == null || weight == 0 || height == 0 || gender == null || nickName == null || age == 0 || name == null) {
-			message = "Please fill all of the fields";
+			
 		}else {
 			Account a = new Account(username,password,age,weight,height,gender,nickName, name);
 			if(firstUser != null) {
@@ -73,17 +72,36 @@ public class ULife {
 				firstUser.setPrev(a);
 				a.setNext(firstUser);
 				a.setPrev(temp);
-				message = "You account has been created " + "\n" + "Welcome " + name;
 			}
 			else {
 				firstUser = a;
 				firstUser.setNext(a);
 				firstUser.setPrev(a);
-				message = "You account has been created " + "\n" + "Welcome " + name;
 			}
 
 		}
-		return message;
+	}
+	
+	public void createNewPremiumUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
+		if(username == null || password == null || weight == 0 || height == 0 || gender == null || nickName == null || age == 0 || name == null) {
+			
+		}else {
+			PremiumAccount a = new PremiumAccount(username,password,age,weight,height,gender,nickName, name);
+			if(firstUser != null) {
+				PremiumAccount temp = (PremiumAccount) firstUser.getPrev();
+				temp.setNext(a);
+				firstUser.setPrev(a);
+				a.setNext(firstUser);
+				a.setPrev(temp);
+			}
+			else {
+				firstUser = a;
+				firstUser.setNext(a);
+				firstUser.setPrev(a);
+			}
+
+		}
+		
 	}
 
 	/**

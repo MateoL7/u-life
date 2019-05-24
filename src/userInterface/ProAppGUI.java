@@ -74,15 +74,17 @@ public class ProAppGUI {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-						
+						DateFormat date = new SimpleDateFormat("hh:mm:a");
 							Calendar cal = Calendar.getInstance();
-
-			                 int second = cal.get(Calendar.SECOND);
-			                int minute = cal.get(Calendar.MINUTE);
-			                int hour = cal.get(Calendar.HOUR);
-			                LbClock.setText(hour + ":" + (minute) + ":" + second);
-			                System.out.println(hour + ":" + (minute) + ":" + second);
-			                System.out.println(LbClock.getText());
+						     String t = date.format(cal.getTime());
+						     int hour = cal.get(Calendar.HOUR);
+						     int minute = cal.get(Calendar.MINUTE);
+			                String contain = pa.CheckAlarm(hour, minute);
+			                if(contain.isEmpty()) {
+			                	LbClock.setText(t);
+			                }else {
+			                	LbClock.setText(contain);
+			                }
 						}	
 					});
 					//Sleep adentro del while

@@ -1,6 +1,8 @@
 package userInterface;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javafx.application.Platform;
@@ -42,15 +44,11 @@ public class FreeAppGUI {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-						
+						DateFormat date = new SimpleDateFormat("hh:mm:a");
 							Calendar cal = Calendar.getInstance();
+						     String t = date.format(cal.getTime());
+			                LbClock.setText(t);
 
-			                 int second = cal.get(Calendar.SECOND);
-			                int minute = cal.get(Calendar.MINUTE);
-			                int hour = cal.get(Calendar.HOUR);
-			                LbClock.setText(hour + ":" + (minute) + ":" + second);
-			                System.out.println(hour + ":" + (minute) + ":" + second);
-			                System.out.println(LbClock.getText());
 						}	
 					});
 					//Sleep adentro del while

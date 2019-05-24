@@ -294,6 +294,24 @@ public class Account implements Serializable {
 		}
 		return msg;
 	}
-
-
+	
+	public String CheckAlarm(int hour, int minute) {
+		 return CheckAlarm(hour,minute,rootAlarm);
+    }
+ 
+	private String CheckAlarm(int hour,int minute,Alarm a) {
+		String msg = "";
+		if(a == null) {
+			msg +="";
+		}else if(a.getHour() == hour && minute == a.getMin()) {
+				msg += "!Alarma Activada¡"; 
+			}else {
+				 CheckAlarm(hour,minute,a.getLeft());
+				CheckAlarm(hour,minute,a.getRight());
+			}
+          return msg;
+	}
+	
 }
+
+        

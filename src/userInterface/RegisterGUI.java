@@ -3,6 +3,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +68,7 @@ public class RegisterGUI {
 	public void doneRegistration(ActionEvent e) {
 		String msg;
 		try {
-			String username = nameT.getText();
+			String username = usernameT.getText();
 			String password = passwordT.getText();
 			int age = Integer.parseInt(ageT.getText());
 			double weight = Double.parseDouble(weightT.getText());
@@ -74,14 +76,13 @@ public class RegisterGUI {
 			String gender = genderT.getText();
 			String nickName = nicknameT.getText();
 			String name = nameT.getText();
-			if(premiumR.isSelected()){
-				ulife.createNewPremiumUser(username, password, age, weight, height, gender, nickName, name);
-			}
-			else{
-				ulife.createNewUser(username, password, age, weight, height, gender, nickName, name);	
-			}
-	
-			try {
+			System.out.println(username + "  " + password + "  " +age + "  " +weight+ "  " + height+ "  " + gender+ "  "+ nickName+ "  " +name);
+				if(premiumR.isSelected()){
+					ulife.createNewPremiumUser(username, password, age, weight, height, gender, nickName, name);
+				}
+				else{
+					ulife.createNewUser(username, password, age, weight, height, gender, nickName, name);	
+				}
 				ulife.saveData();
 
 				//Closing the register window
@@ -105,18 +106,22 @@ public class RegisterGUI {
 
 			} catch (FileNotFoundException e1) {
 				msg = ("No file found");
+				System.out.println(msg);
 				messageDialog.setText(msg);
 			} catch (IOException e2) {
 				msg = ("IOException");
+				System.out.println(msg);
 				messageDialog.setText(msg);	
-			} 
-		}
+			}
+	
 		catch(MissingInfoException m) {
 			msg = m.getMessage();
+			System.out.println(msg);
 			messageDialog.setText(msg);
 		}
 		catch(NumberFormatException nf) {
 			msg = "WARNING!\nPlease provide\nthe information correclty.";
+			System.out.println(msg);
 			messageDialog.setText(msg);
 		}
 	}

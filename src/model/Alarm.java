@@ -1,5 +1,8 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Alarm implements Comparable<Alarm>{
 
 	private int hour;
@@ -7,6 +10,7 @@ public class Alarm implements Comparable<Alarm>{
 	private String time;
 	private boolean vibrate;
 	private boolean[] days;
+
 	
 	private Alarm right;
 	private Alarm left;
@@ -15,9 +19,10 @@ public class Alarm implements Comparable<Alarm>{
 		this.hour = hour;
 		this.min = min;
 		this.vibrate = vibrate;
-		time = t;
+		DateFormat date = new SimpleDateFormat("hh:mm:a");
+		time = hour + ":"+min+":"+0;
 	}
-
+	
 	/**
 	 * @return the min
 	 */
@@ -127,4 +132,5 @@ public class Alarm implements Comparable<Alarm>{
 	public void setLeft(Alarm left) {
 		this.left = left;
 	}
+	
 }

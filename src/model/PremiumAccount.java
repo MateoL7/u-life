@@ -1,7 +1,7 @@
 package model;
 import java.io.*;
 
-public class PremiumAccount extends Account implements LoadInfo {
+public class PremiumAccount extends Account implements LoadInfo, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private FunFact rootF;

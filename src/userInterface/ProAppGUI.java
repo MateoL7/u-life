@@ -10,7 +10,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -232,11 +234,13 @@ public class ProAppGUI {
 
 	@FXML
 	public void addAlarm(ActionEvent event) {
-		int hour;
-		int min;
-		String time;
-		boolean vibrate;
-		boolean[] days;
+		try {
+		int hour = 0;
+		int min = 0;
+		String time = "";
+		boolean vibrate = false;
+		String timeDay = "";
+//		boolean[] days = new boolean[7];
 
 		//Get the hour
 		TextInputDialog hourD = new TextInputDialog("");
@@ -256,7 +260,90 @@ public class ProAppGUI {
 
 		Optional<String> rMin = minD.showAndWait();
 		if (rMin.isPresent()){
-			 hour = Integer.parseInt(rMin.get());
+			 min = Integer.parseInt(rMin.get());
+		}
+		//Am or Pm
+		Alert alertT = new Alert(AlertType.CONFIRMATION);
+		alertT.setTitle("New Alarm");
+		alertT.setHeaderText("Setting your alarm");
+		alertT.setContentText("Time of day");
+
+		ButtonType buttonTypeOne = new ButtonType("AM");
+		ButtonType buttonTypeTwo = new ButtonType("PM");
+		
+		alertT.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+		
+		Optional<ButtonType> result = alertT.showAndWait();
+		if (result.get() == buttonTypeOne){
+		    timeDay = "AM";
+		}
+		if (result.get() == buttonTypeTwo){
+		    timeDay = "PM";
+		}
+		
+		//Vibration On or Off
+		Alert alertV = new Alert(AlertType.CONFIRMATION);
+		alertV.setTitle("New Alarm");
+		alertV.setHeaderText("Setting your alarm");
+		alertV.setContentText("Vibration");
+
+		 buttonTypeOne = new ButtonType("On");
+		 buttonTypeTwo = new ButtonType("Off");
+		
+		alertV.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+		
+		Optional<ButtonType> resultV = alertV.showAndWait();
+		if (resultV.get() == buttonTypeOne){
+		    vibrate = true;
+		}
+//		//Monday On or Off
+//		Alert alertMonday = new Alert(AlertType.CONFIRMATION);
+//		alertMonday.setTitle("New Alarm");
+//		alertMonday.setHeaderText("Setting your alarm");
+//		alertMonday.setContentText("Monday");
+//
+//		buttonTypeOne = new ButtonType("On");
+//		buttonTypeTwo = new ButtonType("Off");
+//		
+//		alertV.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+//		
+//		Optional<ButtonType> resultMonday = alertMonday.showAndWait();
+//		if (resultMonday.get() == buttonTypeOne){
+//		    days[0] = true;
+//		}
+//		if(resultMonday.get() == buttonTypeTwo) {
+//			days[0] = false;
+//		}
+//		//Tuesday On or Off
+//		Alert alertTuesday = new Alert(AlertType.CONFIRMATION);
+//		alertTuesday.setTitle("New Alarm");
+//		alertTuesday.setHeaderText("Setting your alarm");
+//		alertTuesday.setContentText("Tuesday");
+//
+//		buttonTypeOne = new ButtonType("On");
+//		buttonTypeTwo = new ButtonType("Off");
+//		
+//		alertTuesday.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+//		
+//		Optional<ButtonType> resultTuesday = alertMonday.showAndWait();
+//		if (resultTuesday.get() == buttonTypeOne){
+//		    days[1] = true;
+//		}
+//		if(resultTuesday.get() == buttonTypeTwo) {
+//			days[1] = false;
+//		}
+		
+		time = timeDay + " " + hour + ":" + min;
+		
+		pa.addAlarm(hour, min, time, vibrate);
+		System.out.println(time);
+		
+		} catch(NumberFormatException nm) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Problem");
+			alert.setHeaderText("WARNING!");
+			alert.setContentText("Please only type numbers");
+			alert.showAndWait();
 		}
 		
 	}
@@ -274,6 +361,10 @@ public class ProAppGUI {
 		addNoteBt.setVisible(false);
 		addActBt.setVisible(false);
 		addAlarmBt.setVisible(true);
+		Alert a = new Alert(AlertType.INFORMATION);
+		a.setTitle("Alarms");
+		a.setContentText(pa.showAlarms());
+		a.showAndWait();
 		labelMessage.setText(pa.showAlarms());
 	}
 

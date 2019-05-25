@@ -9,13 +9,13 @@ public class Alarm implements Comparable<Alarm>{
 	private int min;
 	private String time;
 	private boolean vibrate;
-	private boolean[] days;
+//	private boolean[] days;
 
 	
 	private Alarm right;
 	private Alarm left;
 	
-	public Alarm(int hour, int min, String t, boolean vibrate, boolean[] days) {
+	public Alarm(int hour, int min, String t, boolean vibrate) {
 		this.hour = hour;
 		this.min = min;
 		this.vibrate = vibrate;
@@ -63,20 +63,6 @@ public class Alarm implements Comparable<Alarm>{
 	 */
 	public void setVibrate(boolean vibrate) {
 		this.vibrate = vibrate;
-	}
-
-	/**
-	 * @return the days
-	 */
-	public boolean[] getDays() {
-		return days;
-	}
-
-	/**
-	 * @param days the days to set
-	 */
-	public void setDays(boolean[] days) {
-		this.days = days;
 	}
 
 	/**
@@ -131,6 +117,11 @@ public class Alarm implements Comparable<Alarm>{
 	 */
 	public void setLeft(Alarm left) {
 		this.left = left;
+	}
+	
+	@Override
+	public String toString() {
+		return time;
 	}
 	
 }

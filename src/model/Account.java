@@ -201,8 +201,8 @@ public class Account implements Serializable {
 			sp.setNext(firstActivity);
 		}
 	}
-	public void addAlarm(int hour, int min, String time, boolean vibrate, boolean[] days) {
-		Alarm a = new Alarm(hour, min,time , vibrate, days);
+	public void addAlarm(int hour, int min, String time, boolean vibrate) {
+		Alarm a = new Alarm(hour, min,time , vibrate);
 
 		if(rootAlarm == null) {
 			rootAlarm = a;

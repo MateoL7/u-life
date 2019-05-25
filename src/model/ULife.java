@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import personalExceptions.MissingInfoException;
 import personalExceptions.NoAccountFoundException;
+import personalExceptions.NoDataException;
 
 public class ULife {
 
@@ -23,15 +24,19 @@ public class ULife {
 	}
 
 
-	public Account searchAccount(String username, String password) throws NoAccountFoundException {
+	public Account searchAccount(String username, String password) throws NoAccountFoundException, NoDataException {
 		Account found = null;
 		boolean stop = false;
+		if(accounts.isEmpty()) {
+			throw new NoDataException();
+		}else {
 	      for(int c = 0; c < accounts.size() && stop == false;c++) {
 	    	    Account temporal = accounts.get(c);
 	    	    if(username.equals(temporal.getUsername()) && password.equals(temporal.getPassword())) {
 	    	    	found = accounts.get(c);
 	    	    }
 	      }
+		}
 	      if(found == null) {
 	    	  throw new NoAccountFoundException();
 	      }else {

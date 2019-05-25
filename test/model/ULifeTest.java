@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import personalExceptions.MissingInfoException;
 import personalExceptions.NoAccountFoundException;
+import personalExceptions.NoDataException;
 
 public class ULifeTest {
 	
@@ -75,7 +76,7 @@ public class ULifeTest {
 	}
 	
 	@Test
-	void testSearchAccount() throws MissingInfoException, NoAccountFoundException {
+	void testSearchAccount() throws MissingInfoException, NoAccountFoundException, NoDataException {
 		setupScenary1();
 		u.createNewPremiumUser("JP", "1234", 19, 86, 183, "Male", "JP", "Juan");
 		Account tem = u.searchAccount("JP", "1234");

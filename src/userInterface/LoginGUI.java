@@ -20,6 +20,7 @@ import model.Account;
 import model.PremiumAccount;
 import model.ULife;
 import personalExceptions.NoAccountFoundException;
+import personalExceptions.NoDataException;
 
 public class LoginGUI {
 
@@ -163,6 +164,14 @@ public class LoginGUI {
 	        alert.setContentText(e2.getMessage());
 
 	       alert.showAndWait();
+		}
+		catch(NoDataException nodata) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText(nodata.getMessage());
+
 		}
 	}
 

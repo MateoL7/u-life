@@ -52,6 +52,15 @@ public class AccountsGUI {
 	@FXML
 	public void initialize() {
 		ul = new ULife();
+		
+		
+		try {
+			ul.loadData();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		ObservableList<Account> oAccounts = FXCollections.observableArrayList();
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 		usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -64,13 +73,7 @@ public class AccountsGUI {
 	}
 	
 	public ObservableList<Account> updateList(){
-		try {
-			ul.loadData();
-			oAccounts = FXCollections.observableArrayList(ul.getAccounts());
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-		}
-		return oAccounts;
+		return oAccounts = FXCollections.observableArrayList(ul.getAccounts());
 	}
 
 	@FXML

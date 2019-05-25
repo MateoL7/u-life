@@ -9,7 +9,6 @@ public class Alarm implements Comparable<Alarm>{
 	private int min;
 	private String time;
 	private boolean vibrate;
-//	private boolean[] days;
 
 	
 	private Alarm right;
@@ -118,5 +117,6 @@ public class Alarm implements Comparable<Alarm>{
 	public void setLeft(Alarm left) {
 		this.left = left;
 	}
+	
 	
 }

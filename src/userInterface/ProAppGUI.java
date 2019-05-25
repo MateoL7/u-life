@@ -17,9 +17,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import model.LoadInfo;
 import model.Note;
 import model.PremiumAccount;
+import threads.MoveLightsThread;
+import threads.ShiningThread;
 
 public class ProAppGUI {
 
@@ -63,6 +67,58 @@ public class ProAppGUI {
 	@FXML
 	private Label LbClock;
 
+
+	@FXML
+	private Circle light2;
+
+	@FXML
+	private Circle light4;
+
+	@FXML
+	private Circle light7;
+
+	@FXML
+	private Circle light5;
+
+	@FXML
+	private Circle light1;
+
+	@FXML
+	private Circle light19;
+
+	@FXML
+	private Circle light18;
+
+	@FXML
+	private Circle light17;
+
+	@FXML
+	private Circle light16;
+
+	@FXML
+	private Circle light15;
+
+	@FXML
+	private Circle light14;
+
+	@FXML
+	private Circle light13;
+
+	@FXML
+	private Circle light12;
+
+	@FXML
+	private Circle light9;
+
+	@FXML
+	private Circle light11;
+
+	@FXML
+	private Circle light6;
+
+	private ShiningThread sh;
+	private MoveLightsThread ml;
+
 	@FXML
 	public void initialize(){
 		lg = LoginGUI.getLg();
@@ -71,6 +127,8 @@ public class ProAppGUI {
 		addNoteBt.setVisible(false);
 		addActBt.setVisible(false);
 		addAlarmBt.setVisible(false);
+		sh = new ShiningThread(this);
+		ml = new MoveLightsThread(this);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -104,8 +162,100 @@ public class ProAppGUI {
 
 		}).start();
 
+		sh.start();
+		ml.start();
+		
+
 	}
 
+
+	public void shine() {
+		//Down
+		light2.setFill(Color.GOLDENROD);
+		light4.setFill(Color.GOLDENROD);
+		light7.setFill(Color.GOLDENROD);
+		light5.setFill(Color.GOLDENROD);
+		light1.setFill(Color.GOLDENROD);
+		light19.setFill(Color.GOLDENROD);
+		light18.setFill(Color.GOLDENROD);
+		light17.setFill(Color.GOLDENROD);
+
+		//Up
+		light16.setFill(Color.GOLDENROD);
+		light15.setFill(Color.GOLDENROD);
+		light14.setFill(Color.GOLDENROD);
+		light13.setFill(Color.GOLDENROD);
+		light12.setFill(Color.GOLDENROD);
+		light9.setFill(Color.GOLDENROD);
+		light11.setFill(Color.GOLDENROD);
+		light6.setFill(Color.GOLDENROD);
+
+	}
+	public void shutDownLights() {
+		//Down
+		light2.setFill(Color.BLACK);
+		light4.setFill(Color.BLACK);
+		light7.setFill(Color.BLACK);
+		light5.setFill(Color.BLACK);
+		light1.setFill(Color.BLACK);
+		light19.setFill(Color.BLACK);
+		light18.setFill(Color.BLACK);
+		light17.setFill(Color.BLACK);
+
+		//Up
+		light16.setFill(Color.BLACK);
+		light15.setFill(Color.BLACK);
+		light14.setFill(Color.BLACK);
+		light13.setFill(Color.BLACK);
+		light12.setFill(Color.BLACK);
+		light9.setFill(Color.BLACK);
+		light11.setFill(Color.BLACK);
+		light6.setFill(Color.BLACK);
+	}
+	public void move1() {
+		double mov = 5;
+		//Down ---> right
+		light2.setLayoutX(light2.getLayoutX()+mov);
+		light4.setLayoutX(light4.getLayoutX()+mov);
+		light7.setLayoutX(light7.getLayoutX()+mov);
+		light5.setLayoutX(light5.getLayoutX()+mov);
+		light1.setLayoutX(light1.getLayoutX()+mov);
+		light19.setLayoutX(light19.getLayoutX()+mov);
+		light18.setLayoutX(light18.getLayoutX()+mov);
+		light17.setLayoutX(light17.getLayoutX()+mov);
+
+		//Up ---> left
+		light16.setLayoutX(light16.getLayoutX()-mov);
+		light15.setLayoutX(light15.getLayoutX()-mov);
+		light14.setLayoutX(light14.getLayoutX()-mov);
+		light13.setLayoutX(light13.getLayoutX()-mov);
+		light12.setLayoutX(light12.getLayoutX()-mov);
+		light9.setLayoutX(light9.getLayoutX()-mov);
+		light11.setLayoutX(light11.getLayoutX()-mov);
+		light6.setLayoutX(light6.getLayoutX()-mov);
+	}
+	public void move2() {
+		double mov = 5;
+		//Down ---> left
+		light2.setLayoutX(light2.getLayoutX()-mov);
+		light4.setLayoutX(light4.getLayoutX()-mov);
+		light7.setLayoutX(light7.getLayoutX()-mov);
+		light5.setLayoutX(light5.getLayoutX()-mov);
+		light1.setLayoutX(light1.getLayoutX()-mov);
+		light19.setLayoutX(light19.getLayoutX()-mov);
+		light18.setLayoutX(light18.getLayoutX()-mov);
+		light17.setLayoutX(light17.getLayoutX()-mov);
+
+		//Up ---> right
+		light16.setLayoutX(light16.getLayoutX()+mov);
+		light15.setLayoutX(light15.getLayoutX()+mov);
+		light14.setLayoutX(light14.getLayoutX()+mov);
+		light13.setLayoutX(light13.getLayoutX()+mov);
+		light12.setLayoutX(light12.getLayoutX()+mov);
+		light9.setLayoutX(light9.getLayoutX()+mov);
+		light11.setLayoutX(light11.getLayoutX()+mov);
+		light6.setLayoutX(light6.getLayoutX()+mov);
+	}
 	@FXML
 	public void loadFacts(ActionEvent event) {
 		addNoteBt.setVisible(false);
@@ -235,109 +385,73 @@ public class ProAppGUI {
 	@FXML
 	public void addAlarm(ActionEvent event) {
 		try {
-		int hour = 0;
-		int min = 0;
-		String time = "";
-		boolean vibrate = false;
-		String timeDay = "";
-//		boolean[] days = new boolean[7];
+			int hour = 0;
+			int min = 0;
+			String time = "";
+			boolean vibrate = false;
+			String timeDay = "";
+			//		boolean[] days = new boolean[7];
 
-		//Get the hour
-		TextInputDialog hourD = new TextInputDialog("");
-		hourD.setTitle("New Alarm");
-		hourD.setHeaderText("Setting you alarm");
-		hourD.setContentText("Please type just an hour:");
+			//Get the hour
+			TextInputDialog hourD = new TextInputDialog("");
+			hourD.setTitle("New Alarm");
+			hourD.setHeaderText("Setting you alarm");
+			hourD.setContentText("Please type just an hour:");
 
-		Optional<String> resultHour = hourD.showAndWait();
-		if (resultHour.isPresent()){
-			 hour = Integer.parseInt(resultHour.get());
-		}
-		//Get the minutes
-		TextInputDialog minD = new TextInputDialog("");
-		minD.setTitle("New Alarm");
-		minD.setHeaderText("Setting you alarm");
-		minD.setContentText("Please type just the minutes:");
+			Optional<String> resultHour = hourD.showAndWait();
+			if (resultHour.isPresent()){
+				hour = Integer.parseInt(resultHour.get());
+			}
+			//Get the minutes
+			TextInputDialog minD = new TextInputDialog("");
+			minD.setTitle("New Alarm");
+			minD.setHeaderText("Setting you alarm");
+			minD.setContentText("Please type just the minutes:");
 
-		Optional<String> rMin = minD.showAndWait();
-		if (rMin.isPresent()){
-			 min = Integer.parseInt(rMin.get());
-		}
-		//Am or Pm
-		Alert alertT = new Alert(AlertType.CONFIRMATION);
-		alertT.setTitle("New Alarm");
-		alertT.setHeaderText("Setting your alarm");
-		alertT.setContentText("Time of day");
+			Optional<String> rMin = minD.showAndWait();
+			if (rMin.isPresent()){
+				min = Integer.parseInt(rMin.get());
+			}
+			//Am or Pm
+			Alert alertT = new Alert(AlertType.CONFIRMATION);
+			alertT.setTitle("New Alarm");
+			alertT.setHeaderText("Setting your alarm");
+			alertT.setContentText("Time of day");
 
-		ButtonType buttonTypeOne = new ButtonType("AM");
-		ButtonType buttonTypeTwo = new ButtonType("PM");
-		
-		alertT.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-		
-		Optional<ButtonType> result = alertT.showAndWait();
-		if (result.get() == buttonTypeOne){
-		    timeDay = "AM";
-		}
-		if (result.get() == buttonTypeTwo){
-		    timeDay = "PM";
-		}
-		
-		//Vibration On or Off
-		Alert alertV = new Alert(AlertType.CONFIRMATION);
-		alertV.setTitle("New Alarm");
-		alertV.setHeaderText("Setting your alarm");
-		alertV.setContentText("Vibration");
+			ButtonType buttonTypeOne = new ButtonType("AM");
+			ButtonType buttonTypeTwo = new ButtonType("PM");
 
-		 buttonTypeOne = new ButtonType("On");
-		 buttonTypeTwo = new ButtonType("Off");
-		
-		alertV.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-		
-		Optional<ButtonType> resultV = alertV.showAndWait();
-		if (resultV.get() == buttonTypeOne){
-		    vibrate = true;
-		}
-//		//Monday On or Off
-//		Alert alertMonday = new Alert(AlertType.CONFIRMATION);
-//		alertMonday.setTitle("New Alarm");
-//		alertMonday.setHeaderText("Setting your alarm");
-//		alertMonday.setContentText("Monday");
-//
-//		buttonTypeOne = new ButtonType("On");
-//		buttonTypeTwo = new ButtonType("Off");
-//		
-//		alertV.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-//		
-//		Optional<ButtonType> resultMonday = alertMonday.showAndWait();
-//		if (resultMonday.get() == buttonTypeOne){
-//		    days[0] = true;
-//		}
-//		if(resultMonday.get() == buttonTypeTwo) {
-//			days[0] = false;
-//		}
-//		//Tuesday On or Off
-//		Alert alertTuesday = new Alert(AlertType.CONFIRMATION);
-//		alertTuesday.setTitle("New Alarm");
-//		alertTuesday.setHeaderText("Setting your alarm");
-//		alertTuesday.setContentText("Tuesday");
-//
-//		buttonTypeOne = new ButtonType("On");
-//		buttonTypeTwo = new ButtonType("Off");
-//		
-//		alertTuesday.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-//		
-//		Optional<ButtonType> resultTuesday = alertMonday.showAndWait();
-//		if (resultTuesday.get() == buttonTypeOne){
-//		    days[1] = true;
-//		}
-//		if(resultTuesday.get() == buttonTypeTwo) {
-//			days[1] = false;
-//		}
-		
-		time = timeDay + " " + hour + ":" + min;
-		
-		pa.addAlarm(hour, min, time, vibrate);
-		System.out.println(time);
-		
+			alertT.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+			Optional<ButtonType> result = alertT.showAndWait();
+			if (result.get() == buttonTypeOne){
+				timeDay = "AM";
+			}
+			if (result.get() == buttonTypeTwo){
+				timeDay = "PM";
+			}
+
+			//Vibration On or Off
+			Alert alertV = new Alert(AlertType.CONFIRMATION);
+			alertV.setTitle("New Alarm");
+			alertV.setHeaderText("Setting your alarm");
+			alertV.setContentText("Vibration");
+
+			buttonTypeOne = new ButtonType("On");
+			buttonTypeTwo = new ButtonType("Off");
+
+			alertV.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+			Optional<ButtonType> resultV = alertV.showAndWait();
+			if (resultV.get() == buttonTypeOne){
+				vibrate = true;
+			}
+
+			time = timeDay + " " + hour + ":" + min;
+
+			pa.addAlarm(hour, min, time, vibrate);
+			System.out.println(time);
+
 		} catch(NumberFormatException nm) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Problem");
@@ -345,7 +459,7 @@ public class ProAppGUI {
 			alert.setContentText("Please only type numbers");
 			alert.showAndWait();
 		}
-		
+
 	}
 
 	@FXML

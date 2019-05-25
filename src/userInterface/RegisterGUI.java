@@ -64,10 +64,10 @@ public class RegisterGUI {
 		ulife = new ULife();
 		try {
 			ulife.loadData();
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	public void setScene(Scene s) {
@@ -128,16 +128,16 @@ public class RegisterGUI {
 			}
 
 			catch(MissingInfoException m) {
-				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				Alert alert = new Alert(Alert.AlertType.WARNING);
 				alert.initStyle(StageStyle.UTILITY);
 				alert.setTitle("Information");
-				alert.setHeaderText("Complications");
+				alert.setHeaderText("WARNING!");
 				alert.setContentText(m.getMessage());
 
 				alert.showAndWait();
 			}
 			catch(NumberFormatException nf) {
-				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				Alert alert = new Alert(Alert.AlertType.WARNING );
 				alert.initStyle(StageStyle.UTILITY);
 				alert.setTitle("Information");
 				alert.setHeaderText("WARNING!");

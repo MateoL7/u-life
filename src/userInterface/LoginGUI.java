@@ -19,6 +19,7 @@ import javafx.stage.StageStyle;
 import model.Account;
 import model.PremiumAccount;
 import model.ULife;
+import personalExceptions.MissingInfoException;
 import personalExceptions.NoAccountFoundException;
 import personalExceptions.NoDataException;
 
@@ -55,8 +56,12 @@ public class LoginGUI {
 		ul = new ULife();
 		try {
 			ul.loadData();
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
+		} 
+		catch (ClassNotFoundException c) {
+			c.printStackTrace();
+		}
+		catch(IOException i) {
+			i.printStackTrace();
 		}
 	}
 	
@@ -157,7 +162,7 @@ public class LoginGUI {
 			e1.printStackTrace();
 		}
 		catch(NoAccountFoundException e2) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			Alert alert = new Alert(Alert.AlertType.WARNING);
 	        alert.initStyle(StageStyle.UTILITY);
 	        alert.setTitle("Information");
 	        alert.setHeaderText("WARNING!");
@@ -166,12 +171,20 @@ public class LoginGUI {
 	       alert.showAndWait();
 		}
 		catch(NoDataException nodata) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			Alert alert = new Alert(Alert.AlertType.WARNING);
 	        alert.initStyle(StageStyle.UTILITY);
 	        alert.setTitle("Information");
 	        alert.setHeaderText("WARNING!");
 	        alert.setContentText(nodata.getMessage());
+	        alert.showAndWait();
 
+		} catch (MissingInfoException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText(e.getMessage());
+	        alert.showAndWait();
 		}
 	}
 

@@ -254,13 +254,13 @@ public class Account implements Serializable {
 	private String showAlarms(Alarm current) {
 		String msg = "";
 		if(current != null) {
-			msg += current;
+			msg += "\n" + current.getTime() + "\n";
 		}
 		if(current.getLeft() != null) {
-			showAlarms(current.getLeft());
+			msg += showAlarms(current.getLeft());
 		}
 		if(current.getRight() != null) {
-			showAlarms(current.getRight());
+			msg += showAlarms(current.getRight());
 		}
 		return msg;
 	}

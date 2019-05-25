@@ -6,33 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="161.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imgsPro/Premium.jpg" />
-               </image>
-            </ImageView>
-            <Label prefHeight="134.0" prefWidth="1088.0" text="                   U-Life " textFill="WHITE">
-               <font>
-                  <Font name="Edwardian Script ITC" size="96.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="161.0" fitWidth="913.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imgsPro/Premium.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1957.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
    <left>
       <VBox prefHeight="950.0" prefWidth="325.0" spacing="50.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -44,7 +23,7 @@
                   <Insets left="50.0" />
                </padding>
             </Label>
-            <Label fx:id="alarmsLb" layoutX="10.0" layoutY="102.0" prefHeight="854.0" prefWidth="326.0">
+            <Label fx:id="alarmsLb" layoutX="10.0" layoutY="102.0" prefHeight="17.0" prefWidth="326.0">
                <font>
                   <Font name="Century Gothic" size="18.0" />
                </font></Label>
@@ -73,16 +52,16 @@
    <center>
       <Pane fx:id="pickPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="366.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadFacts" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: gold;" text="FunFacts" />
-            <Button layoutX="216.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadTips" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Tips" />
-            <Button layoutX="66.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadAlarms" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="My alarms" />
+            <Button layoutX="366.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadFacts" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: goldenrod;" text="FunFacts" />
+            <Button layoutX="216.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadTips" prefHeight="19.0" prefWidth="130.0" style="-fx-background-color: goldenrod;" text="Tips" />
+            <Button layoutX="66.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadAlarms" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: GOLDENROD;" text="My alarms" />
             <Label alignment="BOTTOM_LEFT" layoutX="14.0" prefHeight="133.0" prefWidth="288.0" text="Pick one :" textFill="WHITE">
                <font>
                   <Font name="Edwardian Script ITC" size="96.0" />
                </font>
             </Label>
-            <Button layoutX="516.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadNotes" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Notes to self" />
-            <Label fx:id="labelMessage" layoutX="-2.0" layoutY="304.0" prefHeight="536.0" prefWidth="854.0" textFill="WHITE">
+            <Button layoutX="516.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadNotes" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: GOLDENROD;" text="Notes to self" />
+            <Label fx:id="labelMessage" layoutX="22.0" layoutY="304.0" prefHeight="536.0" prefWidth="830.0" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="25.0" />
                </font>
@@ -90,11 +69,11 @@
                   <Insets left="50.0" top="-300.0" />
                </padding>
             </Label>
-            <Button layoutX="666.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadActivities" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="My activities" />
-            <Button fx:id="addNoteBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addNote" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add note" />
-            <Button fx:id="bt" layoutX="400.0" layoutY="600.0" mnemonicParsing="false" onAction="#doneAdding" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: white;" text="Done" />
-            <Button fx:id="addAlarmBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addAlarm" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add alarm" />
-            <Button fx:id="addActBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gold;" text="Add activity" />
+            <Button layoutX="666.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadActivities" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: GOLDENROD;" text="My activities" />
+            <Button fx:id="addNoteBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addNote" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: GOLDENROD;" text="Add note" />
+            <Button fx:id="bt" layoutX="400.0" layoutY="600.0" mnemonicParsing="false" onAction="#doneAdding" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: GOLDENROD;" text="Done" />
+            <Button fx:id="addAlarmBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addAlarm" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: GOLDENROD;" text="Add alarm" />
+            <Button fx:id="addActBt" layoutX="750.0" layoutY="630.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: GOLDENROD;" text="Add activity" />
             <Label fx:id="LbClock" alignment="CENTER" layoutX="313.0" layoutY="14.0" prefHeight="133.0" prefWidth="520.0" text="hola" textFill="WHITE">
                <font>
                   <Font name="Edwardian Script ITC" size="67.0" />
@@ -103,4 +82,41 @@
          </children>
       </Pane>
    </center>
+   <top>
+      <Pane prefHeight="166.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="161.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imgsPro/Premium.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="641.0" layoutY="-2.0" prefHeight="134.0" prefWidth="376.0" text="U-Life " textFill="WHITE">
+               <font>
+                  <Font name="Edwardian Script ITC" size="96.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="161.0" fitWidth="913.0" layoutX="1621.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imgsPro/Premium.jpg" />
+               </image>
+            </ImageView>
+            <Circle fx:id="light2" fill="DODGERBLUE" layoutX="630.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light4" fill="DODGERBLUE" layoutX="670.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light7" fill="DODGERBLUE" layoutX="710.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light5" fill="DODGERBLUE" layoutX="750.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light1" fill="DODGERBLUE" layoutX="790.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light19" fill="DODGERBLUE" layoutX="830.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light18" fill="DODGERBLUE" layoutX="870.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light17" fill="DODGERBLUE" layoutX="910.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light16" fill="DODGERBLUE" layoutX="630.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light15" fill="DODGERBLUE" layoutX="670.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light14" fill="DODGERBLUE" layoutX="710.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light13" fill="DODGERBLUE" layoutX="750.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light12" fill="DODGERBLUE" layoutX="790.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light9" fill="DODGERBLUE" layoutX="830.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light11" fill="DODGERBLUE" layoutX="870.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light6" fill="DODGERBLUE" layoutX="910.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+         </children>
+      </Pane>
+   </top>
 </BorderPane>

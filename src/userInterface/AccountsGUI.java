@@ -34,13 +34,13 @@ public class AccountsGUI {
 	private TableColumn<Account, String> nicknameCol;
 
 	@FXML
-	private TableColumn<Account, String> ageCol;
+	private TableColumn<Account, Integer> ageCol;
 
 	@FXML
-	private TableColumn<Account, String> heightCol;
+	private TableColumn<Account, Integer> heightCol;
 
 	@FXML
-	private TableColumn<Account, String> weightCol;
+	private TableColumn<Account, Integer> weightCol;
 
 	@FXML
 	private TextField searchField;
@@ -56,24 +56,29 @@ public class AccountsGUI {
 		
 		try {
 			ul.loadData();
+			System.out.println(ul.getAccounts().get(0).getName());
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 		ObservableList<Account> oAccounts = FXCollections.observableArrayList();
-		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-		usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
-		nicknameCol.setCellValueFactory(new PropertyValueFactory<>("nickname"));
-		ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
+		nameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("name"));
+		usernameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("username"));
+		nicknameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("nickName"));
+		ageCol.setCellValueFactory(new PropertyValueFactory<Account,Integer>("age"));
 		heightCol.setCellValueFactory(new PropertyValueFactory<>("height"));
 		weightCol.setCellValueFactory(new PropertyValueFactory<>("weight"));
-		updateList();
+		oAccounts = updateList();
 		accountsTable.setItems(oAccounts);
 	}
 	
 	public ObservableList<Account> updateList(){
-		return oAccounts = FXCollections.observableArrayList(ul.getAccounts());
+		oAccounts = FXCollections.observableArrayList();
+		for(int c = 0; c < ul.getAccounts().size(); c++) {
+			oAccounts.add(ul.getAccounts().get(c));
+		}
+		return oAccounts;
 	}
 
 	@FXML

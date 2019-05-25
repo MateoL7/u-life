@@ -17,8 +17,7 @@ public class Account implements Serializable {
 	private Alarm rootAlarm;
 	private Activity firstActivity;
 
-	private Account next;
-	private Account prev;
+
 
 	public Account(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
 		this.username = username;
@@ -29,8 +28,6 @@ public class Account implements Serializable {
 		this.gender = gender;
 		this.nickName = nickName;
 		this.name = name;
-		this.setNext(this);
-		this.setPrev(this);
 	}
 
 	/**
@@ -131,33 +128,6 @@ public class Account implements Serializable {
 		this.height = height;
 	}
 
-	/**
-	 * @return the next
-	 */
-	public Account getNext() {
-		return next;
-	}
-
-	/**
-	 * @param next the next to set
-	 */
-	public void setNext(Account next) {
-		this.next = next;
-	}
-
-	/**
-	 * @return the prev
-	 */
-	public Account getPrev() {
-		return prev;
-	}
-
-	/**
-	 * @param prev the prev to set
-	 */
-	public void setPrev(Account prev) {
-		this.prev = prev;
-	}
 
 	/**
 	 * @return the gender

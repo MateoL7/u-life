@@ -9,13 +9,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Account;
 import model.PremiumAccount;
 import model.ULife;
+import personalExceptions.NoAccountFoundException;
 
 public class LoginGUI {
 
@@ -48,6 +52,11 @@ public class LoginGUI {
 	@FXML
 	public void initialize(){
 		ul = new ULife();
+		try {
+			ul.loadData();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setLg(LoginGUI l){
@@ -101,9 +110,9 @@ public class LoginGUI {
 		try {
 			String usern = username.getText();
 			String pass = password.getText();
-			ul.loadData();
+		
 			Account a = ul.searchAccount(usern, pass);
-			if(a != null) {
+			
 				setAccount(a);
 				boolean keep = true;
 				((Stage) scene.getWindow()).close();
@@ -133,19 +142,20 @@ public class LoginGUI {
 					stage.show();
 				}
 			}
-			else {
-				JOptionPane.showMessageDialog(null, "No account found with that information");
-				JOptionPane.showMessageDialog(null, "Register if you do not have an account");
-			}
-		}
-		catch(ClassNotFoundException c) {
-			c.printStackTrace();
-		}
 		catch(NullPointerException e) {
 			e.printStackTrace();
 		}
 		catch (IOException e1) {
 			e1.printStackTrace();
+		}
+		catch(NoAccountFoundException e2) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("Complications");
+	        alert.setContentText(e2.getMessage());
+
+	        alert.showAndWait();
 		}
 	}
 

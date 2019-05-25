@@ -7,51 +7,38 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import personalExceptions.MissingInfoException;
+import personalExceptions.NoAccountFoundException;
 
 public class ULife {
 
-	private Account firstUser;
+	private ArrayList<Account> Accounts;
 
+	
+	
 	public ULife() {
-
-	}
-	/**
-	 * @return the firstUser
-	 */
-	public Account getFirstUser() {
-		return firstUser;
+      Accounts = new ArrayList<Account>();
 	}
 
-	/**
-	 * @param firstUser the firstUser to set
-	 */
-	public void setFirstUser(Account firstUser) {
-		this.firstUser = firstUser;
-	}
 
-	public Account searchAccount(String username, String password) {
-		boolean keep = true;
+	public Account searchAccount(String username, String password) throws NoAccountFoundException {
 		Account found = null;
-		if(firstUser != null) {
-			if(firstUser.getUsername().equals(firstUser.getNext().getUsername())){
-				found = firstUser;
-			}
-			else {
-				Account current = firstUser;
-				while(current.getNext() != firstUser && keep) {
-					if(current.getUsername().equalsIgnoreCase(username)) {
-						if(current.getPassword().equalsIgnoreCase(password)) {
-							found = current;
-						}
-					}
-					current = current.getNext();
-				}
-			}
-		}
-		return found;
+		boolean stop = false;
+	      for(int c = 0; c < Accounts.size() && stop == false;c++) {
+	    	    Account temporal = Accounts.get(c);
+	    	    if(username.equals(temporal.getUsername()) && password.equals(temporal.getPassword())) {
+	    	    	found = Accounts.get(c);
+	    	    }
+	      }
+	      if(found == null) {
+	    	  throw new NoAccountFoundException();
+	      }else {
+	      return found;
 	}
+	}
+
 	/**
 	 * 
 	 * @param username name of the user	
@@ -64,46 +51,21 @@ public class ULife {
 	 * @param name name of the user
 	 */
 	public void createNewUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) throws MissingInfoException {
-		if((username == "" || username == null) || (password == "" || password == null) || weight <= 20 || height <= 100 || (gender == "" || gender == null) || (nickName == "" || nickName == null) || age <= 5 || (name == "" || name == null)) {
-			throw new MissingInfoException(username, password, age, weight, height, gender, nickName, name);
-		}else {
-			Account a = new Account(username,password,age,weight,height,gender,nickName, name);
-			if(firstUser != null) {
-				Account temp = firstUser.getPrev();
-				temp.setNext(a);
-				firstUser.setPrev(a);
-				a.setNext(firstUser);
-				a.setPrev(temp);
+		if(username == null || password == null || age == 0 || weight == 0 || gender == null ||height == 0 || nickName == null ||name == null) {
+	         throw new MissingInfoException();
+			}else {
+				Account p = new Account(username,password,age,weight,height,gender,nickName,name);
+				Accounts.add(p);
 			}
-			else {
-				firstUser = a;
-				firstUser.setNext(a);
-				firstUser.setPrev(a);
-			}
-
-		}
 	}
 	
 	public void createNewPremiumUser(String username, String password, int age, double weight, double height, String gender, String nickName, String name) throws MissingInfoException {
-		if((username == "" || username == null) || (password == "" || password == null) || weight <= 20 || height <= 100 || (gender == "" || gender == null) || (nickName == "" || nickName == null) || age <= 5 || (name == "" || name == null)) {
-			throw new MissingInfoException(username,password,age,weight,height,gender,nickName, name);
+		if(username == null || password == null || age == 0 || weight == 0 || gender == null ||height == 0 || nickName == null ||name == null) {
+         throw new MissingInfoException();
 		}else {
-			PremiumAccount a = new PremiumAccount(username,password,age,weight,height,gender,nickName, name);
-			if(firstUser != null) {
-				PremiumAccount temp = (PremiumAccount) firstUser.getPrev();
-				temp.setNext(a);
-				firstUser.setPrev(a);
-				a.setNext(firstUser);
-				a.setPrev(temp);
-			}
-			else {
-				firstUser = a;
-				firstUser.setNext(a);
-				firstUser.setPrev(a);
-			}
-
+			PremiumAccount p = new PremiumAccount(username,password,age,weight,height,gender,nickName,name);
+			Accounts.add(p);
 		}
-		
 	}
 
 	/**
@@ -114,7 +76,7 @@ public class ULife {
 	public void saveData() throws FileNotFoundException, IOException {
 		File f = new File("data/savedAccounts.mateo");
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
-		oos.writeObject(firstUser);
+		oos.writeObject(Accounts);
 		oos.close();
 
 	}
@@ -123,10 +85,12 @@ public class ULife {
 	 * El metodo carga los datos desde un archivo .mateo
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/SavedAccounts.mateo"));
-		firstUser = (Account) ois.readObject();
+		Accounts = (ArrayList<Account>)ois.readObject();
 		ois.close();
 	}
+	
 
 }

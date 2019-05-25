@@ -74,7 +74,7 @@ public class ProAppGUI {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-						DateFormat date = new SimpleDateFormat("hh:mm:a");
+						DateFormat date = new SimpleDateFormat("hh:mm:ss:a");
 							Calendar cal = Calendar.getInstance();
 						     String t = date.format(cal.getTime());
 						     int hour = cal.get(Calendar.HOUR);

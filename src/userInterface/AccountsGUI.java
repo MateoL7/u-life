@@ -8,11 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.StageStyle;
 import model.Account;
 import model.ULife;
 
@@ -44,24 +46,24 @@ public class AccountsGUI {
 
 	@FXML
 	private TextField searchField;
-	
+
 	private ObservableList<Account> oAccounts;
-	
+
 	private ULife ul;
-	
+
 	@FXML
 	public void initialize() {
 		ul = new ULife();
-		
-		
+
+
 		try {
 			ul.loadData();
 			System.out.println(ul.getAccounts().get(0).getName());
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		ObservableList<Account> oAccounts = FXCollections.observableArrayList();
 		nameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("name"));
 		usernameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("username"));
@@ -72,7 +74,7 @@ public class AccountsGUI {
 		oAccounts = updateList();
 		accountsTable.setItems(oAccounts);
 	}
-	
+
 	public ObservableList<Account> updateList(){
 		oAccounts = FXCollections.observableArrayList();
 		for(int c = 0; c < ul.getAccounts().size(); c++) {
@@ -83,42 +85,80 @@ public class AccountsGUI {
 
 	@FXML
 	public void searchAge(ActionEvent event) {
-
+		try {
+			ul.sortByAge();
+			int age = Integer.parseInt(searchField.getText());
+			Account show = ul.searchAge(age);
+			if(show != null) {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("Found");
+				alert.setContentText("Name: " + show.getName() + "\nAge:" + show.getAge()+ "\nUsername: " + show.getUsername());
+				alert.showAndWait();
+			}
+			else {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("Not found");
+				alert.setContentText("There is not an account with that height");
+				alert.showAndWait();
+			}
+		} 
+		catch(NumberFormatException n) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.initStyle(StageStyle.UTILITY);
+			alert.setTitle("Information");
+			alert.setHeaderText("Incorrect format");
+			alert.setContentText("Please only type numbers");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML
 	public void searchHeight(ActionEvent event) {
-
-	}
-
-	@FXML
-	public void searchName(ActionEvent event) {
-
-	}
-
-	@FXML
-	public void searchNickname(ActionEvent event) {
-
-	}
-
-	@FXML
-	public void searchUsername(ActionEvent event) {
-
-	}
-
-	@FXML
-	public void searchWeight(ActionEvent event) {
-
+		ul.sortByHeight();
+		try {
+			double height = Double.parseDouble(searchField.getText());
+			Account show = ul.searchHegiht(height);
+			if(show != null) {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("Found");
+				alert.setContentText("Name: " + show.getName() + "\nAge: " + show.getAge() + "\nUsername: " + show.getUsername());
+				alert.showAndWait();
+			}
+			else {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("Not found");
+				alert.setContentText("There is not an account with that age");
+				alert.showAndWait();
+			}
+		} 
+		catch(NumberFormatException n) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.initStyle(StageStyle.UTILITY);
+			alert.setTitle("Information");
+			alert.setHeaderText("Incorrect format");
+			alert.setContentText("Please only type numbers");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML
 	public void sortAge(ActionEvent event) {
-
+		ul.sortByAge();
+		accountsTable.setItems(updateList());
 	}
 
 	@FXML
 	public void sortHeight(ActionEvent event) {
-
+		ul.sortByHeight();
+		accountsTable.setItems(updateList());
 	}
 
 	@FXML
@@ -129,17 +169,20 @@ public class AccountsGUI {
 
 	@FXML
 	public void sortNickname(ActionEvent event) {
-
+		ul.sortByNickname();
+		accountsTable.setItems(updateList());
 	}
 
 	@FXML
 	public void sortUsername(ActionEvent event) {
-
+		ul.sortByUsername();
+		accountsTable.setItems(updateList());
 	}
 
 	@FXML
 	public void sortWeight(ActionEvent event) {
-
+		ul.sortByWeight();
+		accountsTable.setItems(updateList());
 	}
 
 }

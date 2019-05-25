@@ -62,6 +62,12 @@ public class RegisterGUI {
 
 	public void initialize() {
 		ulife = new ULife();
+		try {
+			ulife.loadData();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void setScene(Scene s) {

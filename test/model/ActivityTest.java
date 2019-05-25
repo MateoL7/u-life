@@ -20,4 +20,13 @@ public class ActivityTest {
 		assertTrue(a.getHours() == 1);
 		assertTrue(a.getMinutes() == 30);
 	}
+	@Test
+	void testToString() {
+		Activity a = new Activity("Study science", 30, 1);
+		String msg =  "Name: " + "Study science" + "\nHours: " + 1 + "\nMinutes: " + 30;
+		String toS = a.toString();
+		System.out.println(msg + "\n" + toS);
+		assertTrue(msg.equals(toS));
+	}
+	
 }

@@ -10,7 +10,9 @@ public class Activity {
 	private Activity prev;
 	
 	public Activity(String name, int minutes, int hours) {
-		
+		this.name = name;
+		this.minutes = minutes;
+		this.hours = hours;
 	}
 
 	/**

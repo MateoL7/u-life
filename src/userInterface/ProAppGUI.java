@@ -84,7 +84,7 @@ public class ProAppGUI {
 							String t = date.format(cal.getTime());
 							int hour = cal.get(Calendar.HOUR);
 							int minute = cal.get(Calendar.MINUTE);
-							String contain = pa.CheckAlarm(hour, minute);
+							String contain = pa.checkAlarm(hour, minute);
 							if(contain.isEmpty()) {
 								LbClock.setText(t);
 							}else {

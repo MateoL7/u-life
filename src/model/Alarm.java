@@ -20,7 +20,7 @@ public class Alarm implements Comparable<Alarm>{
 		this.min = min;
 		this.vibrate = vibrate;
 		DateFormat date = new SimpleDateFormat("hh:mm:a");
-		time = hour + ":"+min+":"+0;
+		time = t;
 	}
 	
 	/**
@@ -117,11 +117,6 @@ public class Alarm implements Comparable<Alarm>{
 	 */
 	public void setLeft(Alarm left) {
 		this.left = left;
-	}
-	
-	@Override
-	public String toString() {
-		return time;
 	}
 	
 }

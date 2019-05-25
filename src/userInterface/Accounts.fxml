@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1561.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.AccountsGUI">
+	<children>
+      <TableView fx:id="accountsTable" layoutX="-1.0" layoutY="135.0" prefHeight="813.0" prefWidth="934.0" style="-fx-background-color: darkgoldenrod;">
+        <columns>
+          <TableColumn fx:id="nameCol" prefWidth="123.99994051456451" text="Name" />
+          <TableColumn fx:id="usernameCol" prefWidth="210.39990997314453" text="Username" />
+            <TableColumn fx:id="nicknameCol" prefWidth="203.19998168945312" text="Nickname" />
+            <TableColumn fx:id="ageCol" prefWidth="104.0" text="Age" />
+            <TableColumn fx:id="heightCol" minWidth="0.0" prefWidth="135.9998779296875" text="Height" />
+            <TableColumn fx:id="weightCol" minWidth="1.60003662109375" prefWidth="158.400146484375" text="Weight" />
+        </columns>
+      </TableView>
+      <Label layoutX="7.0" layoutY="945.0" prefHeight="56.0" prefWidth="924.0" text="To see the next accounts: Scroll down. || To see the previous accounts: Scroll up." textFill="WHITE">
+         <font>
+            <Font name="Book Antiqua" size="25.0" />
+         </font>
+      </Label>
+      <MenuBar layoutX="1387.0" layoutY="368.0" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: white;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Sort">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#sortName" text="Name" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortUsername" text="Username" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortNickname" text="Nickname" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortAge" text="Age" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortHeight" text="Height" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortWeight" text="Weight" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Search">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#searchName" text="Name" />
+                  <MenuItem mnemonicParsing="false" onAction="#searchUsername" text="Username" />
+                  <MenuItem mnemonicParsing="false" onAction="#searchNickname" text="Nickname" />
+                  <MenuItem mnemonicParsing="false" onAction="#searchAge" text="Age" />
+                  <MenuItem mnemonicParsing="false" onAction="#searchHeight" text="Height" />
+                  <MenuItem mnemonicParsing="false" onAction="#searchWeight" text="Weight" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TextField fx:id="searchField" layoutX="970.0" layoutY="369.0" prefHeight="25.0" prefWidth="283.0" promptText="Type here the information to search" />
+				<Label layoutX="579.0" layoutY="15.0" prefHeight="111.0" prefWidth="417.0" text="Accounts" textFill="WHITE">
+					<font>
+						<Font name="Book Antiqua" size="55.0" />
+					</font>
+					<padding>
+						<Insets left="100.0" />
+					</padding>
+				</Label>
+	</children>
+</Pane>

@@ -8,28 +8,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1957.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
-   <left>
-      <VBox prefHeight="950.0" prefWidth="325.0" spacing="50.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="TituloAlarmas" prefHeight="31.0" prefWidth="339.0" text="Current Alarms" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Century Gothic" size="25.0" />
-               </font>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Label>
-            <Label fx:id="alarmsLb" layoutX="10.0" layoutY="102.0" prefHeight="17.0" prefWidth="326.0">
-               <font>
-                  <Font name="Century Gothic" size="18.0" />
-               </font></Label>
-         </children>
-      </VBox>
-   </left>
    <right>
       <VBox prefHeight="950.0" prefWidth="325.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -119,4 +104,40 @@
          </children>
       </Pane>
    </top>
+   <left>
+      <Pane prefHeight="834.0" prefWidth="384.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="TituloAlarmas" layoutX="33.0" layoutY="14.0" prefHeight="32.0" prefWidth="281.0" text="Current Alarms" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="25.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Label>
+            <Circle fill="WHITE" layoutX="173.0" layoutY="272.0" radius="100.0" stroke="#060000" strokeType="INSIDE" strokeWidth="20.0" style="-fx-fill: black; -fx-stroke: goldenrod;" />
+            <Label fx:id="activationAlarm" alignment="BOTTOM_LEFT" layoutX="107.0" layoutY="238.0" prefHeight="33.0" prefWidth="133.0" text="Inactive" textFill="WHITE">
+               <font>
+                  <Font name="Edwardian Script ITC" size="40.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutX="1.0" layoutY="372.0" stroke="BLACK" strokeType="INSIDE" width="383.0">
+               <fill>
+                  <LinearGradient endX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle fx:id="line2" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="222.0" layoutY="132.0" rotate="11.3" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+            <Rectangle fx:id="line1" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="263.0" layoutY="152.0" rotate="38.8" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+            <Rectangle fx:id="line3" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="171.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+            <Rectangle fx:id="line4" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="121.0" layoutY="135.0" rotate="-18.4" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+            <Rectangle fx:id="line5" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="85.0" layoutY="155.0" rotate="-36.5" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+            <Button layoutX="131.0" layoutY="383.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="80.0" style="-fx-background-color: goldenrod;" text="Stop" />
+         </children>
+      </Pane>
+   </left>
 </BorderPane>

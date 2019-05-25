@@ -19,9 +19,11 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import model.LoadInfo;
 import model.Note;
 import model.PremiumAccount;
+import threads.AlarmShineThread;
 import threads.MoveLightsThread;
 import threads.ShiningThread;
 
@@ -49,6 +51,21 @@ public class ProAppGUI {
 	private TextField tfId;
 
 	@FXML
+	private Rectangle line2;
+
+	@FXML
+	private Rectangle line1;
+
+	@FXML
+	private Rectangle line3;
+
+	@FXML
+	private Rectangle line4;
+
+	@FXML
+	private Rectangle line5;
+
+	@FXML
 	private Button addAlarmBt;
 
 	@FXML
@@ -63,6 +80,9 @@ public class ProAppGUI {
 	private PremiumAccount pa;
 
 	private LoginGUI lg;
+
+	@FXML
+	private Label activationAlarm;
 
 	@FXML
 	private Label LbClock;
@@ -118,6 +138,7 @@ public class ProAppGUI {
 
 	private ShiningThread sh;
 	private MoveLightsThread ml;
+	private AlarmShineThread as;
 
 	@FXML
 	public void initialize(){
@@ -129,6 +150,7 @@ public class ProAppGUI {
 		addAlarmBt.setVisible(false);
 		sh = new ShiningThread(this);
 		ml = new MoveLightsThread(this);
+		as = new AlarmShineThread(this);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -147,6 +169,7 @@ public class ProAppGUI {
 								LbClock.setText(t);
 							}else {
 								LbClock.setText(contain);
+								shoutAlarms();
 							}
 						}	
 					});
@@ -164,7 +187,7 @@ public class ProAppGUI {
 
 		sh.start();
 		ml.start();
-		
+
 
 	}
 
@@ -255,6 +278,30 @@ public class ProAppGUI {
 		light9.setLayoutX(light9.getLayoutX()+mov);
 		light11.setLayoutX(light11.getLayoutX()+mov);
 		light6.setLayoutX(light6.getLayoutX()+mov);
+	}
+
+	public void alarmShine() {
+		line1.setFill(Color.GOLDENROD);
+		line2.setFill(Color.GOLDENROD);
+		line3.setFill(Color.GOLDENROD);
+		line4.setFill(Color.GOLDENROD);
+		line5.setFill(Color.GOLDENROD);
+	}
+	public void alarmDown() {
+		line1.setFill(Color.BLACK);
+		line2.setFill(Color.BLACK);
+		line3.setFill(Color.BLACK);
+		line4.setFill(Color.BLACK);
+		line5.setFill(Color.BLACK);
+	}
+	public boolean shoutAlarms() {
+		boolean active = false;
+		while(LbClock.getText().equalsIgnoreCase("Activated")) {
+				active = true;
+				activationAlarm.setText(LbClock.getText());
+				as.start();
+		}
+		return active;
 	}
 	@FXML
 	public void loadFacts(ActionEvent event) {

@@ -274,7 +274,7 @@ public class Account implements Serializable {
 		if(a == null) {
 			msg +="";
 		}else if(a.getHour() == hour && minute == a.getMin()) {
-				msg += "!Alarma Activada¡"; 
+				msg += "Activated"; 
 			}else {
 				 checkAlarm(hour,minute,a.getLeft());
 				checkAlarm(hour,minute,a.getRight());

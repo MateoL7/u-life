@@ -92,5 +92,9 @@ public class ULife {
 		ois.close();
 	}
 	
+	public ArrayList<Account> getAccounts() {
+		return accounts;
+	}
+	
 
 }

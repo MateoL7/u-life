@@ -6,8 +6,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class AlarmTest {
+	
+	private Alarm a1;
+	private Alarm a2;
 
 	public void setupScenary1() {
+		
+	}
+	
+	public void setupScenary2() {
 		
 	}
 	
@@ -19,5 +26,16 @@ public class AlarmTest {
 		assertTrue(a.getTime().equalsIgnoreCase("AM 11:11"));
 		assertTrue(a.getHour() == 11);
 		assertTrue(a.getMin() == 11);
+	}
+	
+	@Test
+	void testCompareTo() {
+		a1 = new Alarm(11,11,"AM 11:11",true);
+		a2 = new Alarm(12,12,"PM 12:12",false);
+		
+		 int data  =a2.compareTo(a2);
+		int data2 = a1.compareTo(a1);
+		assertTrue(data>-1);
+		assertTrue(data2<1);
 	}
 }

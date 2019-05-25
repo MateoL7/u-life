@@ -135,6 +135,8 @@ public class ProAppGUI {
 
 	@FXML
 	private Circle light6;
+	
+	public boolean active;
 
 	private ShiningThread sh;
 	private MoveLightsThread ml;
@@ -151,6 +153,7 @@ public class ProAppGUI {
 		sh = new ShiningThread(this);
 		ml = new MoveLightsThread(this);
 		as = new AlarmShineThread(this);
+		active = false;
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -165,11 +168,13 @@ public class ProAppGUI {
 							int hour = cal.get(Calendar.HOUR);
 							int minute = cal.get(Calendar.MINUTE);
 							String contain = pa.checkAlarm(hour, minute);
-							if(contain.isEmpty()) {
-								LbClock.setText(t);
+							LbClock.setText(t);
+							if(!contain.isEmpty()) {
+								active = true;
+								activationAlarm.setText(LbClock.getText());
+								as.start();
 							}else {
-								LbClock.setText(contain);
-								shoutAlarms();
+								active = false;
 							}
 						}	
 					});
@@ -294,15 +299,7 @@ public class ProAppGUI {
 		line4.setFill(Color.BLACK);
 		line5.setFill(Color.BLACK);
 	}
-	public boolean shoutAlarms() {
-		boolean active = false;
-		while(LbClock.getText().equalsIgnoreCase("Activated")) {
-				active = true;
-				activationAlarm.setText(LbClock.getText());
-				as.start();
-		}
-		return active;
-	}
+
 	@FXML
 	public void loadFacts(ActionEvent event) {
 		addNoteBt.setVisible(false);

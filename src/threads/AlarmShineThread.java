@@ -10,7 +10,7 @@ public class AlarmShineThread extends Thread{
 		pr = p;
 	}
 	public void run() {
-		while(true) {
+		while(pr.active) {
 			pr.alarmShine();
 			try {
 				sleep(100);

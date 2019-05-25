@@ -14,22 +14,22 @@ import personalExceptions.NoAccountFoundException;
 
 public class ULife {
 
-	private ArrayList<Account> Accounts;
+	private ArrayList<Account> accounts;
 
 	
 	
 	public ULife() {
-      Accounts = new ArrayList<Account>();
+      accounts = new ArrayList<Account>();
 	}
 
 
 	public Account searchAccount(String username, String password) throws NoAccountFoundException {
 		Account found = null;
 		boolean stop = false;
-	      for(int c = 0; c < Accounts.size() && stop == false;c++) {
-	    	    Account temporal = Accounts.get(c);
+	      for(int c = 0; c < accounts.size() && stop == false;c++) {
+	    	    Account temporal = accounts.get(c);
 	    	    if(username.equals(temporal.getUsername()) && password.equals(temporal.getPassword())) {
-	    	    	found = Accounts.get(c);
+	    	    	found = accounts.get(c);
 	    	    }
 	      }
 	      if(found == null) {
@@ -55,7 +55,7 @@ public class ULife {
 	         throw new MissingInfoException();
 			}else {
 				Account p = new Account(username,password,age,weight,height,gender,nickName,name);
-				Accounts.add(p);
+				accounts.add(p);
 			}
 	}
 	
@@ -64,7 +64,7 @@ public class ULife {
          throw new MissingInfoException();
 		}else {
 			PremiumAccount p = new PremiumAccount(username,password,age,weight,height,gender,nickName,name);
-			Accounts.add(p);
+			accounts.add(p);
 		}
 	}
 
@@ -76,7 +76,7 @@ public class ULife {
 	public void saveData() throws FileNotFoundException, IOException {
 		File f = new File("data/savedAccounts.mateo");
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
-		oos.writeObject(Accounts);
+		oos.writeObject(accounts);
 		oos.close();
 
 	}
@@ -87,8 +87,8 @@ public class ULife {
 	 */
 	@SuppressWarnings("unchecked")
 	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/SavedAccounts.mateo"));
-		Accounts = (ArrayList<Account>)ois.readObject();
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/savedAccounts.mateo"));
+		accounts = (ArrayList<Account>)ois.readObject();
 		ois.close();
 	}
 	

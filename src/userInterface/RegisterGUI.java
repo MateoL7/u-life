@@ -1,20 +1,23 @@
- package userInterface;
+package userInterface;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.ULife;
 import personalExceptions.MissingInfoException;
 
@@ -46,9 +49,9 @@ public class RegisterGUI {
 
 	@FXML
 	private TextField nicknameT;
-	
+
 	@FXML
-    private RadioButton premiumR;
+	private RadioButton premiumR;
 
 	@FXML
 	private Button registration;
@@ -67,16 +70,22 @@ public class RegisterGUI {
 
 	public void doneRegistration(ActionEvent e) {
 		String msg;
-		try {
-			String username = usernameT.getText();
-			String password = passwordT.getText();
-			int age = Integer.parseInt(ageT.getText());
-			double weight = Double.parseDouble(weightT.getText());
-			double height =  Double.parseDouble(heightT.getText());
-			String gender = genderT.getText();
-			String nickName = nicknameT.getText();
-			String name = nameT.getText();
-			System.out.println(username + "  " + password + "  " +age + "  " +weight+ "  " + height+ "  " + gender+ "  "+ nickName+ "  " +name);
+		Alert alertR = new Alert(AlertType.CONFIRMATION);
+		alertR.setTitle("Confirmation Dialog");
+		alertR.setHeaderText("Registration Information");
+		alertR.setContentText("Are you done with the registration?");
+
+		Optional<ButtonType> result = alertR.showAndWait();
+		if (result.get() == ButtonType.OK){
+			try {
+				String username = usernameT.getText();
+				String password = passwordT.getText();
+				int age = Integer.parseInt(ageT.getText());
+				double weight = Double.parseDouble(weightT.getText());
+				double height =  Double.parseDouble(heightT.getText());
+				String gender = genderT.getText();
+				String nickName = nicknameT.getText();
+				String name = nameT.getText();
 				if(premiumR.isSelected()){
 					ulife.createNewPremiumUser(username, password, age, weight, height, gender, nickName, name);
 				}
@@ -106,23 +115,30 @@ public class RegisterGUI {
 
 			} catch (FileNotFoundException e1) {
 				msg = ("No file found");
-				System.out.println(msg);
 				messageDialog.setText(msg);
 			} catch (IOException e2) {
 				msg = ("IOException");
-				System.out.println(msg);
 				messageDialog.setText(msg);	
 			}
-	
-		catch(MissingInfoException m) {
-			msg = m.getMessage();
-			System.out.println(msg);
-			messageDialog.setText(msg);
-		}
-		catch(NumberFormatException nf) {
-			msg = "WARNING!\nPlease provide\nthe information correclty.";
-			System.out.println(msg);
-			messageDialog.setText(msg);
+
+			catch(MissingInfoException m) {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("Complications");
+				alert.setContentText(m.getMessage());
+
+				alert.showAndWait();
+			}
+			catch(NumberFormatException nf) {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("WARNING!");
+				alert.setContentText("Please provide the information correclty.");
+
+				alert.showAndWait();
+			}
 		}
 	}
 }

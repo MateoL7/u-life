@@ -4,13 +4,16 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
 import model.LoadInfo;
 import model.Note;
@@ -54,9 +57,9 @@ public class ProAppGUI {
 	private PremiumAccount pa;
 
 	private LoginGUI lg;
-	
+
 	@FXML
-    private Label LbClock;
+	private Label LbClock;
 
 	@FXML
 	public void initialize(){
@@ -74,31 +77,31 @@ public class ProAppGUI {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-						DateFormat date = new SimpleDateFormat("hh:mm:ss:a");
+							DateFormat date = new SimpleDateFormat("hh:mm:ss:a");
 							Calendar cal = Calendar.getInstance();
-						     String t = date.format(cal.getTime());
-						     int hour = cal.get(Calendar.HOUR);
-						     int minute = cal.get(Calendar.MINUTE);
-			                String contain = pa.CheckAlarm(hour, minute);
-			                if(contain.isEmpty()) {
-			                	LbClock.setText(t);
-			                }else {
-			                	LbClock.setText(contain);
-			                }
+							String t = date.format(cal.getTime());
+							int hour = cal.get(Calendar.HOUR);
+							int minute = cal.get(Calendar.MINUTE);
+							String contain = pa.CheckAlarm(hour, minute);
+							if(contain.isEmpty()) {
+								LbClock.setText(t);
+							}else {
+								LbClock.setText(contain);
+							}
 						}	
 					});
 					//Sleep adentro del while
-				 try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				 
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+
 				}
 			}
-			
+
 		}).start();
-		
+
 	}
 
 	@FXML
@@ -142,7 +145,6 @@ public class ProAppGUI {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -225,11 +227,37 @@ public class ProAppGUI {
 
 	@FXML
 	public void addActivity(ActionEvent event) {
-		
+
 	}
 
 	@FXML
 	public void addAlarm(ActionEvent event) {
+		int hour;
+		int min;
+		String time;
+		boolean vibrate;
+		boolean[] days;
+
+		//Get the hour
+		TextInputDialog hourD = new TextInputDialog("");
+		hourD.setTitle("New Alarm");
+		hourD.setHeaderText("Setting you alarm");
+		hourD.setContentText("Please type just an hour:");
+
+		Optional<String> resultHour = hourD.showAndWait();
+		if (resultHour.isPresent()){
+			 hour = Integer.parseInt(resultHour.get());
+		}
+		//Get the minutes
+		TextInputDialog minD = new TextInputDialog("");
+		minD.setTitle("New Alarm");
+		minD.setHeaderText("Setting you alarm");
+		minD.setContentText("Please type just the minutes:");
+
+		Optional<String> rMin = minD.showAndWait();
+		if (rMin.isPresent()){
+			 hour = Integer.parseInt(rMin.get());
+		}
 		
 	}
 
@@ -248,6 +276,6 @@ public class ProAppGUI {
 		addAlarmBt.setVisible(true);
 		labelMessage.setText(pa.showAlarms());
 	}
-	
-	
+
+
 }

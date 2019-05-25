@@ -1,8 +1,7 @@
 package userInterface;
 
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -76,10 +76,17 @@ public class LoginGUI {
 
 	@FXML
 	public void cancelLogin(ActionEvent event) {
-		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit ULife?");
-		if(option == 0) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText("You are about to exit the program");
+		alert.setContentText("Are you ok with this?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
 			((Stage) scene.getWindow()).close();
+		} else {
 		}
+			
 	}
 
 	@FXML
@@ -152,10 +159,10 @@ public class LoginGUI {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 	        alert.initStyle(StageStyle.UTILITY);
 	        alert.setTitle("Information");
-	        alert.setHeaderText("Complications");
+	        alert.setHeaderText("WARNING!");
 	        alert.setContentText(e2.getMessage());
 
-	        alert.showAndWait();
+	       alert.showAndWait();
 		}
 	}
 

@@ -28,7 +28,7 @@
             <Font name="Book Antiqua" size="25.0" />
          </font>
       </Label>
-      <MenuBar layoutX="1387.0" layoutY="368.0" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: white;">
+      <MenuBar layoutX="1023.0" layoutY="442.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-color: white;">
         <menus>
           <Menu mnemonicParsing="false" text="Sort">
             <items>

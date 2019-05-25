@@ -64,6 +64,7 @@
                   <Font name="Edwardian Script ITC" size="67.0" />
                </font>
             </Label>
+            <Button layoutX="941.0" layoutY="150.0" mnemonicParsing="false" onAction="#seeAccountsInfo" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: GOLDENROD;" text="See accounts information" />
          </children>
       </Pane>
    </center>

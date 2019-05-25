@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,7 +64,13 @@ public class AccountsGUI {
 	}
 	
 	public ObservableList<Account> updateList(){
-		return oAccounts = FXCollections.observableArrayList(ul.getAccounts());
+		try {
+			ul.loadData();
+			oAccounts = FXCollections.observableArrayList(ul.getAccounts());
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		return oAccounts;
 	}
 
 	@FXML
@@ -108,7 +115,8 @@ public class AccountsGUI {
 
 	@FXML
 	public void sortName(ActionEvent event) {
-
+		ul.sortByName();
+		accountsTable.setItems(updateList());
 	}
 
 	@FXML

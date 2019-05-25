@@ -9,6 +9,9 @@ import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -20,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import model.LoadInfo;
 import model.Note;
 import model.PremiumAccount;
@@ -135,7 +139,7 @@ public class ProAppGUI {
 
 	@FXML
 	private Circle light6;
-	
+
 	public boolean active;
 
 	private ShiningThread sh;
@@ -524,6 +528,24 @@ public class ProAppGUI {
 		a.setContentText(pa.showAlarms());
 		a.showAndWait();
 		labelMessage.setText(pa.showAlarms());
+	}
+
+	@FXML
+	public void seeAccountsInfo(ActionEvent event) {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Accounts.fxml"));
+		Parent root;
+		try {
+			root = fxmlLoader.load();
+			Stage stage = new Stage();
+
+			Scene scene = new Scene(root);
+			stage.setTitle("Accounts Information");
+			stage.setScene(scene);
+			stage.setMaximized(true);
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 

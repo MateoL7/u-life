@@ -104,6 +104,23 @@ public class ULife {
 	public ArrayList<Account> getAccounts() {
 		return accounts;
 	}
+	
+	public void sortByName() {
+		for(int i = 0; i < accounts.size()-1; i ++) {
+			int minPos = i;
+			String minName = accounts.get(i).getName();
+			for(int j = i+1; j < accounts.size(); j++) {
+				String compareName = accounts.get(j).getName();
+				if(compareName.compareTo(minName) < 0) {
+					minPos = j;
+					minName = compareName;
+				}
+			}
+			Account temp = accounts.get(minPos);
+			accounts.set(minPos, accounts.get(i));
+			accounts.set(i, temp);
+		}
+	}
 
 
 }

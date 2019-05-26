@@ -101,9 +101,9 @@ public class PremiumAccount extends Account implements LoadInfo, Serializable{
 		}
 	}
 	/**
-	 * 
-	 * @param num
-	 * @param info
+	 * Adds a tip to the binary tree tips
+	 * @param num the number of the tip
+	 * @param info the content of the tip
 	 */
 	
 	public void addTip(String num, String info) {
@@ -115,6 +115,12 @@ public class PremiumAccount extends Account implements LoadInfo, Serializable{
 			addTip(tp, rootT);
 		}
 	}
+	
+	/**
+	 * traverses the binary tree to add the tip
+	 * @param tp the tip that is going to be added to the tree
+	 * @param current the root of the binary tree
+	 */
 	private void addTip(Tip tp, Tip current) {
 		if(tp.getNumber() > current.getNumber()) {
 			if(current.getRight() == null) {
@@ -133,7 +139,12 @@ public class PremiumAccount extends Account implements LoadInfo, Serializable{
 			}
 		}
 	}
-
+ /**
+  * adds a note to the array of notes
+  * @param num the number of the note
+  * @param note the content of teh note
+  * @return a boolean indicating wether it was added or not
+  */
 	public boolean addNote(int num, String note) {
 		Note n = new Note(num, note);
 		notes = new Note[20];

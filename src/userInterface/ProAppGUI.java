@@ -159,6 +159,24 @@ public class ProAppGUI {
 	@FXML
 	private Circle light6;
 
+	@FXML
+	private Arc star51;
+
+	@FXML
+	private Arc star41;
+
+	@FXML
+	private Arc star31;
+
+	@FXML
+	private Arc star21;
+
+	@FXML
+	private Arc star11;
+
+	@FXML
+	private Circle centerStar11;
+
 
 	private ShiningThread sh;
 	private MoveLightsThread ml;
@@ -183,7 +201,7 @@ public class ProAppGUI {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-						
+
 							DateFormat date = new SimpleDateFormat("hh:mm:ss:a");
 							Calendar cal = Calendar.getInstance();
 							String t = date.format(cal.getTime());
@@ -195,7 +213,7 @@ public class ProAppGUI {
 							if(!contain.isEmpty()) {
 								active = true;
 								activationAlarm.setText(LbClock.getText());
-								
+
 							}else {
 								active = false;
 							}
@@ -251,6 +269,14 @@ public class ProAppGUI {
 		star4.setFill(Color.GOLDENROD);
 		star5.setFill(Color.GOLDENROD);
 
+		//Star2
+		centerStar11.setFill(Color.GOLDENROD);
+		star11.setFill(Color.GOLDENROD);
+		star21.setFill(Color.GOLDENROD);
+		star31.setFill(Color.GOLDENROD);
+		star41.setFill(Color.GOLDENROD);
+		star51.setFill(Color.GOLDENROD);
+
 	}
 	public void shutDownLights() {
 		//Down
@@ -280,6 +306,14 @@ public class ProAppGUI {
 		star3.setFill(Color.BLACK);
 		star4.setFill(Color.BLACK);
 		star5.setFill(Color.BLACK);
+
+		//Star2
+		centerStar11.setFill(Color.BLACK);
+		star11.setFill(Color.BLACK);
+		star21.setFill(Color.BLACK);
+		star31.setFill(Color.BLACK);
+		star41.setFill(Color.BLACK);
+		star51.setFill(Color.BLACK);
 	}
 	public void move1() {
 		double mov = 5;
@@ -310,6 +344,14 @@ public class ProAppGUI {
 		star3.setLayoutY(star3.getLayoutY()+mov);
 		star4.setLayoutY(star4.getLayoutY()+mov);
 		star5.setLayoutY(star5.getLayoutY()+mov);
+		
+		//Star2
+		centerStar11.setLayoutY(centerStar11.getLayoutY() - mov);
+		star11.setLayoutY(star11.getLayoutY()-mov);
+		star21.setLayoutY(star21.getLayoutY()-mov);
+		star31.setLayoutY(star31.getLayoutY()-mov);
+		star41.setLayoutY(star41.getLayoutY()-mov);
+		star51.setLayoutY(star51.getLayoutY()-mov);
 	}
 	public void move2() {
 		double mov = 5;
@@ -332,6 +374,22 @@ public class ProAppGUI {
 		light9.setLayoutX(light9.getLayoutX()+mov);
 		light11.setLayoutX(light11.getLayoutX()+mov);
 		light6.setLayoutX(light6.getLayoutX()+mov);
+
+		//Star
+		centerStar1.setLayoutY(centerStar1.getLayoutY() - mov);
+		star1.setLayoutY(star1.getLayoutY()-mov);
+		star2.setLayoutY(star2.getLayoutY()-mov);
+		star3.setLayoutY(star3.getLayoutY()-mov);
+		star4.setLayoutY(star4.getLayoutY()-mov);
+		star5.setLayoutY(star5.getLayoutY()-mov);
+
+		//Star2
+		centerStar11.setLayoutY(centerStar11.getLayoutY() + mov);
+		star11.setLayoutY(star11.getLayoutY()+mov);
+		star21.setLayoutY(star21.getLayoutY()+mov);
+		star31.setLayoutY(star31.getLayoutY()+mov);
+		star41.setLayoutY(star41.getLayoutY()+mov);
+		star51.setLayoutY(star51.getLayoutY()+mov);
 	}
 
 	public void alarmShine() {

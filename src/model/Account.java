@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 
-public class Account implements Serializable {
+public class Account implements Serializable, Priviledges {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;

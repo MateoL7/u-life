@@ -87,7 +87,7 @@
                   <Image url="@imgsPro/Premium.jpg" />
                </image>
             </ImageView>
-            <Circle fx:id="light2" fill="DODGERBLUE" layoutX="630.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Circle fx:id="light2" fill="#212121" layoutX="630.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light4" fill="DODGERBLUE" layoutX="670.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light7" fill="DODGERBLUE" layoutX="710.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light5" fill="DODGERBLUE" layoutX="750.0" layoutY="140.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
@@ -103,12 +103,18 @@
             <Circle fx:id="light9" fill="DODGERBLUE" layoutX="830.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light11" fill="DODGERBLUE" layoutX="870.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light6" fill="DODGERBLUE" layoutX="910.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
-            <Arc fx:id="star5" layoutX="506.0" layoutY="83.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-107.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star4" layoutX="487.0" layoutY="77.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-58.5" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star3" layoutX="480.0" layoutY="45.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="39.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star2" layoutX="521.0" layoutY="51.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="163.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star1" layoutX="501.0" layoutY="37.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="97.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Circle fx:id="centerStar1" layoutX="523.0" layoutY="55.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fx:id="star5" fill="#fa0000" layoutX="559.0" layoutY="92.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-107.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star4" fill="#f20000" layoutX="540.0" layoutY="86.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-58.5" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star3" fill="RED" layoutX="533.0" layoutY="54.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="39.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star2" fill="RED" layoutX="574.0" layoutY="60.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="163.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star1" fill="RED" layoutX="554.0" layoutY="46.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="97.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fx:id="centerStar1" fill="RED" layoutX="576.0" layoutY="64.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fx:id="star51" fill="RED" layoutX="927.0" layoutY="103.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-66.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star41" fill="RED" layoutX="913.0" layoutY="70.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="25.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star31" fill="RED" layoutX="939.0" layoutY="60.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="96.1" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star21" fill="RED" layoutX="960.0" layoutY="74.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="160.7" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star11" fill="RED" layoutX="943.0" layoutY="103.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-104.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fx:id="centerStar11" fill="RED" layoutX="962.0" layoutY="78.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Pane>
    </top>

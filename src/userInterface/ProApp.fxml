@@ -150,7 +150,14 @@
             <Rectangle fx:id="line3" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="171.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
             <Rectangle fx:id="line4" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="121.0" layoutY="135.0" rotate="-18.4" stroke="BLACK" strokeType="INSIDE" width="6.0" />
             <Rectangle fx:id="line5" arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="85.0" layoutY="155.0" rotate="-36.5" stroke="BLACK" strokeType="INSIDE" width="6.0" />
-            <Button layoutX="131.0" layoutY="383.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="80.0" style="-fx-background-color: goldenrod;" text="Stop" />
+            <Label fx:id="TituloAlarmas1" layoutX="40.0" layoutY="383.0" prefHeight="32.0" prefWidth="281.0" text="Digital Clock" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="25.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Label>
          </children>
       </Pane>
    </left>

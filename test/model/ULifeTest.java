@@ -20,6 +20,20 @@ public class ULifeTest {
 		u = new ULife();
 	}	
 
+	public void setupScenary2() {
+		u = new ULife();
+		Account a1 = new Account("M7", "123", 18, 69.0, 166, "Male", "Teo", "Mateo");
+		Account a2 = new Account("ares", "123", 15, 69.5, 176, "Male", "Jo", "Jorge");
+		Account a3 = new Account("epx3", "123", 16, 62.0, 156, "Male", "Reo", "Mario");
+		Account a4 = new Account("sawq12", "123", 12, 49.0, 146, "Male", "4eT", "Gato");
+		Account a5 = new Account("MLS", "123", 19, 50.0, 157, "Female", "Manu", "Manuela");
+		u.getAccounts().add(a1);
+		u.getAccounts().add(a2);
+		u.getAccounts().add(a3);
+		u.getAccounts().add(a4);
+		u.getAccounts().add(a5);
+	}
+
 	@Test
 	public void testULife() {
 		ULife x = new ULife();
@@ -43,7 +57,7 @@ public class ULifeTest {
 	}
 
 	@Test
-	void testLoadData() throws MissingInfoException, FileNotFoundException, IOException, ClassNotFoundException, NoAccountFoundException, NoDataException {
+	public void testLoadData() throws MissingInfoException, FileNotFoundException, IOException, ClassNotFoundException, NoAccountFoundException, NoDataException {
 		setupScenary1();
 		u.createNewUser("JP", "1234", 19, 86, 183, "Male", "JP", "Juan");
 		u.saveData();
@@ -60,7 +74,7 @@ public class ULifeTest {
 	}
 
 	@Test
-	void testPremiumUser() throws MissingInfoException {
+	public void testCreateNewPremiumUser() throws MissingInfoException {
 		setupScenary1();
 		u.createNewPremiumUser("JP", "1234", 19, 86, 183, "Male", "JP", "Juan");
 		Account tem = u.getAccounts().get(0);
@@ -75,7 +89,7 @@ public class ULifeTest {
 	}
 
 	@Test
-	void testSearchAccount() throws MissingInfoException, NoAccountFoundException, NoDataException {
+	public void testSearchAccount() throws MissingInfoException, NoAccountFoundException, NoDataException {
 		setupScenary1();
 		u.createNewPremiumUser("JP", "1234", 19, 86, 183, "Male", "JP", "Juan");
 		Account tem = u.searchAccount("JP", "1234");
@@ -88,4 +102,79 @@ public class ULifeTest {
 		assertTrue(tem.getPassword().equals("1234"));
 		assertTrue(tem.getNickName().equals("JP"));
 	}
+
+	@Test
+	public void testSortByName() {
+		setupScenary2();
+		u.sortByName();
+
+		for(int i = 0; i < u.getAccounts().size()-1; i++) {
+			assertTrue("Not the right position", u.getAccounts().get(i).getName().compareTo(u.getAccounts().get(i+1).getName()) <= 0);
+		}
+	}
+
+	@Test
+	public void testSortByUsername() {
+		setupScenary2();
+		u.sortByUsername();
+
+		for(int i = 0; i < u.getAccounts().size()-1; i++) {
+			assertTrue("Not the right position", u.getAccounts().get(i).getUsername().compareTo(u.getAccounts().get(i+1).getUsername()) <= 0);
+		}
+	}
+	@Test
+	public void testSortByNickname() {
+		setupScenary2();
+		u.sortByNickname();
+
+		for(int i = 0; i < u.getAccounts().size()-1; i++) {
+			assertTrue("Not the right position", u.getAccounts().get(i).getNickName().compareTo(u.getAccounts().get(i+1).getNickName()) <= 0);
+		}
+	}
+	@Test
+	public void testSortByWeight() {
+		setupScenary2();
+		u.sortByWeight();
+
+		for(int i = 0; i < u.getAccounts().size()-1; i++) {
+			assertTrue("Not the right position", u.getAccounts().get(i).getWeight() <= u.getAccounts().get(i+1).getWeight());
+		}
+	}
+	@Test
+	public void testSortByHeight() {
+		setupScenary2();
+		u.sortByHeight();
+
+		for(int i = 0; i < u.getAccounts().size()-1; i++) {
+			assertTrue("Not the right position", u.getAccounts().get(i).getHeight() <= u.getAccounts().get(i+1).getHeight());
+		}
+	}
+	@Test
+	public void testSortByAge() {
+		setupScenary2();
+		u.sortByAge();
+
+		for(int i = 0; i < u.getAccounts().size()-1; i++) {
+			assertTrue("Not the right position", u.getAccounts().get(i).getAge() <= u.getAccounts().get(i+1).getAge());
+		}
+	}
+	@Test
+	public void testSearchAge() {
+		setupScenary2();
+		int age = 15;
+		u.sortByAge();
+		Account a = u.searchAge(age);
+		assertNotNull("Not returning correctly", a);
+		assertTrue("Not the right value when returning", a.getAge() == 15);
+	}
+	@Test
+	public void testSearchHeight() {
+		setupScenary2();
+		double height = 166;
+		u.sortByHeight();
+		Account a = u.searchHegiht(height);
+		assertNotNull("Not returning correctly", a);
+		assertTrue("Not the right value when returning", a.getHeight() == 166);
+	}
+
 }

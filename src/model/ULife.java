@@ -104,7 +104,7 @@ public class ULife {
 	public ArrayList<Account> getAccounts() {
 		return accounts;
 	}
-	
+	//Selection
 	public void sortByName() {
 		for(int i = 0; i < accounts.size()-1; i ++) {
 			int minPos = i;
@@ -120,6 +120,111 @@ public class ULife {
 			accounts.set(minPos, accounts.get(i));
 			accounts.set(i, temp);
 		}
+	}
+	public void sortByUsername() {
+		for(int i = 0; i < accounts.size()-1; i ++) {
+			int minPos = i;
+			String minUname = accounts.get(i).getUsername();
+			for(int j = i+1; j < accounts.size(); j++) {
+				String compareUname = accounts.get(j).getUsername();
+				if(compareUname.compareTo(minUname) < 0) {
+					minPos = j;
+					minUname = compareUname;
+				}
+			}
+			Account temp = accounts.get(minPos);
+			accounts.set(minPos, accounts.get(i));
+			accounts.set(i, temp);
+		}
+	}
+	//Bubble
+	public void sortByNickname() {
+		Account prev;
+		for(int i = 0; i < accounts.size()-1; i++) {
+			for(int j = 0; j < accounts.size()-1; j++) {
+				if(accounts.get(j).getNickName().compareTo(accounts.get(j+1).getNickName()) > 0) {
+					prev = accounts.get(j);
+					accounts.set(j, accounts.get(j+1));
+					accounts.set(j+1, prev);
+				}
+			}
+		}
+	}
+	public void sortByWeight() {
+		Account prev;
+		for(int i = 0; i < accounts.size()-1; i++) {
+			for(int j = 0; j < accounts.size()-1; j++) {
+				if(accounts.get(j).getWeight() > accounts.get(j+1).getWeight()) {
+					prev = accounts.get(j);
+					accounts.set(j, accounts.get(j+1));
+					accounts.set(j+1, prev);
+				}
+			}
+		}
+	}
+	//Insertion
+	public void sortByHeight() {
+		for(int i = 1; i < accounts.size(); i++) {
+			Account ini = accounts.get(i);
+			int j;
+			for(j = i-1; j >= 0 && accounts.get(j).getHeight() > ini.getHeight(); j--) {
+				accounts.set(j+1, accounts.get(j));
+			}
+			accounts.set(j+1, ini);
+		}
+	}
+	public void sortByAge() {
+		for(int i = 1; i < accounts.size(); i++) {
+			Account ini = accounts.get(i);
+			int j;
+			for(j = i-1; j >= 0 && accounts.get(j).getAge() > ini.getAge(); j--) {
+				accounts.set(j+1, accounts.get(j));
+			}
+			accounts.set(j+1, ini);
+		}
+	}
+	//Binary search
+	public Account searchAge(int age) {
+		Account gotIt = null;
+		boolean found = false;
+		int low = 0;
+		int high = accounts.size()-1;
+		while(low <= high && !found) {
+			int mid = (low+high)/2;
+			if(accounts.get(mid).getAge() < age) {
+				low = mid + 1;
+			}
+			else if(accounts.get(mid).getAge() > age) {
+				high = mid - 1;
+			}
+			else{
+				gotIt = accounts.get(mid);
+				found = true;
+			}
+		}
+		
+		return gotIt;
+	}
+	public Account searchHegiht(double height) {
+		Account gotIt = null;
+		boolean found = false;
+		int low = 0;
+		int high = accounts.size()-1;
+		while(low <= high && !found) {
+			int mid = (low+high)/2;
+			if(accounts.get(mid).getHeight() < height) {
+				low = mid + 1;
+			}
+			else if(accounts.get(mid).getHeight() > height) {
+				high = mid - 1;
+			}
+			else{
+				gotIt = accounts.get(mid);
+				found = true;
+			}
+		}
+		
+		return gotIt;
 	}
 
 

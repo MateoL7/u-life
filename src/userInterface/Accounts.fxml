@@ -42,12 +42,8 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Search">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#searchName" text="Name" />
-                  <MenuItem mnemonicParsing="false" onAction="#searchUsername" text="Username" />
-                  <MenuItem mnemonicParsing="false" onAction="#searchNickname" text="Nickname" />
                   <MenuItem mnemonicParsing="false" onAction="#searchAge" text="Age" />
                   <MenuItem mnemonicParsing="false" onAction="#searchHeight" text="Height" />
-                  <MenuItem mnemonicParsing="false" onAction="#searchWeight" text="Weight" />
             </items>
           </Menu>
         </menus>

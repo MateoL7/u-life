@@ -1,7 +1,7 @@
 package model;
 import java.io.*;
 
-public class PremiumAccount extends Account implements LoadInfo, Serializable{
+public class PremiumAccount extends Account implements Information, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private FunFact rootF;
@@ -47,7 +47,7 @@ public class PremiumAccount extends Account implements LoadInfo, Serializable{
 	 * so you can separate in by FunFacts and by Tips
 	 */
 	@Override
-	public String loadRandomInfo(String path) throws IOException {
+	public String loadInfo(String path) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(new File(path)));
 		String line = br.readLine();
 		String separate = "";
@@ -142,7 +142,7 @@ public class PremiumAccount extends Account implements LoadInfo, Serializable{
  /**
   * adds a note to the array of notes
   * @param num the number of the note
-  * @param note the content of teh note
+  * @param note the content of the note
   * @return a boolean indicating wether it was added or not
   */
 	public boolean addNote(int num, String note) {

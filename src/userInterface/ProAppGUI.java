@@ -25,7 +25,7 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import model.LoadInfo;
+import model.Information;
 import model.Note;
 import model.PremiumAccount;
 import model.SportType;
@@ -415,7 +415,7 @@ public class ProAppGUI {
 		addAlarmBt.setVisible(false);
 		String msg = "";
 		try {
-			String info = pa.loadRandomInfo(LoadInfo.PATHFACTS);
+			String info = pa.loadInfo(Information.PATHFACTS);
 			String[] fact = info.split(",");
 			for(int i = 0; i < fact.length;i++) {
 				String[] splitFact = fact[i].split(";");
@@ -460,7 +460,7 @@ public class ProAppGUI {
 		addAlarmBt.setVisible(false);
 		String msg = "";
 		try {
-			String info = pa.loadRandomInfo(LoadInfo.PATHTIPS);
+			String info = pa.loadInfo(Information.PATHTIPS);
 			String[] tip = info.split(",");
 			for(int i = 0; i < tip.length;i++) {
 				String[] splitTip = tip[i].split(";");

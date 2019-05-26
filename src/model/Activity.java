@@ -1,5 +1,10 @@
 package model;
-
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class Activity
+*/
 public class Activity implements Active{
 
 	private String name;
@@ -9,6 +14,12 @@ public class Activity implements Active{
 	private Activity next;
 	private Activity prev;
 	
+	/**
+	 * This is the method that instantiates an Activity, the builder of the class
+	 * @param name String with the name of the activity
+	 * @param minutes int with the minutes provided for the activity
+	 * @param hours int with the hours provided for the activity
+	 */
 	public Activity(String name, int minutes, int hours) {
 		this.name = name;
 		this.minutes = minutes;
@@ -85,6 +96,11 @@ public class Activity implements Active{
 		this.prev = prev;
 	}
 	
+	/**
+	 * This method confirms if an activity has finished or not
+	 * @return boolean that confirms
+	 */
+	@Override
 	public boolean isDone() {
 		boolean done = false;
 		
@@ -93,7 +109,10 @@ public class Activity implements Active{
 		}
 		return done;
 	}
-	
+	/**
+	 * This method Overrides the method toString 
+	 * @return String with the message when calling the object of the class
+	 */
 	@Override
 	public String toString() {
 		return "\nName: " + name + "\nHours: " + hours + "\nMinutes: " + minutes;

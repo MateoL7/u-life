@@ -22,11 +22,11 @@ public class ULifeTest {
 
 	public void setupScenary2() {
 		u = new ULife();
-		Account a1 = new Account("M7", "123", 18, 69.0, 166, "Male", "Teo", "Mateo");
-		Account a2 = new Account("ares", "123", 15, 69.5, 176, "Male", "Jo", "Jorge");
-		Account a3 = new Account("epx3", "123", 16, 62.0, 156, "Male", "Reo", "Mario");
-		Account a4 = new Account("sawq12", "123", 12, 49.0, 146, "Male", "4eT", "Gato");
-		Account a5 = new Account("MLS", "123", 19, 50.0, 157, "Female", "Manu", "Manuela");
+		FreeAccount a1 = new FreeAccount("M7", "123", 18, 69.0, 166, "Male", "Teo", "Mateo");
+		PremiumAccount a2 = new PremiumAccount("ares", "123", 15, 69.5, 176, "Male", "Jo", "Jorge");
+		PremiumAccount a3 = new PremiumAccount("epx3", "123", 16, 62.0, 156, "Male", "Reo", "Mario");
+		FreeAccount a4 = new FreeAccount("sawq12", "123", 12, 49.0, 146, "Male", "4eT", "Gato");
+		PremiumAccount a5 = new PremiumAccount("MLS", "123", 19, 50.0, 157, "Female", "Manu", "Manuela");
 		u.getAccounts().add(a1);
 		u.getAccounts().add(a2);
 		u.getAccounts().add(a3);

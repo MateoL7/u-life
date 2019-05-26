@@ -20,7 +20,7 @@ public class AlarmTest {
 	
 	@Test
 	public void testAlarm() {
-		Alarm a = new Alarm(11, 11, "AM 11:11", true);
+		Alarm a = new Alarm(11, 11, "AM 11:11");
 		
 		assertNotNull("The object is null", a);
 		assertTrue(a.getTime().equalsIgnoreCase("AM 11:11"));
@@ -30,8 +30,8 @@ public class AlarmTest {
 	
 	@Test
 	void testCompareTo() {
-		a1 = new Alarm(11,11,"AM 11:11",true);
-		a2 = new Alarm(12,12,"PM 12:12",false);
+		a1 = new Alarm(11,11,"AM 11:11");
+		a2 = new Alarm(12,12,"PM 12:12");
 		
 		 int data  =a2.compareTo(a2);
 		int data2 = a1.compareTo(a1);

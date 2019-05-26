@@ -11,7 +11,7 @@ public class ShiningThread extends Thread{
 	}
 
 	public void run() {
-		while(true) {
+		while(pr.getShinning()) {
 			pr.shine();
 			try {
 				sleep(100);

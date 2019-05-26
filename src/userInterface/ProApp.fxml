@@ -103,18 +103,19 @@
             <Circle fx:id="light9" fill="DODGERBLUE" layoutX="830.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light11" fill="DODGERBLUE" layoutX="870.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light6" fill="DODGERBLUE" layoutX="910.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
-            <Arc fx:id="star5" fill="#fa0000" layoutX="559.0" layoutY="92.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-107.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star4" fill="#f20000" layoutX="540.0" layoutY="86.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-58.5" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star3" fill="RED" layoutX="533.0" layoutY="54.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="39.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star2" fill="RED" layoutX="574.0" layoutY="60.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="163.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star1" fill="RED" layoutX="554.0" layoutY="46.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="97.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Circle fx:id="centerStar1" fill="RED" layoutX="576.0" layoutY="64.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-            <Arc fx:id="star51" fill="RED" layoutX="927.0" layoutY="103.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-66.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star41" fill="RED" layoutX="913.0" layoutY="70.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="25.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star31" fill="RED" layoutX="939.0" layoutY="60.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="96.1" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star21" fill="RED" layoutX="960.0" layoutY="74.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="160.7" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Arc fx:id="star11" fill="RED" layoutX="943.0" layoutY="103.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-104.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-            <Circle fx:id="centerStar11" fill="RED" layoutX="962.0" layoutY="78.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fx:id="star5" layoutX="559.0" layoutY="92.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-107.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star4" layoutX="540.0" layoutY="86.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-58.5" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star3" layoutX="533.0" layoutY="54.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="39.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star2" layoutX="574.0" layoutY="60.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="163.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star1" layoutX="554.0" layoutY="46.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="97.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fx:id="centerStar1" layoutX="576.0" layoutY="64.0" radius="5.0" stroke="#470b0b00" strokeType="INSIDE" />
+            <Arc fx:id="star51" layoutX="927.0" layoutY="103.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-66.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star41" layoutX="913.0" layoutY="70.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="25.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star31" layoutX="939.0" layoutY="60.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="96.1" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star21" layoutX="960.0" layoutY="74.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="160.7" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star11" layoutX="943.0" layoutY="103.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-104.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fx:id="centerStar11" layoutX="962.0" layoutY="78.0" radius="6.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Button layoutX="1173.0" layoutY="110.0" mnemonicParsing="false" onAction="#makeItShine" style="-fx-background-color: goldenrod;" text="Make me shine" />
          </children>
       </Pane>
    </top>
@@ -129,10 +130,10 @@
                   <Insets left="50.0" />
                </padding>
             </Label>
-            <Circle fill="WHITE" layoutX="175.0" layoutY="270.0" radius="102.0" stroke="#060000" strokeType="INSIDE" strokeWidth="20.0" style="-fx-fill: black; -fx-stroke: goldenrod;" />
-            <Label fx:id="activationAlarm" alignment="BOTTOM_LEFT" layoutX="76.0" layoutY="238.0" prefHeight="42.0" prefWidth="197.0" textFill="WHITE">
+            <Circle fx:id="digitalClock" fill="WHITE" layoutX="175.0" layoutY="270.0" radius="102.0" stroke="#060000" strokeType="INSIDE" strokeWidth="20.0" style="-fx-fill: black; -fx-stroke: goldenrod;" />
+            <Label fx:id="activationAlarm" alignment="BOTTOM_LEFT" layoutX="103.0" layoutY="238.0" prefHeight="42.0" prefWidth="144.0" textFill="WHITE">
                <font>
-                  <Font name="Edwardian Script ITC" size="30.0" />
+                  <Font name="Edwardian Script ITC" size="25.0" />
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutX="1.0" layoutY="372.0" stroke="BLACK" strokeType="INSIDE" width="383.0">

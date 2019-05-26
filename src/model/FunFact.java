@@ -1,5 +1,10 @@
 package model;
-
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class FunFact
+*/
 public class FunFact {
 
 	private String number;
@@ -7,7 +12,11 @@ public class FunFact {
 	
 	private FunFact right;
 	private FunFact left;
-	
+	/**
+	 * This is the method that instantiates a FunFact, the builder of the class
+	 * @param num
+	 * @param f
+	 */
 	public FunFact(String num, String f) {
 		number = num;
 		fact = f;

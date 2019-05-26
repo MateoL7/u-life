@@ -25,14 +25,19 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Information;
-import model.Note;
 import model.PremiumAccount;
 import model.SportType;
 import threads.AlarmShineThread;
 import threads.MoveLightsThread;
 import threads.ShiningThread;
-
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class ProAppGUI
+*/
 public class ProAppGUI {
 
 	@FXML
@@ -178,10 +183,15 @@ public class ProAppGUI {
 	@FXML
 	private Circle centerStar11;
 
+	@FXML
+	private Circle digitalClock;
+
 
 	private ShiningThread sh;
 	private MoveLightsThread ml;
 	private AlarmShineThread as;
+	private boolean shinning;
+
 
 	@FXML
 	public void initialize(){
@@ -191,8 +201,7 @@ public class ProAppGUI {
 		addNoteBt.setVisible(false);
 		addActBt.setVisible(false);
 		addAlarmBt.setVisible(false);
-		sh = new ShiningThread(this);
-		ml = new MoveLightsThread(this);
+
 		ProAppGUI ptemp = this;
 		new Thread(new Runnable() {
 			@Override
@@ -233,11 +242,6 @@ public class ProAppGUI {
 			}
 
 		}).start();
-
-		sh.start();
-		ml.start();
-
-
 	}
 
 
@@ -279,6 +283,28 @@ public class ProAppGUI {
 		star51.setFill(Color.GOLDENROD);
 
 	}
+
+	public boolean getShinning() {
+		return shinning;
+	}
+
+	public void setShinning(boolean s) {
+		shinning = s;
+	}
+
+	@FXML
+	public void makeItShine(ActionEvent event) {
+		setShinning(true);
+		sh = new ShiningThread(this);
+		ml = new MoveLightsThread(this);
+		sh.setDaemon(true);
+		ml.setDaemon(true);
+		sh.start();
+		ml.start();
+
+
+	}
+
 	public void shutDownLights() {
 		//Down
 		light2.setFill(Color.BLACK);
@@ -345,7 +371,7 @@ public class ProAppGUI {
 		star3.setLayoutY(star3.getLayoutY()+mov);
 		star4.setLayoutY(star4.getLayoutY()+mov);
 		star5.setLayoutY(star5.getLayoutY()+mov);
-		
+
 		//Star2
 		centerStar11.setLayoutY(centerStar11.getLayoutY() - mov);
 		star11.setLayoutY(star11.getLayoutY()-mov);
@@ -399,6 +425,9 @@ public class ProAppGUI {
 		line3.setFill(Color.GOLDENROD);
 		line4.setFill(Color.GOLDENROD);
 		line5.setFill(Color.GOLDENROD);
+		digitalClock.setStroke(Color.DARKRED);
+
+
 	}
 	public void alarmDown() {
 		line1.setFill(Color.BLACK);
@@ -406,6 +435,7 @@ public class ProAppGUI {
 		line3.setFill(Color.BLACK);
 		line4.setFill(Color.BLACK);
 		line5.setFill(Color.BLACK);
+		digitalClock.setStroke(Color.GOLDENROD);
 	}
 
 	@FXML
@@ -446,10 +476,23 @@ public class ProAppGUI {
 			}
 			labelMessage.setText(msg);
 			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} 	catch(EOFException t) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("You do not have any notes yet");
+
+	       alert.showAndWait();
+		}
+		catch(IOException e) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("You do not have any notes yet");
+
+	       alert.showAndWait();
 		}
 	}
 
@@ -506,19 +549,13 @@ public class ProAppGUI {
 			String id = tfId.getText();
 			String th = tfTh.getText();
 			int i1 = Integer.parseInt(id);
-			if(pa.addNote(i1, th)) {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(new File("data\\notes.txt").getAbsoluteFile(), true));
-				int i = 0;
-				while(i < pa.getNotes().length-1) {
-					Note n = pa.getNotes()[i];
-					if(n != null) {
-						bw.write(n.getNum() + ". " + n.getNote());
-						bw.newLine();
-					}
-					i++;
-				}
-				bw.close();
-			}
+			pa.addNote(i1, th);
+			File f = new File("data\\notes.txt");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f.getAbsoluteFile(), true));
+
+			bw.write(i1 + ". " + th);
+
+			bw.close();
 		} 
 		catch(NumberFormatException nm) {
 			nm.printStackTrace();
@@ -555,7 +592,7 @@ public class ProAppGUI {
 			if(m2.isPresent()) {
 				minutes = Integer.parseInt(m2.get());
 			}
-			
+
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("New Activity");
 			alert.setHeaderText("Create you activity");
@@ -597,10 +634,10 @@ public class ProAppGUI {
 				if(option.get() == run) {
 					st = SportType.RUN;
 				}
-				
+
 				pa.addSport(name, minutes, hours, cal, st);
 			}
-			
+
 		} catch(NumberFormatException nm) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Problem");
@@ -616,7 +653,6 @@ public class ProAppGUI {
 			int hour = 0;
 			int min = 0;
 			String time = "";
-			boolean vibrate = false;
 			String timeDay = "";
 			//		boolean[] days = new boolean[7];
 
@@ -659,25 +695,9 @@ public class ProAppGUI {
 				timeDay = "PM";
 			}
 
-			//Vibration On or Off
-			Alert alertV = new Alert(AlertType.CONFIRMATION);
-			alertV.setTitle("New Alarm");
-			alertV.setHeaderText("Setting your alarm");
-			alertV.setContentText("Vibration");
-
-			buttonTypeOne = new ButtonType("On");
-			buttonTypeTwo = new ButtonType("Off");
-
-			alertV.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-
-			Optional<ButtonType> resultV = alertV.showAndWait();
-			if (resultV.get() == buttonTypeOne){
-				vibrate = true;
-			}
-
 			time = timeDay + " " + hour + ":" + min;
 
-			pa.addAlarm(hour, min, time, vibrate);
+			pa.addAlarm(hour, min, time);
 			System.out.println(time);
 
 		} catch(NumberFormatException nm) {

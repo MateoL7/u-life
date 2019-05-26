@@ -1,8 +1,7 @@
 package model;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +17,7 @@ public class PremiumAccountTest {
 	void testPremiumAccount() {
 		setupScenary1();
 		 Account tem =pa;
+		 assertNotNull("Not creating the object", pa);
 		   assertTrue(tem.getName().equals("Juan"));
 		   assertTrue(tem.getAge() == 19);
 		   assertTrue(tem.getHeight()==183);
@@ -30,20 +30,23 @@ public class PremiumAccountTest {
 	@Test
 	void testAddFunFact() {
 		setupScenary1();
-		pa.addFunFact("10", "es bueno hacer pruebas");
+		pa.addFunFact("10", "fact");
 	}
 	
 	@Test
 	void testAddTip() {
 		setupScenary1();
-		pa.addTip("10", "es bueno hacer pruebas");
+		pa.addTip("10", "tip");
 	}
 	
 	@Test
 	void testAddNote() {
 		setupScenary1();
-		boolean decide = pa.addNote(10,"hay que hacer pruebas");
-		assertTrue(decide);
+		Note n = new Note(10,"note");
+		 pa.addNote(10,"note");
+		 assertTrue("Not working corectly", pa.getFirstNote().getPrev().getNum() == n.getNum());
+		 assertTrue("Not working corectly", pa.getFirstNote().getPrev().getNote().equalsIgnoreCase(n.getNote()));
+
 	}
 
 }

@@ -1,17 +1,33 @@
 package model;
 import java.io.*;
-
+/** 
+ *@author: Mateo Loaiza
+ *@author: Juan Pablo Herrera
+ *@version: 26/05/2019
+ *Class PremiumAccount
+ */
 public class PremiumAccount extends Account implements Information, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private FunFact rootF;
 	private Tip rootT;
 
-	private Note[] notes;
+	private Note firstNote;
 
+	/**
+	 * This is the constructor, is in charge of instantiate what the object must have
+	 * @param username String with the username for the account
+	 * @param password String with the password for the account
+	 * @param age int with the age from the user
+	 * @param weight double with the weight provided by the user
+	 * @param height double with the height provided by the user
+	 * @param gender String with the gender provided by the user
+	 * @param nickName String with the nickname provided by the user
+	 * @param name String with the name provided by the user
+	 */
 	public PremiumAccount(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
 		super(username, password, age, weight, height, gender, nickName, name);
-		
+
 	}
 
 	/**returns the value of rootf
@@ -45,6 +61,7 @@ public class PremiumAccount extends Account implements Information, Serializable
 	/**
 	 * This method reads the information from a txt and then allows you to retrieve it
 	 * so you can separate in by FunFacts and by Tips
+	 * @param path String with the location of the file to read
 	 */
 	@Override
 	public String loadInfo(String path) throws IOException {
@@ -105,7 +122,7 @@ public class PremiumAccount extends Account implements Information, Serializable
 	 * @param num the number of the tip
 	 * @param info the content of the tip
 	 */
-	
+
 	public void addTip(String num, String info) {
 		Tip tp = new Tip(Integer.parseInt(num), info);
 		if(rootT == null) {
@@ -115,7 +132,7 @@ public class PremiumAccount extends Account implements Information, Serializable
 			addTip(tp, rootT);
 		}
 	}
-	
+
 	/**
 	 * traverses the binary tree to add the tip
 	 * @param tp the tip that is going to be added to the tree
@@ -139,43 +156,40 @@ public class PremiumAccount extends Account implements Information, Serializable
 			}
 		}
 	}
- /**
-  * adds a note to the array of notes
-  * @param num the number of the note
-  * @param note the content of the note
-  * @return a boolean indicating wether it was added or not
-  */
-	public boolean addNote(int num, String note) {
+	/**
+	 * adds a note to the array of notes
+	 * @param num the number of the note
+	 * @param note the content of the note
+	 * @return a boolean indicating wether it was added or not
+	 */
+	public void addNote(int num, String note) {
 		Note n = new Note(num, note);
-		notes = new Note[20];
-		boolean added = false;
-		for(int i = 0; i < notes.length-1 && !added; i++) {
-			if(notes[i] == null) {
-				notes[i] = n;
-				added = true;
-			}
+		if(firstNote == null) {
+			firstNote = n;
+			n.setNext(n);
+			n.setPrev(n);
 		}
-		return added;
+		else {
+			Note last = firstNote.getPrev();
+			last.setNext(n);
+			firstNote.setPrev(n);
+			
+			n.setNext(firstNote);
+			n.setPrev(last);
+		}
 	}
 
-	public Note[] getNotes() {		
-		return notes;
+	/**
+	 * @return the firstNote
+	 */
+	public Note getFirstNote() {
+		return firstNote;
 	}
-	
-//	public void sortNotes() {
-//		for(int I = 0; I < notes.length-1; I++) {
-//			int minPos = I;
-//			int num = notes[I].getNum();
-//			for(int J = I+1; J < notes.length; J++) {
-//				int compareNum = notes[J].getNum();
-//				if(compareNum < num ) {
-//					minPos = J;
-//					num = compareNum;
-//				}
-//			}
-//			Note temp = notes[minPos];
-//			notes[minPos] = notes[I];
-//			notes[I] = temp;
-//		}
-//	}
+
+	/**
+	 * @param firstNote the firstNote to set
+	 */
+	public void setFirstNote(Note firstNote) {
+		this.firstNote = firstNote;
+	}
 }

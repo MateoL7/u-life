@@ -1,6 +1,5 @@
 package model;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -35,8 +34,8 @@ class AccountTest {
 	@Test
 	void testAddAlarm() {
 		setupScenary1();
-		a.addAlarm(12, 20, "PM", false);
-		a.addAlarm(4, 30, "AM",false);
+		a.addAlarm(12, 20, "PM");
+		a.addAlarm(4, 30, "AM");
 	    String time1 = a.getRootAlarm().getLeft().getTime();
 	    String time2 = a.getRootAlarm().getTime();
 	    assertTrue(time1.equals("AM")&& time2.equals("PM"),"no se asigno bien los datos");
@@ -51,9 +50,9 @@ class AccountTest {
 	@Test
 	void testCheckAlarm() {
 		setupScenary1();
-		a.addAlarm(5, 20, "5:20AM", false);
+		a.addAlarm(5, 20, "5:20PM");
 		String msg = a.checkAlarm(5, 20);
-		assertTrue(msg.equals("!Alarma Activada¡"),"no se activo la alarma correctamente");
+		assertTrue(msg.equals("Activated"),"no se activo la alarma correctamente");
 	}
 	
 	@Test

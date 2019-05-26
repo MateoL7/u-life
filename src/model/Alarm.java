@@ -1,24 +1,34 @@
 package model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class Alarm
+*/
 
 public class Alarm implements Comparable<Alarm>{
 
 	private int hour;
 	private int min;
 	private String time;
-	private boolean vibrate;
 
 	
 	private Alarm right;
 	private Alarm left;
 	
-	public Alarm(int hour, int min, String t, boolean vibrate) {
+	/**
+	 * This is the method that instantiates an Alarm, the builder of the class
+	 * @param hour int with the hour for it to activate
+	 * @param min int with the minute for it to activate
+	 * @param t String with the time all together
+	 */
+	public Alarm(int hour, int min, String t) {
 		this.hour = hour;
 		this.min = min;
-		this.vibrate = vibrate;
-		DateFormat date = new SimpleDateFormat("hh:mm:a");
+//		DateFormat date = new SimpleDateFormat("hh:mm:a");
 		time = t;
 	}
 	
@@ -48,20 +58,6 @@ public class Alarm implements Comparable<Alarm>{
 	 */
 	public void setHour(int hour) {
 		this.hour = hour;
-	}
-
-	/**returns the current value of vibrate
-	 * @return the vibrate
-	 */
-	public boolean isVibrate() {
-		return vibrate;
-	}
-
-	/** changes the value of vibrate for the parameter
-	 * @param vibrate the vibrate to set
-	 */
-	public void setVibrate(boolean vibrate) {
-		this.vibrate = vibrate;
 	}
 
 	/** returns the value of time

@@ -1,5 +1,10 @@
 package model;
-
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class Tip
+*/
 public class Tip {
 
 	private int number;
@@ -8,6 +13,11 @@ public class Tip {
 	private Tip right;
 	private Tip left;
 	
+	/**
+	 * This is the method that instantiates a Tip, the builder of the class
+	 * @param num int with the number of the tip
+	 * @param t String with the tip itself
+	 */
 	public Tip(int num, String t) {
 		number = num;
 		tip = t;

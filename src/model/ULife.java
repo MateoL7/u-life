@@ -1,5 +1,6 @@
 package model;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,26 +13,34 @@ import java.util.ArrayList;
 import personalExceptions.MissingInfoException;
 import personalExceptions.NoAccountFoundException;
 import personalExceptions.NoDataException;
-
+/** 
+ *@author: Mateo Loaiza
+ *@author: Juan Pablo Herrera
+ *@version: 26/05/2019
+ *Class ULife
+ */
 public class ULife {
 
 	private ArrayList<Account> accounts;
 
 
-
+	/**
+	 * This is the constructor, it instantiates what the object
+	 * of this class must have
+	 */
 	public ULife() {
 		accounts = new ArrayList<Account>();
 	}
 
-/**
- * Searches the arraylist for the account based on the username and password
- * @param username the username of the acocunt
- * @param password the password of the account
- * @return the acount that was found
- * @throws NoAccountFoundException When the search dosent find the account
- * @throws NoDataException when the arraylist of accounts is empty
- * @throws MissingInfoException when the password or username is empty
- */
+	/**
+	 * Searches the arraylist for the account based on the username and password
+	 * @param username the username of the acocunt
+	 * @param password the password of the account
+	 * @return the acount that was found
+	 * @throws NoAccountFoundException When the search dosent find the account
+	 * @throws NoDataException when the arraylist of accounts is empty
+	 * @throws MissingInfoException when the password or username is empty
+	 */
 	public Account searchAccount(String username, String password) throws NoAccountFoundException, NoDataException, MissingInfoException {
 		if(username.equals("") || password.equals("")) {
 			throw new MissingInfoException();
@@ -114,10 +123,10 @@ public class ULife {
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/savedAccounts.mateo"));
-			accounts = (ArrayList<Account>)ois.readObject();
-			ois.close();
+	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException, EOFException{
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/savedAccounts.mateo"));
+		accounts = (ArrayList<Account>)ois.readObject();
+		ois.close();
 	}
 
 	/**
@@ -249,7 +258,7 @@ public class ULife {
 				found = true;
 			}
 		}
-		
+
 		return gotIt;
 	}
 	/**
@@ -276,7 +285,7 @@ public class ULife {
 				found = true;
 			}
 		}
-		
+
 		return gotIt;
 	}
 

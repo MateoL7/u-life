@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -22,7 +23,12 @@ import model.ULife;
 import personalExceptions.MissingInfoException;
 import personalExceptions.NoAccountFoundException;
 import personalExceptions.NoDataException;
-
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class LoginGUI
+*/
 public class LoginGUI {
 
 	@FXML
@@ -54,15 +60,7 @@ public class LoginGUI {
 	@FXML
 	public void initialize(){
 		ul = new ULife();
-		try {
-			ul.loadData();
-		} 
-		catch (ClassNotFoundException c) {
-			c.printStackTrace();
-		}
-		catch(IOException i) {
-			i.printStackTrace();
-		}
+		
 	}
 	
 	public void setLg(LoginGUI l){
@@ -112,13 +110,53 @@ public class LoginGUI {
 			stage.setScene(scene);
 			stage.show();
 
-		}catch(IOException i) {
+		}
+		catch(EOFException t) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("No accounts registered yet");
 
+	       alert.showAndWait();
+		}
+		catch(IOException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("No accounts registered yet");
+
+	       alert.showAndWait();
 		}
 	}
 
 	@FXML
 	public void login(ActionEvent ev) {
+		try {
+			ul.loadData();
+		} 
+		catch (ClassNotFoundException c) {
+			c.printStackTrace();
+		}
+		catch(EOFException t) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("No accounts registered yet");
+
+	       alert.showAndWait();
+		}
+		catch(IOException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("No accounts registered yet");
+
+	       alert.showAndWait();
+		}
 		setLg(this);
 		try {
 			String usern = username.getText();

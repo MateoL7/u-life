@@ -1,9 +1,14 @@
 package model;
 
 import java.io.Serializable;
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class Account
+*/
 
-
-public class Account implements Serializable, Priviledges {
+public class Account implements Serializable, Privileges {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
@@ -18,7 +23,17 @@ public class Account implements Serializable, Priviledges {
 	private Activity firstActivity;
 
 
-
+	/**
+	 * This is the method that instantiates an Account, the builder of the class
+	 * @param username String with the username for the account
+	 * @param password String with the password for the account
+	 * @param age int with the age from the user
+	 * @param weight double with the weight provided by the user
+	 * @param height double with the height provided by the user
+	 * @param gender String with the gender provided by the user
+	 * @param nickName String with the nickname provided by the user
+	 * @param name String with the name provided by the user
+	 */
 	public Account(String username, String password, int age, double weight, double height, String gender, String nickName, String name) {
 		this.username = username;
 		this.password = password;
@@ -217,15 +232,15 @@ public class Account implements Serializable, Priviledges {
 		}
 	}
 	/**
-	 * Creates an alarm object to later be asigned to the binary tree
+	 * Creates an alarm object to later be assigned to the binary tree
 	 * @param hour the hour of the alarm	
 	 * @param min the minutes of the alarm
 	 * @param time the time in am pm of the alarm
 	 * @param vibrate wether the alarm should vibrate or not
 	 */
 	
-	public void addAlarm(int hour, int min, String time, boolean vibrate) {
-		Alarm a = new Alarm(hour, min,time , vibrate);
+	public void addAlarm(int hour, int min, String time) {
+		Alarm a = new Alarm(hour, min,time);
 
 		if(rootAlarm == null) {
 			rootAlarm = a;
@@ -234,7 +249,7 @@ public class Account implements Serializable, Priviledges {
 			addAlarm(a, rootAlarm);
 		}
 	}
-	/**traverses the binary tree to asign the alarm
+	/**traverses the binary tree to assign the alarm
 	 * adds an alarm to the binary tree
 	 * @param a the alarm to be added
 	 * @param current the root of the binary tree being traversed
@@ -259,8 +274,8 @@ public class Account implements Serializable, Priviledges {
 	}
 
 	/**
-	 * shows all the atributes of the activities
-	 * @return the atributes of the activities in string form
+	 * shows all the attributes of the activities
+	 * @return the attributes of the activities in string form
 	 */
 	public String showActivities() {
 		String msg = "";
@@ -277,8 +292,8 @@ public class Account implements Serializable, Priviledges {
 		return msg;
 	}
 	/**
-	 * shows all of the atributes of all the alarms
-	 * @return the atributes of the alarms in string format
+	 * shows all of the attributes of all the alarms
+	 * @return the attributes of the alarms in string format
 	 */
 
 	public String showAlarms() {
@@ -291,7 +306,7 @@ public class Account implements Serializable, Priviledges {
 	/**Traverses the binary tree of alarms in order to show the alarms
 	 * 
 	 * @param current the root of the binary tree being traversed
-	 * @return the atributes of the binary tree in string format
+	 * @return the attributes of the binary tree in string format
 	 */
 	private String showAlarms(Alarm current) {
 		String msg = "";
@@ -310,7 +325,7 @@ public class Account implements Serializable, Priviledges {
 	 * 
 	 * @param hour the hour to be compared
 	 * @param minute  the minutes to be compared
-	 * @return a messege indicating wether an alarm activated or not
+	 * @return a message indicating whether an alarm activated or not
 	 */
 	public String checkAlarm(int hour, int minute) {
 		 return checkAlarm(hour,minute,rootAlarm);
@@ -321,7 +336,7 @@ public class Account implements Serializable, Priviledges {
 	 * @param hour hour to be compared
 	 * @param minute minutes to be compared
 	 * @param a the alarm that is root of the current binary tree
-	 * @return a messege indicating wether or not the alarm was activated
+	 * @return a message indicating whether or not the alarm was activated
 	 */
 	private String checkAlarm(int hour,int minute,Alarm a) {
 		String msg = "";
@@ -335,7 +350,6 @@ public class Account implements Serializable, Priviledges {
 			}
           return msg;
 	}
-	
 }
 
         

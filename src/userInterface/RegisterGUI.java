@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Optional;
@@ -20,7 +21,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.ULife;
 import personalExceptions.MissingInfoException;
-
+/** 
+*@author: Mateo Loaiza
+*@author: Juan Pablo Herrera
+*@version: 26/05/2019
+*Class RegisterGUI
+*/
 public class RegisterGUI {
 
 	@FXML
@@ -65,9 +71,27 @@ public class RegisterGUI {
 		try {
 			ulife.loadData();
 		} 
-		catch (ClassNotFoundException | IOException e) {
+		catch(EOFException t) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("Welcome!");
+	        alert.setContentText("You will be our first user :D");
+
+	       alert.showAndWait();
+		}
+		catch(IOException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("Welcome!");
+	        alert.setContentText("You will be our first user");
+
+	       alert.showAndWait();
+		} catch (ClassNotFoundException e) {
+
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	public void setScene(Scene s) {

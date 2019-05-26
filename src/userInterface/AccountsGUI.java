@@ -1,8 +1,6 @@
 package userInterface;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,7 +56,7 @@ public class AccountsGUI {
 
 		try {
 			ul.loadData();
-			System.out.println(ul.getAccounts().get(0).getName());
+
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
@@ -67,7 +65,7 @@ public class AccountsGUI {
 		ObservableList<Account> oAccounts = FXCollections.observableArrayList();
 		nameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("name"));
 		usernameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("username"));
-		nicknameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("nickN ame"));
+		nicknameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("nickName"));
 		ageCol.setCellValueFactory(new PropertyValueFactory<Account,Integer>("age"));
 		heightCol.setCellValueFactory(new PropertyValueFactory<>("height"));
 		weightCol.setCellValueFactory(new PropertyValueFactory<>("weight"));
@@ -102,7 +100,7 @@ public class AccountsGUI {
 				alert.initStyle(StageStyle.UTILITY);
 				alert.setTitle("Information");
 				alert.setHeaderText("Not found");
-				alert.setContentText("There is not an account with that height");
+				alert.setContentText("There is not an account with that age");
 				alert.showAndWait();
 			}
 		} 
@@ -135,7 +133,7 @@ public class AccountsGUI {
 				alert.initStyle(StageStyle.UTILITY);
 				alert.setTitle("Information");
 				alert.setHeaderText("Not found");
-				alert.setContentText("There is not an account with that age");
+				alert.setContentText("There is not an account with that height");
 				alert.showAndWait();
 			}
 		} 

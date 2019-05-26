@@ -1,6 +1,6 @@
 package model;
 
-public class Activity {
+public class Activity implements Active{
 
 	private String name;
 	private int minutes;

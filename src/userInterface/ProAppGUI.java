@@ -159,7 +159,6 @@ public class ProAppGUI {
 	@FXML
 	private Circle light6;
 
-	public boolean active;
 
 	private ShiningThread sh;
 	private MoveLightsThread ml;
@@ -175,8 +174,7 @@ public class ProAppGUI {
 		addAlarmBt.setVisible(false);
 		sh = new ShiningThread(this);
 		ml = new MoveLightsThread(this);
-		as = new AlarmShineThread(this);
-		active = false;
+		ProAppGUI ptemp = this;
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -185,6 +183,7 @@ public class ProAppGUI {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
+						
 							DateFormat date = new SimpleDateFormat("hh:mm:ss:a");
 							Calendar cal = Calendar.getInstance();
 							String t = date.format(cal.getTime());
@@ -192,13 +191,16 @@ public class ProAppGUI {
 							int minute = cal.get(Calendar.MINUTE);
 							String contain = pa.checkAlarm(hour, minute);
 							LbClock.setText(t);
+							boolean active = false;
 							if(!contain.isEmpty()) {
 								active = true;
 								activationAlarm.setText(LbClock.getText());
-								as.start();
+								
 							}else {
 								active = false;
 							}
+							as = new AlarmShineThread(ptemp,active);
+							as.start();
 						}	
 					});
 					//Sleep adentro del while

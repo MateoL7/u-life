@@ -67,7 +67,7 @@ public class AccountsGUI {
 		ObservableList<Account> oAccounts = FXCollections.observableArrayList();
 		nameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("name"));
 		usernameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("username"));
-		nicknameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("nickName"));
+		nicknameCol.setCellValueFactory(new PropertyValueFactory<Account,String>("nickN ame"));
 		ageCol.setCellValueFactory(new PropertyValueFactory<Account,Integer>("age"));
 		heightCol.setCellValueFactory(new PropertyValueFactory<>("height"));
 		weightCol.setCellValueFactory(new PropertyValueFactory<>("weight"));

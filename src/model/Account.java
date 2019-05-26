@@ -209,7 +209,7 @@ public class Account implements Serializable, Priviledges {
 			sp.setPrev(sp);
 		}
 		else {
-			Sport last = (Sport) firstActivity.getPrev();
+			Activity last = firstActivity.getPrev();
 			sp.setPrev(last);
 			last.setNext(sp);
 			firstActivity.setPrev(sp);
@@ -267,8 +267,11 @@ public class Account implements Serializable, Priviledges {
 		if(firstActivity != null) {
 			Activity current = firstActivity;
 			Activity last = firstActivity.getPrev(); 
+			if(last == firstActivity) {
+				msg = "" + firstActivity;
+			}
 			while(current != last){
-				msg += current;
+				msg += current + "\n";
 			}
 		}
 		else {

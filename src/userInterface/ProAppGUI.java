@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import model.LoadInfo;
 import model.Note;
 import model.PremiumAccount;
+import model.SportType;
 import threads.AlarmShineThread;
 import threads.MoveLightsThread;
 import threads.ShiningThread;
@@ -530,7 +531,83 @@ public class ProAppGUI {
 
 	@FXML
 	public void addActivity(ActionEvent event) {
+		try {
+			String name = "";
+			int minutes = 0;
+			int hours = 0;
+			TextInputDialog nameT = new TextInputDialog();
+			nameT.setHeaderText("Name of the activity");
+			Optional<String> m1 = nameT.showAndWait();
+			if(m1.isPresent()) {
+				name = m1.get();	
+			}
+			TextInputDialog hoursT = new TextInputDialog();
+			hoursT.setHeaderText("Hours");
+			hoursT.setContentText("Please only type numbers.\nCan be 0.");
+			Optional<String> m = hoursT.showAndWait();
+			if(m.isPresent()) {
+				hours = Integer.parseInt(m.get());
+			}
+			TextInputDialog minT = new TextInputDialog();
+			minT.setHeaderText("Minutes");
+			minT.setContentText("Please only type numbers.\nCan be 0.");
+			Optional<String> m2 = minT.showAndWait();
+			if(m2.isPresent()) {
+				minutes = Integer.parseInt(m2.get());
+			}
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("New Activity");
+			alert.setHeaderText("Create you activity");
+			alert.setContentText("Type of activity");
 
+			ButtonType buttonTypeOne = new ButtonType("Activity");
+			ButtonType buttonTypeTwo = new ButtonType("Sport");
+			alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+			Optional<ButtonType> resulType = alert.showAndWait();
+			if(resulType.get() == buttonTypeOne) {
+				pa.addActivity(name, minutes, hours);
+			}
+			if(resulType.get() == buttonTypeTwo) {
+				double cal = 0.0;
+				SportType st = null;
+				TextInputDialog calT = new TextInputDialog();
+				calT.setHeaderText("Expected calories to burn");
+				calT.setContentText("Please only type numbers.\nCan be 0.");
+				Optional<String> m3 = calT.showAndWait();
+				if(m3.isPresent()) {
+					cal = Double.parseDouble(m2.get());
+				}
+				Alert alertSt = new Alert(AlertType.CONFIRMATION);
+				alertSt.setTitle("New Activity");
+				alertSt.setHeaderText("Sports");
+				alertSt.setContentText("Type of sport");
+
+				ButtonType basket = new ButtonType("BasketBall");
+				ButtonType parkour = new ButtonType("Parkour");
+				ButtonType run = new ButtonType("Run");
+				alertSt.getButtonTypes().setAll(basket, parkour, run);
+				Optional<ButtonType> option = alertSt.showAndWait();
+				if(option.get() == basket) {
+					st = SportType.BASKETBALL;
+				}
+				if(option.get() == parkour) {
+					st = SportType.PARKOUR;
+				}
+				if(option.get() == run) {
+					st = SportType.RUN;
+				}
+				
+				pa.addSport(name, minutes, hours, cal, st);
+			}
+			
+		} catch(NumberFormatException nm) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Problem");
+			alert.setHeaderText("WARNING!");
+			alert.setContentText("Please only type numbers");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML

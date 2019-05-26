@@ -85,8 +85,17 @@ public class Activity implements Active{
 		this.prev = prev;
 	}
 	
+	public boolean isDone() {
+		boolean done = false;
+		
+		if(hours == 0 && minutes == 0) {
+			done = true;
+		}
+		return done;
+	}
+	
 	@Override
 	public String toString() {
-		return "Name: " + name + "\nHours: " + hours + "\nMinutes: " + minutes;
+		return "\nName: " + name + "\nHours: " + hours + "\nMinutes: " + minutes;
 	}
 }

@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1957.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProAppGUI">
    <right>
-      <VBox prefHeight="950.0" prefWidth="325.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="834.0" prefWidth="417.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="TituloActividades" prefHeight="32.0" prefWidth="329.0" text="Current Activities" textFill="WHITE">
                <font>
@@ -27,7 +27,7 @@
                   <Insets left="40.0" />
                </padding>
             </Label>
-            <Label fx:id="activitiesLb" prefHeight="878.0" prefWidth="326.0">
+            <Label fx:id="activitiesLb" prefHeight="802.0" prefWidth="410.0" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="18.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Font name="Edwardian Script ITC" size="67.0" />
                </font>
             </Label>
-            <Button layoutX="941.0" layoutY="150.0" mnemonicParsing="false" onAction="#seeAccountsInfo" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: GOLDENROD;" text="See accounts information" />
+            <Button layoutX="911.0" layoutY="150.0" mnemonicParsing="false" onAction="#seeAccountsInfo" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: GOLDENROD;" text="See accounts information" />
          </children>
       </Pane>
    </center>
@@ -129,10 +129,10 @@
                   <Insets left="50.0" />
                </padding>
             </Label>
-            <Circle fill="WHITE" layoutX="173.0" layoutY="272.0" radius="100.0" stroke="#060000" strokeType="INSIDE" strokeWidth="20.0" style="-fx-fill: black; -fx-stroke: goldenrod;" />
-            <Label fx:id="activationAlarm" alignment="BOTTOM_LEFT" layoutX="107.0" layoutY="238.0" prefHeight="33.0" prefWidth="133.0" text="Inactive" textFill="WHITE">
+            <Circle fill="WHITE" layoutX="175.0" layoutY="270.0" radius="102.0" stroke="#060000" strokeType="INSIDE" strokeWidth="20.0" style="-fx-fill: black; -fx-stroke: goldenrod;" />
+            <Label fx:id="activationAlarm" alignment="BOTTOM_LEFT" layoutX="76.0" layoutY="238.0" prefHeight="42.0" prefWidth="197.0" textFill="WHITE">
                <font>
-                  <Font name="Edwardian Script ITC" size="40.0" />
+                  <Font name="Edwardian Script ITC" size="30.0" />
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutX="1.0" layoutY="372.0" stroke="BLACK" strokeType="INSIDE" width="383.0">

@@ -266,15 +266,12 @@ public class Account implements Serializable, Priviledges {
 		String msg = "";
 		if(firstActivity != null) {
 			Activity current = firstActivity;
-			Activity last = firstActivity.getPrev(); 
-			if(last == firstActivity) {
-				msg = "" + firstActivity;
+			while(current.getNext() != firstActivity) {
+				msg += "" + current;
+				current = current.getNext();
 			}
-			while(current != last){
-				msg += current + "\n";
-			}
-		}
-		else {
+			msg += "" + current;
+		}else {
 			msg = "There are no activities planned yet";
 		}
 		return msg;

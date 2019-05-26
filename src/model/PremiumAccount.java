@@ -14,28 +14,28 @@ public class PremiumAccount extends Account implements LoadInfo, Serializable{
 		
 	}
 
-	/**
+	/**returns the value of rootf
 	 * @return the rootF
 	 */
 	public FunFact getRootF() {
 		return rootF;
 	}
 
-	/**
+	/**changes the value of rootf for the parameter
 	 * @param rootF the rootF to set
 	 */
 	public void setRootF(FunFact rootF) {
 		this.rootF = rootF;
 	}
 
-	/**
+	/**returns the current value of rootT
 	 * @return the rootT
 	 */
 	public Tip getRootT() {
 		return rootT;
 	}
 
-	/**
+	/**changes the value of rootT to the paramter
 	 * @param rootT the rootT to set
 	 */
 	public void setRootT(Tip rootT) {
@@ -100,6 +100,12 @@ public class PremiumAccount extends Account implements LoadInfo, Serializable{
 			}
 		}
 	}
+	/**
+	 * 
+	 * @param num
+	 * @param info
+	 */
+	
 	public void addTip(String num, String info) {
 		Tip tp = new Tip(Integer.parseInt(num), info);
 		if(rootT == null) {

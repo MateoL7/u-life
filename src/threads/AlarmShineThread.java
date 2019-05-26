@@ -5,12 +5,14 @@ import userInterface.ProAppGUI;
 public class AlarmShineThread extends Thread{
 
 	private ProAppGUI pr;
+	private boolean act;
 	
-	public AlarmShineThread(ProAppGUI p) {
+	public AlarmShineThread(ProAppGUI p, boolean activate) {
 		pr = p;
+		act = activate;
 	}
 	public void run() {
-		while(pr.active) {
+		while(act == true) {
 			pr.alarmShine();
 			try {
 				sleep(100);

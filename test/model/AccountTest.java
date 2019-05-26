@@ -38,13 +38,13 @@ class AccountTest {
 		a.addAlarm(4, 30, "AM");
 	    String time1 = a.getRootAlarm().getLeft().getTime();
 	    String time2 = a.getRootAlarm().getTime();
-	    assertTrue(time1.equals("AM")&& time2.equals("PM"),"no se asigno bien los datos");
+	    assertTrue(time1.equals("AM")&& time2.equals("PM"),"Data no collected correctly");
 	}
 	@Test
 	void testShowAlarm() {
 		setupScenary1();
 		String message = a.showAlarms();
-		assertTrue(!message.isEmpty(),"no se recolecto correctamente los datos");
+		assertTrue(!message.isEmpty(),"Data no collected correctly");
 	}
 	
 	@Test
@@ -52,14 +52,14 @@ class AccountTest {
 		setupScenary1();
 		a.addAlarm(5, 20, "5:20PM");
 		String msg = a.checkAlarm(5, 20);
-		assertTrue(msg.equals("Activated"),"no se activo la alarma correctamente");
+		assertTrue(msg.equals("Activated"),"alarm not activated correctly");
 	}
 	
 	@Test
 	void testShowActivity() {
 		setupScenary1();
 		String message = a.showActivities();
-		assertTrue(!message.isEmpty(),"no se recolecto correctamente los datos");
+		assertTrue(!message.isEmpty(),"Data not collected correctly");
 	}
 
 }

@@ -215,9 +215,9 @@ public class ProAppGUI {
 							DateFormat date = new SimpleDateFormat("hh:mm:ss:a");
 							Calendar cal = Calendar.getInstance();
 							String t = date.format(cal.getTime());
-							int hour = cal.get(Calendar.HOUR);
 							int minute = cal.get(Calendar.MINUTE);
-							String contain = pa.checkAlarm(hour, minute);
+							int hourofday = cal.get(Calendar.HOUR_OF_DAY);
+							String contain = pa.checkAlarm(hourofday, minute);
 							LbClock.setText(t);
 							boolean active = false;
 							if(!contain.isEmpty()) {
@@ -695,6 +695,7 @@ public class ProAppGUI {
 			}
 			if (result.get() == buttonTypeTwo){
 				timeDay = "PM";
+				hour = hour +12;
 			}
 
 			time = timeDay + " " + hour + ":" + min;

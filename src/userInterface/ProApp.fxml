@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -102,6 +103,12 @@
             <Circle fx:id="light9" fill="DODGERBLUE" layoutX="830.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light11" fill="DODGERBLUE" layoutX="870.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
             <Circle fx:id="light6" fill="DODGERBLUE" layoutX="910.0" layoutY="20.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" />
+            <Arc fx:id="star5" layoutX="506.0" layoutY="83.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-107.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star4" layoutX="487.0" layoutY="77.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-58.5" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star3" layoutX="480.0" layoutY="45.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="39.3" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star2" layoutX="521.0" layoutY="51.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="163.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fx:id="star1" layoutX="501.0" layoutY="37.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="97.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fx:id="centerStar1" layoutX="523.0" layoutY="55.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Pane>
    </top>

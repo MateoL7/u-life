@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -38,6 +39,24 @@ public class ProAppGUI {
 
 	@FXML
 	private Label alarmsLb;
+
+	@FXML
+	private Arc star5;
+
+	@FXML
+	private Arc star4;
+
+	@FXML
+	private Arc star3;
+
+	@FXML
+	private Arc star2;
+
+	@FXML
+	private Arc star1;
+
+	@FXML
+	private Circle centerStar1;
 
 	@FXML
 	private Label TituloActividades;
@@ -222,6 +241,14 @@ public class ProAppGUI {
 		light11.setFill(Color.GOLDENROD);
 		light6.setFill(Color.GOLDENROD);
 
+		//Star
+		centerStar1.setFill(Color.GOLDENROD);
+		star1.setFill(Color.GOLDENROD);
+		star2.setFill(Color.GOLDENROD);
+		star3.setFill(Color.GOLDENROD);
+		star4.setFill(Color.GOLDENROD);
+		star5.setFill(Color.GOLDENROD);
+
 	}
 	public void shutDownLights() {
 		//Down
@@ -243,6 +270,14 @@ public class ProAppGUI {
 		light9.setFill(Color.BLACK);
 		light11.setFill(Color.BLACK);
 		light6.setFill(Color.BLACK);
+
+		//Star
+		centerStar1.setFill(Color.BLACK);
+		star1.setFill(Color.BLACK);
+		star2.setFill(Color.BLACK);
+		star3.setFill(Color.BLACK);
+		star4.setFill(Color.BLACK);
+		star5.setFill(Color.BLACK);
 	}
 	public void move1() {
 		double mov = 5;
@@ -265,6 +300,14 @@ public class ProAppGUI {
 		light9.setLayoutX(light9.getLayoutX()-mov);
 		light11.setLayoutX(light11.getLayoutX()-mov);
 		light6.setLayoutX(light6.getLayoutX()-mov);
+
+		//Star
+		centerStar1.setLayoutY(centerStar1.getLayoutY() + mov);
+		star1.setLayoutY(star1.getLayoutY()+mov);
+		star2.setLayoutY(star2.getLayoutY()+mov);
+		star3.setLayoutY(star3.getLayoutY()+mov);
+		star4.setLayoutY(star4.getLayoutY()+mov);
+		star5.setLayoutY(star5.getLayoutY()+mov);
 	}
 	public void move2() {
 		double mov = 5;

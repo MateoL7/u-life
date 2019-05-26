@@ -162,6 +162,8 @@ public class ProAppGUI {
 	@FXML
 	private Circle light11;
 
+	private boolean shinning;
+
 	@FXML
 	private Circle light6;
 
@@ -190,8 +192,7 @@ public class ProAppGUI {
 	private ShiningThread sh;
 	private MoveLightsThread ml;
 	private AlarmShineThread as;
-	private boolean shinning;
-
+	
 
 	@FXML
 	public void initialize(){

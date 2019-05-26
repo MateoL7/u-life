@@ -16,11 +16,11 @@ class AccountTest {
 	@Test
 	void testAddActivity() {
 		setupScenary1();
-		a.addActivity("correr", 30, 1);
+		a.addActivity("run", 30, 1);
 		a.addActivity("gym", 0, 2);
-		String actividad = a.getFirstActivity().getName();
-		String actividad2 = a.getFirstActivity().getNext().getName();
-		assertTrue(actividad.equals("correr")&&actividad2.equals("gym"),"algo salio mal");
+		String act = a.getFirstActivity().getName();
+		String act2 = a.getFirstActivity().getNext().getName();
+		assertTrue(act.equals("run")&&act2.equals("gym"),"Something is not right with the activities");
 	}
 	@Test
 	void testAddSport() {
@@ -29,7 +29,7 @@ class AccountTest {
 		a.addSport("Basketball",30, 1,400,SportType.BASKETBALL);
 		Sport s1 = new Sport("Football", 30, 1, 300, SportType.RUN);
 		Sport s2 = new Sport("Basketball",30, 1,400,SportType.BASKETBALL);
-		assertTrue(s1.getName().equals(a.getFirstActivity().getName())&&s2.getName().equals(a.getFirstActivity().getNext().getName()),"No es el mismo objeto");
+		assertTrue(s1.getName().equals(a.getFirstActivity().getName())&&s2.getName().equals(a.getFirstActivity().getNext().getName()),"Not the same object");
 	}
 	@Test
 	void testAddAlarm() {

@@ -35,7 +35,7 @@ public class AlarmTest {
 		
 		 int data  =a2.compareTo(a2);
 		int data2 = a1.compareTo(a1);
-		assertTrue(data>-1);
-		assertTrue(data2<1);
+		assertTrue("Not comparing correctly", data>-1);
+		assertTrue("Not comparing correctly", data2<1);
 	}
 }

@@ -233,7 +233,7 @@ public class ProAppGUI {
 					});
 					//Sleep adentro del while
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -512,6 +512,8 @@ public class ProAppGUI {
 			}
 			labelMessage.setText(msg);
 
+		} catch (FileNotFoundException f) {
+			f.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

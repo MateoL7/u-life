@@ -22,11 +22,18 @@ public class ActivityTest {
 	}
 	@Test
 	void testToString() {
-		Activity a = new Activity("Study science", 30, 1);
-		String msg =  "Name: " + "Study science" + "\nHours: " + 1 + "\nMinutes: " + 30;
-		String toS = a.toString();
-		System.out.println(msg + "\n" + toS);
-		assertTrue(msg.equals(toS));
+		int minutes = 30;
+		int hours = 1;
+		String m = "Strudy science";
+		Activity a = new Activity(m, minutes, hours);
+		String msg =  "\nName: " + m + "\nHours: " + hours + "\nMinutes: " + minutes;
+		String toS = a+"";
+		assertTrue("Not working correctly when calling it", msg.equalsIgnoreCase(toS));
+	}
+	@Test
+	public void testIsDone() {
+		Activity a = new Activity("Study science", 0, 0);
+		assertTrue("Not sending the right value", a.isDone() == true);
 	}
 	
 }

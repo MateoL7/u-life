@@ -10,13 +10,6 @@ public class AlarmTest {
 	private Alarm a1;
 	private Alarm a2;
 
-	public void setupScenary1() {
-		
-	}
-	
-	public void setupScenary2() {
-		
-	}
 	
 	@Test
 	public void testAlarm() {

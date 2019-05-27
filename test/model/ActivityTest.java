@@ -7,21 +7,22 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class ActivityTest {
-
-	public void setupScenary1() {
+	public void setupScenary1(){
 		
 	}
 	
 	@Test
 	public void testActivity() {
+		setupScenary1();
 		Activity a = new Activity("Study science", 30, 1);
 		assertNotNull("The object is null", a);
-		assertTrue(a.getName().equalsIgnoreCase("Study science"));
-		assertTrue(a.getHours() == 1);
-		assertTrue(a.getMinutes() == 30);
+		assertTrue("Not the right value", a.getName().equalsIgnoreCase("Study science"));
+		assertTrue("Not the right value", a.getHours() == 1);
+		assertTrue("Not the right value", a.getMinutes() == 30);
 	}
 	@Test
 	void testToString() {
+		setupScenary1();
 		int minutes = 30;
 		int hours = 1;
 		String m = "Strudy science";
@@ -32,6 +33,7 @@ public class ActivityTest {
 	}
 	@Test
 	public void testIsDone() {
+		setupScenary1();
 		Activity a = new Activity("Study science", 0, 0);
 		assertTrue("Not sending the right value", a.isDone() == true);
 	}

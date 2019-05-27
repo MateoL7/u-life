@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-class AccountTest {
-	
+public class AccountTest {
+
 	private Account a;
-	
-	
+
+
 	public void setupScenary1() {
 		a = new Account("JP","123",19,87.0,183.0,"male","JP","Juan");
 	}
@@ -36,9 +36,9 @@ class AccountTest {
 		setupScenary1();
 		a.addAlarm(12, 20, "PM");
 		a.addAlarm(4, 30, "AM");
-	    String time1 = a.getRootAlarm().getLeft().getTime();
-	    String time2 = a.getRootAlarm().getTime();
-	    assertTrue(time1.equals("AM")&& time2.equals("PM"),"Data no collected correctly");
+		String time1 = a.getRootAlarm().getLeft().getTime();
+		String time2 = a.getRootAlarm().getTime();
+		assertTrue(time1.equals("AM")&& time2.equals("PM"),"Data no collected correctly");
 	}
 	@Test
 	void testShowAlarm() {
@@ -46,7 +46,7 @@ class AccountTest {
 		String message = a.showAlarms();
 		assertTrue(!message.isEmpty(),"Data no collected correctly");
 	}
-	
+
 	@Test
 	void testCheckAlarm() {
 		setupScenary1();
@@ -54,7 +54,7 @@ class AccountTest {
 		String msg = a.checkAlarm(5, 20);
 		assertTrue(msg.equals("Activated"),"alarm not activated correctly");
 	}
-	
+
 	@Test
 	void testShowActivity() {
 		setupScenary1();

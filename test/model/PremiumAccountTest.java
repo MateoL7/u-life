@@ -48,5 +48,16 @@ public class PremiumAccountTest {
 		 assertTrue("Not working corectly", pa.getFirstNote().getPrev().getNote().equalsIgnoreCase(n.getNote()));
 
 	}
+	
+	@Test
+	void testNote() {
+		setupScenary1();
+		Note n = new Note(10,"note");
+		pa.setFirstNote(n);
+		Note test = pa.getFirstNote();
+		assertTrue(test.getNum() == 10);
+		assertTrue(test.getNote()== n.getNote());
+		 
+	}
 
 }

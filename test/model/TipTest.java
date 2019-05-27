@@ -13,7 +13,7 @@ public class TipTest {
 	}
 
 	@Test
-	void testTip() {
+	public void testTip() {
 		setupScenary1();
 		assertTrue(t.getNumber()== 5);
 		assertTrue(t.getTip().equals("Do your best always"));

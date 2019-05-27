@@ -9,7 +9,7 @@ import userInterface.ProAppGUI;
  *ThreadClass ShiningThread
  */
 public class ShiningThread extends Thread{
-	ProAppGUI pr;
+	private ProAppGUI pr;
 	/**
 	 * This is the method that instantiates a MoveLightsThread, the builder of the thread 
 	 * @param p ProAppGUI the GUI to work with

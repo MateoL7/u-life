@@ -116,6 +116,7 @@
             <Arc fx:id="star11" layoutX="943.0" layoutY="103.0" length="10.0" radiusX="50.0" radiusY="50.0" rotate="-104.2" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Circle fx:id="centerStar11" layoutX="962.0" layoutY="78.0" radius="6.0" stroke="TRANSPARENT" strokeType="INSIDE" />
             <Button layoutX="1173.0" layoutY="110.0" mnemonicParsing="false" onAction="#makeItShine" style="-fx-background-color: goldenrod;" text="Make me shine" />
+            <Button fx:id="btStop" layoutX="1305.0" layoutY="110.0" mnemonicParsing="false" onAction="#stop" style="-fx-background-color: goldenrod;" text="Stop" />
          </children>
       </Pane>
    </top>

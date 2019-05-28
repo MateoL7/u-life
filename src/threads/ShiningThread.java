@@ -19,7 +19,7 @@ public class ShiningThread extends Thread{
 	}
 
 	public void run() {
-		while(pr.getShinning()) {
+		while(pr.getBlinker() != null) {
 			pr.shine();
 			try {
 				sleep(100);
@@ -32,6 +32,7 @@ public class ShiningThread extends Thread{
 			} catch(InterruptedException e) {
 				System.out.println("Interrupted");
 			}
-		}
+		}	
 	}
 }
+

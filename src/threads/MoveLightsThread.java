@@ -1,5 +1,6 @@
 package threads;
 
+
 import userInterface.ProAppGUI;
 /** 
  *@author: Mateo Loaiza
@@ -18,7 +19,7 @@ public class MoveLightsThread extends Thread{
 		pr = p;
 	}
 	public void run() {
-		while(pr.getShinning()) {
+		while(pr.getBlinker2() != null) {
 			pr.move1();
 			try {
 				sleep(100);
@@ -88,11 +89,11 @@ public class MoveLightsThread extends Thread{
 			}
 			pr.move2();
 			try {
-				sleep(500);
+				sleep(100);
 			} catch(InterruptedException e) {
 				System.out.println("Interrupted");
 			}
 			//CHANGE MOVEMENT
-		}
+		}	
 	}
 }

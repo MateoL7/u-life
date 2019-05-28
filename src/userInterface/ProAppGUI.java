@@ -33,11 +33,11 @@ import threads.AlarmShineThread;
 import threads.MoveLightsThread;
 import threads.ShiningThread;
 /** 
-*@author: Mateo Loaiza
-*@author: Juan Pablo Herrera
-*@version: 26/05/2019
-*Class ProAppGUI
-*/
+ *@author: Mateo Loaiza
+ *@author: Juan Pablo Herrera
+ *@version: 26/05/2019
+ *Class ProAppGUI
+ */
 public class ProAppGUI {
 
 	@FXML
@@ -186,19 +186,23 @@ public class ProAppGUI {
 	private Circle centerStar11;
 
 	@FXML
+    private Button btStop;
+	
+	@FXML
 	private Circle digitalClock;
 
 
 	private ShiningThread sh;
 	private MoveLightsThread ml;
 	private AlarmShineThread as;
-	
+
 
 	@FXML
 	public void initialize(){
 		lg = LoginGUI.getLg();
 		pa = (PremiumAccount) lg.getAccount();
 		bt.setVisible(false);
+		btStop.setVisible(false);
 		addNoteBt.setVisible(false);
 		addActBt.setVisible(false);
 		addAlarmBt.setVisible(false);
@@ -229,6 +233,7 @@ public class ProAppGUI {
 								active = false;
 							}
 							as = new AlarmShineThread(ptemp,active);
+							as.setDaemon(true);
 							as.start();
 						}	
 					});
@@ -283,6 +288,7 @@ public class ProAppGUI {
 		star41.setFill(Color.GOLDENROD);
 		star51.setFill(Color.GOLDENROD);
 
+
 	}
 
 	public boolean getShinning() {
@@ -292,18 +298,44 @@ public class ProAppGUI {
 	public void setShinning(boolean s) {
 		shinning = s;
 	}
+	
+	private volatile Thread blinker;
+	
+	private volatile Thread blinker2;
+
+    public void stop() {
+        blinker = null;
+        blinker2 = null;
+        btStop.setVisible(false);
+    }
 
 	@FXML
 	public void makeItShine(ActionEvent event) {
 		setShinning(true);
+		btStop.setVisible(true);
 		sh = new ShiningThread(this);
 		ml = new MoveLightsThread(this);
-		sh.setDaemon(true);
-		ml.setDaemon(true);
-		sh.start();
-		ml.start();
+		blinker = sh;
+		blinker2 = ml;
+		try {
 
+			sh.start();
+			ml.start();	
+			ml.setDaemon(true);
+			sh.setDaemon(true);
 
+		}
+		catch(NullPointerException n) {
+			Alert t = new Alert(AlertType.WARNING);
+			t.setTitle("Problem");
+			t.setHeaderText("Please read");
+			t.setContentText("You are so fantastic that our program could not handle it.\nOur lights cannot shine more than you!\nWe will turn them off");
+			t.showAndWait();
+			stop();
+			shutDownLights();
+		}
+		catch(RuntimeException e) {
+		}
 	}
 
 	public void shutDownLights() {
@@ -380,6 +412,7 @@ public class ProAppGUI {
 		star31.setLayoutY(star31.getLayoutY()-mov);
 		star41.setLayoutY(star41.getLayoutY()-mov);
 		star51.setLayoutY(star51.getLayoutY()-mov);
+
 	}
 	public void move2() {
 		double mov = 5;
@@ -418,6 +451,7 @@ public class ProAppGUI {
 		star31.setLayoutY(star31.getLayoutY()+mov);
 		star41.setLayoutY(star41.getLayoutY()+mov);
 		star51.setLayoutY(star51.getLayoutY()+mov);
+
 	}
 
 	public void alarmShine() {
@@ -479,21 +513,21 @@ public class ProAppGUI {
 			br.close();
 		} 	catch(EOFException t) {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	        alert.initStyle(StageStyle.UTILITY);
-	        alert.setTitle("Information");
-	        alert.setHeaderText("WARNING!");
-	        alert.setContentText("You do not have any notes yet");
+			alert.initStyle(StageStyle.UTILITY);
+			alert.setTitle("Information");
+			alert.setHeaderText("WARNING!");
+			alert.setContentText("You do not have any notes yet");
 
-	       alert.showAndWait();
+			alert.showAndWait();
 		}
 		catch(IOException e) {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	        alert.initStyle(StageStyle.UTILITY);
-	        alert.setTitle("Information");
-	        alert.setHeaderText("WARNING!");
-	        alert.setContentText("You do not have any notes yet");
+			alert.initStyle(StageStyle.UTILITY);
+			alert.setTitle("Information");
+			alert.setHeaderText("WARNING!");
+			alert.setContentText("You do not have any notes yet");
 
-	       alert.showAndWait();
+			alert.showAndWait();
 		}
 	}
 
@@ -702,7 +736,6 @@ public class ProAppGUI {
 			time = timeDay + " " + hour + ":" + min;
 
 			pa.addAlarm(hour, min, time);
-			System.out.println(time);
 
 		} catch(NumberFormatException nm) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -750,6 +783,38 @@ public class ProAppGUI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	/**
+	 * @return the blinker
+	 */
+	public Thread getBlinker() {
+		return blinker;
+	}
+
+
+	/**
+	 * @param blinker the blinker to set
+	 */
+	public void setBlinker(Thread blinker) {
+		this.blinker = blinker;
+	}
+
+
+	/**
+	 * @return the blinker2
+	 */
+	public Thread getBlinker2() {
+		return blinker2;
+	}
+
+
+	/**
+	 * @param blinker2 the blinker2 to set
+	 */
+	public void setBlinker2(Thread blinker2) {
+		this.blinker2 = blinker2;
 	}
 
 

@@ -1,6 +1,6 @@
 * Authors of the project ULife:
-	- Mateo Loaiza
-	- Juan Pablo Herrera
+	- Mateo Loaiza A00356464
+	- Juan Pablo Herrera A00358465
 
 This project is about an app which helps students control their living habits. The purpose of this program is to provide a service that can help improve the 
 quality of life of the students or anyone that wants to use it. This program allows its premium users to create different activities for themselves, to save

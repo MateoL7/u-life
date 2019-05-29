@@ -22,25 +22,17 @@ public class AlarmShineThread extends Thread{
 		act = activate;
 	}
 	public void run() {
-		int counter = 0;
-		while(act == true && counter < 5) {
+		while(act == true) {
 			pr.alarmShine();
 			try {
-				sleep(100);
+				sleep(200);
 			} catch(InterruptedException e) {
 				System.out.println("Interrupted");
 			}
 			pr.alarmDown();
 			try {
-				sleep(1000);
+				sleep(200);
 			} catch(InterruptedException e) {
-				System.out.println("Interrupted");
-			}
-			counter += 1;
-			try {
-				sleep(100);
-			}
-			catch(InterruptedException i) {
 				System.out.println("Interrupted");
 			}
 		}

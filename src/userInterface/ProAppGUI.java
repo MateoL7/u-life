@@ -195,6 +195,7 @@ public class ProAppGUI {
 	private ShiningThread sh;
 	private MoveLightsThread ml;
 	private AlarmShineThread as;
+	boolean active = false;
 
 
 	@FXML
@@ -224,8 +225,7 @@ public class ProAppGUI {
 							int hourofday = cal.get(Calendar.HOUR_OF_DAY);
 							String contain = pa.checkAlarm(hourofday, minute);
 							LbClock.setText(t);
-							boolean active = false;
-							if(!contain.isEmpty()) {
+							if(contain != "") {
 								active = true;
 								activationAlarm.setText(LbClock.getText());
 
@@ -683,6 +683,12 @@ public class ProAppGUI {
 			alert.showAndWait();
 		}
 	}
+	public Thread getBlinker() {
+		return blinker;
+	}
+	public Thread getBlinker2() {
+		return blinker2;
+	}
 
 	@FXML
 	public void addAlarm(ActionEvent event) {
@@ -784,38 +790,4 @@ public class ProAppGUI {
 			e.printStackTrace();
 		}
 	}
-
-
-	/**
-	 * @return the blinker
-	 */
-	public Thread getBlinker() {
-		return blinker;
-	}
-
-
-	/**
-	 * @param blinker the blinker to set
-	 */
-	public void setBlinker(Thread blinker) {
-		this.blinker = blinker;
-	}
-
-
-	/**
-	 * @return the blinker2
-	 */
-	public Thread getBlinker2() {
-		return blinker2;
-	}
-
-
-	/**
-	 * @param blinker2 the blinker2 to set
-	 */
-	public void setBlinker2(Thread blinker2) {
-		this.blinker2 = blinker2;
-	}
-
-
 }

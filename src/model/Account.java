@@ -2,11 +2,11 @@ package model;
 
 import java.io.Serializable;
 /** 
-*@author: Mateo Loaiza
-*@author: Juan Pablo Herrera
-*@version: 26/05/2019
-*Class Account
-*/
+ *@author: Mateo Loaiza
+ *@author: Juan Pablo Herrera
+ *@version: 26/05/2019
+ *Class Account
+ */
 
 public class Account implements Serializable, Privileges {
 	private static final long serialVersionUID = 1L;
@@ -186,7 +186,7 @@ public class Account implements Serializable, Privileges {
 	public void setName(String name) {
 		this.name = name;
 	}
- 
+
 	/**
 	 * Adds an activity to the linked list 
 	 * @param name the name of the activity to be added
@@ -238,7 +238,7 @@ public class Account implements Serializable, Privileges {
 	 * @param time the time in am pm of the alarm
 	 * @param vibrate wether the alarm should vibrate or not
 	 */
-	
+
 	public void addAlarm(int hour, int min, String time) {
 		Alarm a = new Alarm(hour, min,time);
 
@@ -302,7 +302,7 @@ public class Account implements Serializable, Privileges {
 		}
 		return showAlarms(rootAlarm);
 	}
-	
+
 	/**Traverses the binary tree of alarms in order to show the alarms
 	 * 
 	 * @param current the root of the binary tree being traversed
@@ -328,9 +328,9 @@ public class Account implements Serializable, Privileges {
 	 * @return a message indicating whether an alarm activated or not
 	 */
 	public String checkAlarm(int hour, int minute) {
-		 return checkAlarm(hour,minute,rootAlarm);
-    }
- 
+		return checkAlarm(hour,minute,rootAlarm);
+	}
+
 	/**traverses the binary tree in order to check if the alarms were activated
 	 * 
 	 * @param hour hour to be compared
@@ -340,16 +340,20 @@ public class Account implements Serializable, Privileges {
 	 */
 	private String checkAlarm(int hour,int minute,Alarm a) {
 		String msg = "";
-		if(a == null) {
-			msg +="";
-		}else if(a.getHour() == hour && minute == a.getMin()) {
-				msg += "Activated"; 
-			}else {
-				 checkAlarm(hour,minute,a.getLeft());
-				checkAlarm(hour,minute,a.getRight());
+		if(a != null) {
+			if(a.getHour() == hour && minute == a.getMin()) {
+				msg = "Activated"; 
 			}
-          return msg;
+			else {
+				if(a.getLeft() != null) {
+					msg = checkAlarm(hour,minute,a.getLeft());	
+				}
+				if(a.getRight() != null) {
+					msg = checkAlarm(hour,minute,a.getRight());	
+				}
+			}
+		}
+		return msg;
 	}
 }
 
-        

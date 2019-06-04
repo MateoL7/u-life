@@ -20,6 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -228,6 +230,10 @@ public class ProAppGUI {
 							if(contain != "") {
 								active = true;
 								activationAlarm.setText(LbClock.getText());
+								Media file1 = new Media(new File("data/alarm.mp3").toURI().toString());
+								MediaPlayer mp = new MediaPlayer(file1);
+								mp.setVolume(40);
+								mp.play();
 
 							}else {
 								active = false;

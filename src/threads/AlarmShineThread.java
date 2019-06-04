@@ -10,7 +10,6 @@ import userInterface.ProAppGUI;
 public class AlarmShineThread extends Thread{
 
 	private ProAppGUI pr;
-	private boolean act;
 	
 	 /**
 	  * This is the method that instantiates an AlarmShineThread, the builder of the thread
@@ -19,10 +18,9 @@ public class AlarmShineThread extends Thread{
 	  */
 	public AlarmShineThread(ProAppGUI p, boolean activate) {
 		pr = p;
-		act = activate;
 	}
 	public void run() {
-		while(act == true) {
+		while(pr.getBlinker3() != null) {
 			pr.alarmShine();
 			try {
 				sleep(200);

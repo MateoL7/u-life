@@ -191,14 +191,20 @@ public class ProAppGUI {
     private Button btStop;
 	
 	@FXML
+    private Button bt2;
+	
+	@FXML
 	private Circle digitalClock;
+	
 
 
 	private ShiningThread sh;
 	private MoveLightsThread ml;
 	private AlarmShineThread as;
-	boolean active = false;
+	boolean active = true;
 
+	MediaPlayer mp;
+	
 
 	@FXML
 	public void initialize(){
@@ -209,8 +215,17 @@ public class ProAppGUI {
 		addNoteBt.setVisible(false);
 		addActBt.setVisible(false);
 		addAlarmBt.setVisible(false);
+		bt2.setVisible(false);
+		Media file1 = new Media(new File("data/alarm.mp3").toURI().toString());
+		mp = new MediaPlayer(file1);
+	
+		mp.setVolume(50);
+	
 
 		ProAppGUI ptemp = this;
+		as = new AlarmShineThread(ptemp,active);
+		blinker3 = as;
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -230,17 +245,16 @@ public class ProAppGUI {
 							if(contain != "") {
 								active = true;
 								activationAlarm.setText(LbClock.getText());
-								Media file1 = new Media(new File("data/alarm.mp3").toURI().toString());
-								MediaPlayer mp = new MediaPlayer(file1);
-								mp.setVolume(40);
+								bt2.setVisible(true);
+								try {
+									as.start();
+								}catch(IllegalThreadStateException e) {
+									
+								}
+								
+								
 								mp.play();
-
-							}else {
-								active = false;
 							}
-							as = new AlarmShineThread(ptemp,active);
-							as.setDaemon(true);
-							as.start();
 						}	
 					});
 					//Sleep adentro del while
@@ -257,6 +271,14 @@ public class ProAppGUI {
 	}
 
 
+	@SuppressWarnings("deprecation")
+	public void stopA(ActionEvent a) {
+		mp.pause();
+		bt2.setVisible(false);
+		blinker3 = null;
+		as.stop();
+	}
+	
 	public void shine() {
 		//Down
 		light2.setFill(Color.GOLDENROD);
@@ -308,6 +330,10 @@ public class ProAppGUI {
 	private volatile Thread blinker;
 	
 	private volatile Thread blinker2;
+	
+	private volatile Thread blinker3;
+
+	
 
     public void stop() {
         blinker = null;
@@ -796,4 +822,16 @@ public class ProAppGUI {
 			e.printStackTrace();
 		}
 	}
+
+
+	public Thread getBlinker3() {
+		return blinker3;
+	}
+
+
+	public void setBlinker3(Thread blinker3) {
+		this.blinker3 = blinker3;
+	}
+
+
 }
